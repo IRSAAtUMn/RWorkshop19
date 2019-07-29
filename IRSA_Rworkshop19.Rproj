@@ -13,3 +13,4 @@ RnwWeave: knitr
 LaTeX: pdfLaTeX
 
 BuildType: Website
+WebsitePath: ~/Documents/WorkshopMaterials/IRSA_workshops/IRSA_Rworkshop19
