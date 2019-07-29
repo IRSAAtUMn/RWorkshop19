@@ -89,7 +89,7 @@ Before this workshop, you were asked to download/update both R and RStudio.
 
 What's the difference?
 
-```{r}
+```{r, echo=FALSE, out.width="20%"}
 knitr::include_graphics("images/R.jpeg")
 ```
 
@@ -100,7 +100,7 @@ knitr::include_graphics("images/R.jpeg")
 * Text editing on a Mac
 
 
-```{r}
+```{r, echo=FALSE, out.width="20%"}
 knitr::include_graphics("images/RStudio-Ball.png")
 ```
 
@@ -112,11 +112,15 @@ knitr::include_graphics("images/RStudio-Ball.png")
 
 \
 \
+\
+\
+\
+
 
 ## R Studio Overview
 
 
-```{r, fig.align="center"}
+```{r, fig.align="center", echo=FALSE}
 knitr::include_graphics("images/Rstudiolayout.png")
 ```
 
@@ -125,11 +129,15 @@ Note that when you first open RStudio, you will only see three windows (because 
 \
 \
 \
+\
+\
 
 ###  The R console
 
 The R console is where R commands are executed and most output will be displayed. You can type commands directly into the console and run them by pressing "enter".
 
+\
+\
 \
 \
 
@@ -148,11 +156,14 @@ We can use R as a basic calculator. Try typing and running each of the following
 \
 \
 \
+\
+\
  
 **Assignment**
 
 We can assign and store R output as *objects* in R's environment. This allows us to use or reference the output later. 
 
+\
 
 Store the result of `2 + 3^2` as `my_result`
 ```{r, eval=FALSE}
@@ -162,18 +173,24 @@ my_result <- 2 + 3^2
 
 Once you create an object, you will see it appear in the "Environment" pane. 
 
+\
+\
 
 Check out the result in the console
 ```{r, eval=FALSE}
 my_result
 ```
 
+\
+\
 
 Do something with the results
 ```{r, eval=FALSE}
 my_result + 5
 ```
 
+\
+\
 
 Update the object
 ```{r, eval=FALSE}
@@ -182,6 +199,8 @@ my_result <- my_result + 5
 my_result
 ```
 
+\
+\
 
 Object names can not include spaces or start with numbers!
 ```{r, eval=FALSE}
@@ -190,6 +209,11 @@ my result <- 2 + 3^2
 1result <- 2 + 3^2
 ```
 
+\
+\
+\
+\
+\
 
 **Functions**
 
@@ -201,6 +225,10 @@ sqrt(9)
 sqrt(my_result)
 ```
 
+\
+\
+\
+
 The sum() function calculates the sum of the listed numbers.  
 
 Does the order of arguments matter?
@@ -209,11 +237,21 @@ sum(2, 3)
 sum(3, 2)
 ```
 
+\
+\
+\
+\
+
 What does the rep() function do? Does the order of arguments matter?
 ```{r, eval=FALSE}
 rep(2, 3)
 rep(3, 2)
 ```
+
+\
+\
+\
+
 
 Arguments have names
 ```{r, eval=FALSE}
@@ -221,10 +259,22 @@ rep(x = 3, times = 2)
 rep(times = 2, x = 3)
 ```
 
+\
+\
+\
+\
+
 Is R case sensitive?  eg: Can we spell rep() as Rep()? 
 ```{r, eval=FALSE}
 Rep(2, 3)
 ```
+
+\
+\
+\
+\
+\
+\
 
 
 ### The Help window
@@ -234,14 +284,20 @@ How do you know what a function does, what arguments are available, and what the
 
 You can find the help page for a function by typing the function name in the search bar
 
-```{r, fig.align='center'}
+```{r, fig.align='center', echo=FALSE}
 knitr::include_graphics("images/Helpbar.png")
 ```
+
+\
 
 Or by typing "?" followed by the function name in the console
 ```{r, eval=FALSE}
 ?rep()
 ```
+
+\
+\
+\
 
 
 If you are not sure of what a function would be called or whether it exists, a great option is to Google it. 
@@ -252,7 +308,13 @@ Some helpful sites include:
 * R bloggers: <http://www.r-bloggers.com/>
 * Quick-R: <http://www.statmethods.net/>
 
-
+\
+\
+\
+\
+\
+\
+\
 
 ### The Package window 
 
@@ -262,13 +324,18 @@ However, because R is open source, anyone can contribute extra functions to R (w
 
 \
 \
+\
+\
+
 
 To install the package from CRAN to your computer, you can click "Install" in the package tab, which opens a pop-up window. 
 
-```{r, fig.align='center'}
+```{r, fig.align='center', echo=FALSE}
 knitr::include_graphics("images/installpackages.png")
 ```
 
+\
+\
 
 Or use `install.packages()` in the console
 
@@ -279,6 +346,8 @@ install.packages("ggplot2")
 
 \
 \
+\
+
 
 You only need to install packages once for each computer/version of R.
 
@@ -301,7 +370,12 @@ For example, cronbach's alpha (a common measure of internal scale consistency) i
 * fmsb package: CronbachAlpha()
 * epiDisplay package: alpha()
 
-
+\
+\
+\
+\
+\
+\
 
 ### The Environment window
 
@@ -309,7 +383,7 @@ Objects we create in R are stored in the Environment tab. If this gets cluttered
 
 Click on the "broom" icon:
 
-```{r, fig.align='center'}
+```{r, fig.align='center', echo=FALSE}
 knitr::include_graphics("images/clearenvironment.png")
 ```
 
@@ -319,12 +393,18 @@ Or type into the console:
 rm(list=ls())
 ```
 
+\
+\
+\
+\
+\
+\
 
 ### The History window
 
 This window provides a list of all the commands you have entered in the console
 
-```{r, fig.align='center'}
+```{r, fig.align='center', echo=FALSE}
 knitr::include_graphics("images/history.png")
 ```
 
@@ -335,11 +415,17 @@ While this can serve as a nice reminder of what you have done, think about how w
 For procedures you care about (for example, anything with data), you will want to capture what you do in an *R script*. 
 
 
+\
+\
+\
+\
+\
+
 ## R script
 
 To open a new script, select File --> New File --> R Script
 
-```{r, fig.align='center'}
+```{r, fig.align='center', echo=FALSE}
 knitr::include_graphics("images/Newscript.png")
 ```
 
@@ -357,6 +443,8 @@ R scripts
 \
 \
 \
+\
+\
 
 Let's prep our R script for data exploration. You can use comments to describe what lines of code do, or as breaks to set apart information about the script from the script itself. 
 
@@ -368,6 +456,9 @@ Let's prep our R script for data exploration. You can use comments to describe w
 ######################################
 ```
 
+\
+\
+\
 
 You can run code from a script in the console by pressing "cmd+enter" (Mac) or "cntl+enter" (PC)
 ```{r, eval=FALSE}
@@ -375,6 +466,12 @@ You can run code from a script in the console by pressing "cmd+enter" (Mac) or "
 3^2
 ```
 
+\
+\
+\
+\
+\
+\
 
 
 ### Working with data
@@ -382,7 +479,7 @@ You can run code from a script in the console by pressing "cmd+enter" (Mac) or "
 
 The follow data were used in FiveThirtyEight's article ["Some People Are Too Superstitious To Have A Baby On Friday The 13th"](https://fivethirtyeight.com/features/some-people-are-too-superstitious-to-have-a-baby-on-friday-the-13th/), which analyzes rates of scheduled births on the 13th of the month. 
 
-```{r, fig.align='center'}
+```{r, fig.align='center', echo=FALSE}
 knitr::include_graphics("images/bialik-fridaythe13th.png")
 ```
 
@@ -396,6 +493,11 @@ data("US_births_2000_2014")
 datatable(US_births_2000_2014,  options = list(pageLength = 10))
 ```
 
+
+\
+\
+\
+\
 
 **Data Structure**
 
@@ -503,7 +605,7 @@ levels(factor(US_births_2000_2014$day_of_week))
 
 We can take subsets of observations in the data that satisfy a criterion defined by a variable in the dataset: 
 
-```{r}
+```{r, eval=FALSE}
 # Subset of dates that fell on a Friday
 fridays <- subset(US_births_2000_2014, US_births_2000_2014$day_of_week == "Fri")
 dim(fridays)
