@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> 2 Reproducible Reports with RMarkdown | Introduction to Reproducible Data Science with R</title>
-  <meta name="description" content=" 2 Reproducible Reports with RMarkdown | Introduction to Reproducible Data Science with R" />
+  <title> 4 Data Wrangling &amp; Simple Summaries | Introduction to Reproducible Data Science with R</title>
+  <meta name="description" content=" 4 Data Wrangling &amp; Simple Summaries | Introduction to Reproducible Data Science with R" />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" 2 Reproducible Reports with RMarkdown | Introduction to Reproducible Data Science with R" />
+  <meta property="og:title" content=" 4 Data Wrangling &amp; Simple Summaries | Introduction to Reproducible Data Science with R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="IRSAAtUMn/RWorkshop19/docs" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" 2 Reproducible Reports with RMarkdown | Introduction to Reproducible Data Science with R" />
+  <meta name="twitter:title" content=" 4 Data Wrangling &amp; Simple Summaries | Introduction to Reproducible Data Science with R" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="introduction-to-r-and-rstudio.html">
-<link rel="next" href="data-visualization.html">
+<link rel="prev" href="data-visualization.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -175,135 +175,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="reproducible-reports-with-rmarkdown" class="section level1">
-<h1><span class="header-section-number"> 2</span> Reproducible Reports with RMarkdown</h1>
-<p><em>Author: Alicia Hofelich Mohr</em></p>
-<style>
-  .col2 {
-    columns: 2 200px;         /* number of columns and width in pixels*/
-    -webkit-columns: 2 200px; /* chrome, safari */
-    -moz-columns: 2 200px;    /* firefox */
-  }
-</style>
-<p><br />
-<br />
-<br />
-</p>
-<div id="overview-of-r-markdown" class="section level2">
-<h2><span class="header-section-number">2.1</span> Overview of R Markdown</h2>
-<p><strong>A not-so-great workflow</strong></p>
-<p>While R scripts contain all the R code you produce in a format that can be easily re-run, they do not include the output or results of your analysis. Comments can be used to describe reactions or intepretations of results, but they are not the best way to present this interpretation in a readable way.</p>
-<p><br />
-<br />
-</p>
-<p>Therefore, to use R for data analysis and reporting, you may find yourself engaging in a workflow that involves a lot of copying and pasting (or transcribing) between your R script, console, and a document editor.</p>
-<p><img src="images/not-a-great-workflow.png" width="480" /></p>
-<p><br />
-<br />
-<br />
-<br />
-</p>
-<p><strong>A better way</strong></p>
-<p>What if there was a better way to run R code, capture output, and present interpretation together?</p>
-<p><img src="images/a-better-workflow.png" width="480" /></p>
-<p>There is - R Markdown!</p>
-<p><br />
-<br />
-<br />
-</p>
-<p><strong>Reproducible Reports</strong></p>
-<p>R Markdown is a considered a literate programming tool, which is a form of coding that combines text meant for a human to understand with snippets or sections of code for a computer to execute.</p>
-<p><img src="images/reproducible-report.png" width="460" /></p>
-<p><br />
-<br />
-<br />
-</p>
-<p>R Markdown uses Markdown as its human readable text language. Markdown is a straightforward text-to-HTML tool that can format text for the web. This is interspersed with code chunks R can read and execute.</p>
-<p>If you are familiar with the text editing language LaTeX, there is a fully LaTeX option for reproducible reports in R using Sweave.</p>
-<p><img src="images/rmarkdown-overview.png" width="480" /></p>
-<p><br />
-<br />
-<br />
-<br />
-</p>
-<p><strong>In R Studio</strong></p>
-<p>To open a new R Markdown file, go to File –&gt; New File –&gt; R Markdown</p>
-<p><img src="images/open-rmarkdown.png" width="380" /></p>
-<p><br />
-<br />
-<br />
-<br />
-</p>
-<p>If you have not yet installed the <code>rmarkdown</code> package, you may see a window prompting you to install that package and any related dependencies. If you see this, click to install the required packages.</p>
-<p>Once you have all the packages installed, you will see a pop-up window with various options for the type of R Markdown document and the output. There are many different options for each - in fact, this website was created using R Markdown!</p>
-<p><img src="images/rmarkdown-options.png" width="298" /></p>
-<p>For this workshop, we will stick with the default options and click ok.</p>
-<p><br />
-<br />
-<br />
-<br />
-</p>
-<p><strong>The .Rmd File</strong></p>
-<p>R will automatically open an R Markdown (.Rmd) file with some example text and code already included.</p>
-<p>An R Markdown file has the following components - YAML, R-code chunks, and Markdown text.</p>
-<p><img src="images/rmd-document.png" width="480" /></p>
-<p><br />
-<br />
-<br />
-<br />
-</p>
-<p>To compile the code and text together, press the “knit” button at the top of the file. This will by default open the HTML report in a new window and save a .html file in the folder with the .rmd file.</p>
-<p><br />
-<br />
-<br />
-<br />
-<br />
-</p>
-</div>
-<div id="yaml" class="section level2">
-<h2><span class="header-section-number">2.2</span> YAML</h2>
-<p>The YAML section contains the front matter of your document - title, authors, date, etc. It also controls the formatting of the report output.</p>
-<p><img src="images/example-yaml.png" width="162" /></p>
-<p><br />
-<br />
-<br />
-</p>
-<p>For example, you can add a table of contents to your document:</p>
-<p><img src="images/example-yaml-toc.png" width="162" /></p>
-<p><br />
-<br />
-<br />
-</p>
-<p>Or add options to make the table of contents float as you scroll:</p>
-<p><img src="images/example-yaml-tocfloat.png" width="154" /></p>
-<p>There are many other adjustments you can make to the document. The <a href="https://bookdown.org/yihui/rmarkdown/">Definitive Guide to R Markdown</a> website is a great place to learn about these options.</p>
-<p><br />
-<br />
-<br />
-</p>
-</div>
-<div id="markdown" class="section level2">
-<h2><span class="header-section-number">2.3</span> Markdown</h2>
-<p>Markdown is an easy to use text formating language that can be converted to HTML. The markdown portion of the document is where you add in headings, narrative information about the analysis, and any interpretations.</p>
-<p><strong>Headings</strong></p>
-<p>Markdown
-- Try adding levels of headers or a link</p>
-<p>R chunks
-- Try creating a new chunk
-- Hide the code
-- show the code and hide the output</p>
-<p>TRY it
-- small version of what I had?</p>
+<div id="data-wrangling-simple-summaries" class="section level1">
+<h1><span class="header-section-number"> 4</span> Data Wrangling &amp; Simple Summaries</h1>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="introduction-to-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-visualization.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
