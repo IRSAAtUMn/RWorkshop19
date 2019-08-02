@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html >
+
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title> 2 Reproducible Reports with RMarkdown | Introduction to Reproducible Data Science with R</title>
-  <meta name="description" content=" 2 Reproducible Reports with RMarkdown | Introduction to Reproducible Data Science with R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="description" content=" 2 Reproducible Reports with RMarkdown | Introduction to Reproducible Data Science with R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content=" 2 Reproducible Reports with RMarkdown | Introduction to Reproducible Data Science with R" />
   <meta property="og:type" content="book" />
@@ -21,13 +22,13 @@
   
   
 
-<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota" />
+<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota">
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
 <link rel="prev" href="introduction-to-r-and-rstudio.html">
@@ -46,9 +47,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.7/datatables.js"></script>
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
@@ -62,6 +63,7 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -145,19 +147,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#working-with-data"><i class="fa fa-check"></i><b>1.3.1</b> Working with data</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="reproducible-reports-with-rmarkdown.html"><a href="reproducible-reports-with-rmarkdown.html"><i class="fa fa-check"></i><b>2</b> Reproducible Reports with RMarkdown</a><ul>
-<li class="chapter" data-level="2.1" data-path="reproducible-reports-with-rmarkdown.html"><a href="reproducible-reports-with-rmarkdown.html#overview-of-r-markdown"><i class="fa fa-check"></i><b>2.1</b> Overview of R Markdown</a></li>
-<li class="chapter" data-level="2.2" data-path="reproducible-reports-with-rmarkdown.html"><a href="reproducible-reports-with-rmarkdown.html#yaml"><i class="fa fa-check"></i><b>2.2</b> YAML</a></li>
-<li class="chapter" data-level="2.3" data-path="reproducible-reports-with-rmarkdown.html"><a href="reproducible-reports-with-rmarkdown.html#markdown"><i class="fa fa-check"></i><b>2.3</b> Markdown</a></li>
-</ul></li>
+<li class="chapter" data-level="2" data-path="reproducible-reports-with-rmarkdown.html"><a href="reproducible-reports-with-rmarkdown.html"><i class="fa fa-check"></i><b>2</b> Reproducible Reports with RMarkdown</a></li>
 <li class="chapter" data-level="3" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>3</b> Data Visualization</a><ul>
 <li class="chapter" data-level="3.1" data-path="data-visualization.html"><a href="data-visualization.html#ggplot"><i class="fa fa-check"></i><b>3.1</b> ggplot</a></li>
-<li class="chapter" data-level="3.2" data-path="data-visualization.html"><a href="data-visualization.html#univariate-visualizations"><i class="fa fa-check"></i><b>3.2</b> Univariate visualizations</a></li>
-<li class="chapter" data-level="3.3" data-path="data-visualization.html"><a href="data-visualization.html#visualizing-relationships"><i class="fa fa-check"></i><b>3.3</b> Visualizing Relationships</a></li>
-<li class="chapter" data-level="3.4" data-path="data-visualization.html"><a href="data-visualization.html#exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
-<li class="chapter" data-level="3.5" data-path="data-visualization.html"><a href="data-visualization.html#extra"><i class="fa fa-check"></i><b>3.5</b> Extra</a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualization.html"><a href="data-visualization.html#univariate-visualizations"><i class="fa fa-check"></i><b>3.2</b> Univariate visualizations</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-visualization.html"><a href="data-visualization.html#histograms"><i class="fa fa-check"></i><b>3.2.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-visualization.html"><a href="data-visualization.html#density-plots"><i class="fa fa-check"></i><b>3.2.2</b> Density plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-wrangling-simple-summaries.html"><a href="data-wrangling-simple-summaries.html"><i class="fa fa-check"></i><b>4</b> Data Wrangling &amp; Simple Summaries</a></li>
+<li class="chapter" data-level="3.3" data-path="data-visualization.html"><a href="data-visualization.html#visualizing-relationships"><i class="fa fa-check"></i><b>3.3</b> Visualizing relationships</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="data-visualization.html"><a href="data-visualization.html#quantitative-vs-quantitative"><i class="fa fa-check"></i><b>3.3.1</b> Quantitative vs quantitative</a></li>
+<li class="chapter" data-level="3.3.2" data-path="data-visualization.html"><a href="data-visualization.html#quantitative-vs-categorical"><i class="fa fa-check"></i><b>3.3.2</b> Quantitative vs categorical</a></li>
+<li class="chapter" data-level="3.3.3" data-path="data-visualization.html"><a href="data-visualization.html#quantitative-vs-quantitative-vs-categorical"><i class="fa fa-check"></i><b>3.3.3</b> Quantitative vs quantitative vs categorical</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="data-visualization.html"><a href="data-visualization.html#exercises"><i class="fa fa-check"></i><b>3.4</b> Exercises</a></li>
+<li class="chapter" data-level="3.5" data-path="data-visualization.html"><a href="data-visualization.html#exercise-solutions"><i class="fa fa-check"></i><b>3.5</b> Exercise Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-wrangling-simple-summaries.html"><a href="data-wrangling-simple-summaries.html"><i class="fa fa-check"></i><b>4</b> Data Wrangling &amp; Simple Summaries</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-wrangling-simple-summaries.html"><a href="data-wrangling-simple-summaries.html#exercises-1"><i class="fa fa-check"></i><b>4.1</b> Exercises</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -189,113 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <br />
 <br />
 </p>
-<div id="overview-of-r-markdown" class="section level2">
-<h2><span class="header-section-number">2.1</span> Overview of R Markdown</h2>
-<p><strong>A not-so-great workflow</strong></p>
-<p>While R scripts contain all the R code you produce in a format that can be easily re-run, they do not include the output or results of your analysis. Comments can be used to describe reactions or intepretations of results, but they are not the best way to present this interpretation in a readable way.</p>
-<p><br />
-<br />
-</p>
-<p>Therefore, to use R for data analysis and reporting, you may find yourself engaging in a workflow that involves a lot of copying and pasting (or transcribing) between your R script, console, and a document editor.</p>
-<p><img src="images/not-a-great-workflow.png" width="480" /></p>
-<p><br />
-<br />
-<br />
-<br />
-</p>
-<p><strong>A better way</strong></p>
-<p>What if there was a better way to run R code, capture output, and present interpretation together?</p>
-<p><img src="images/a-better-workflow.png" width="480" /></p>
-<p>There is - R Markdown!</p>
-<p><br />
-<br />
-<br />
-</p>
-<p><strong>Reproducible Reports</strong></p>
-<p>R Markdown is a considered a literate programming tool, which is a form of coding that combines text meant for a human to understand with snippets or sections of code for a computer to execute.</p>
-<p><img src="images/reproducible-report.png" width="460" /></p>
-<p><br />
-<br />
-<br />
-</p>
-<p>R Markdown uses Markdown as its human readable text language. Markdown is a straightforward text-to-HTML tool that can format text for the web. This is interspersed with code chunks R can read and execute.</p>
-<p>If you are familiar with the text editing language LaTeX, there is a fully LaTeX option for reproducible reports in R using Sweave.</p>
-<p><img src="images/rmarkdown-overview.png" width="480" /></p>
-<p><br />
-<br />
-<br />
-<br />
-</p>
-<p><strong>In R Studio</strong></p>
-<p>To open a new R Markdown file, go to File –&gt; New File –&gt; R Markdown</p>
-<p><img src="images/open-rmarkdown.png" width="380" /></p>
-<p><br />
-<br />
-<br />
-<br />
-</p>
-<p>If you have not yet installed the <code>rmarkdown</code> package, you may see a window prompting you to install that package and any related dependencies. If you see this, click to install the required packages.</p>
-<p>Once you have all the packages installed, you will see a pop-up window with various options for the type of R Markdown document and the output. There are many different options for each - in fact, this website was created using R Markdown!</p>
-<p><img src="images/rmarkdown-options.png" width="298" /></p>
-<p>For this workshop, we will stick with the default options and click ok.</p>
-<p><br />
-<br />
-<br />
-<br />
-</p>
-<p><strong>The .Rmd File</strong></p>
-<p>R will automatically open an R Markdown (.Rmd) file with some example text and code already included.</p>
-<p>An R Markdown file has the following components - YAML, R-code chunks, and Markdown text.</p>
-<p><img src="images/rmd-document.png" width="480" /></p>
-<p><br />
-<br />
-<br />
-<br />
-</p>
-<p>To compile the code and text together, press the “knit” button at the top of the file. This will by default open the HTML report in a new window and save a .html file in the folder with the .rmd file.</p>
-<p><br />
-<br />
-<br />
-<br />
-<br />
-</p>
-</div>
-<div id="yaml" class="section level2">
-<h2><span class="header-section-number">2.2</span> YAML</h2>
-<p>The YAML section contains the front matter of your document - title, authors, date, etc. It also controls the formatting of the report output.</p>
-<p><img src="images/example-yaml.png" width="162" /></p>
-<p><br />
-<br />
-<br />
-</p>
-<p>For example, you can add a table of contents to your document:</p>
-<p><img src="images/example-yaml-toc.png" width="162" /></p>
-<p><br />
-<br />
-<br />
-</p>
-<p>Or add options to make the table of contents float as you scroll:</p>
-<p><img src="images/example-yaml-tocfloat.png" width="154" /></p>
-<p>There are many other adjustments you can make to the document. The <a href="https://bookdown.org/yihui/rmarkdown/">Definitive Guide to R Markdown</a> website is a great place to learn about these options.</p>
-<p><br />
-<br />
-<br />
-</p>
-</div>
-<div id="markdown" class="section level2">
-<h2><span class="header-section-number">2.3</span> Markdown</h2>
-<p>Markdown is an easy to use text formating language that can be converted to HTML. The markdown portion of the document is where you add in headings, narrative information about the analysis, and any interpretations.</p>
-<p><strong>Headings</strong></p>
-<p>Markdown
-- Try adding levels of headers or a link</p>
-<p>R chunks
-- Try creating a new chunk
-- Hide the code
-- show the code and hide the output</p>
-<p>TRY it
-- small version of what I had?</p>
 
-</div>
 </div>
             </section>
 

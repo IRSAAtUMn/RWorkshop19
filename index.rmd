@@ -32,6 +32,19 @@ github-repo: IRSAAtUMn/RWorkshop19/docs
 ---
 
 
+```{r setup, include = FALSE}
+# Set up some chunk style
+knitr::opts_chunk$set(collapse = TRUE, 
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = 'center')
+
+# Load packages
+library(ggplot2)
+library(dplyr)
+library(DT)
+library(fivethirtyeight)
+```
 
 
 #  Home {-}

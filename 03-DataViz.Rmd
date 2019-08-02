@@ -2,69 +2,51 @@
 
 *Author: Alicia Johnson*
 
+<!-- swap subset for filter?! -->
 
-<!-- NEXT TIME: Swap the birthday data (use for discussion) and election data (use for exercises).   -->
-
-
-
-THIS IS JUST A PLACEHOLDER.  WILL UPDATE.
+<!-- NEXT TIME: Swap the birthday data (use for discussion) and bechdel data (use for exercises).   -->
 
 
 \
 \
 
 
-The following data set on the 2016 election is stored as a *csv* file at [https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv](https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv):
 
+Recall the `US_births_2000_2014` data in the `fivethirtyeight package`:
 
-\
-\
-\
+```{r}
+library(fivethirtyeight)
+data("US_births_2000_2014")
 
+# Give the data a shorter nickname
+birth_data <- US_births_2000_2014
+```
 
 ```{r echo=FALSE}
-suppressPackageStartupMessages(library(DT))
-election <- read.csv("https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv")
-DT::datatable(election, options = list(pageLength = 10))
+DT::datatable(birth_data, options = list(pageLength = 5))
 library(gridExtra)
 ```
 
-
 \
 \
 \
 \
-\
 
 
 
-This data set combines the county level election results provided by Tony McGovern (shared on [github](https://github.com/tonmcg/County_Level_Election_Results_12-16)), county level demographic data from the `df_county_demographics` data set within the `choroplethr` R package, and historical information about red/blue/purple states.  Let's take a quick look:
+We investigated the basic structure of this data set in the previous activity.  Now  we can start to ask some __research questions__:    
 
-```{r collapse=TRUE}
-# Use read.csv() to import the csv file
-election <- read.csv("https://www.macalester.edu/~ajohns24/Data/electionDemographics16.csv")
-```
-
-```{r eval = FALSE}
-# Check it out!
-dim(election)       # dimensions 
-head(election, 2)   # first 2 rows
-names(election)     # variable names
-```
+- What's the _typical_ number of births per day?    
+- To what degree do the number of births _vary_ from day to day?    
+- Is there a _relationship_ between the number of births and time of year?  Between the number of births and day of week?    
+- Is there any evidence that people are too superstitious to give birth on Friday the 13th?    
 
 
 \
 \
 
 
-Now that we understand the structure of this data set, we can start to ask some questions:    
-
-- To what degree did Trump support vary from county to county?    
-- In what number of counties did Trump win?
-- What's the relationship between Trump's 2016 support and Romney's 2012 support?    
-- What's the relationship between Trump's support and the "color" of the state in which the county exists?    
-
-Visualizing the data is the first natural step in answering these questions.  Why?
+__Visualizing__ the data is the first natural step in answering these questions.  Why?
 
 - Visualizations help us understand what we're working with: What are the scales of our variables?  Are there any outliers, i.e. unusual cases?  What are the patterns among our variables?    
 - This understanding will inform our next steps: What statistical tool / model is appropriate?    
@@ -118,50 +100,170 @@ The best way to learn about `ggplot` is to just play around.  Don't worry about 
 
 ## Univariate visualizations
 
-We'll start with **univariate** visualizations.   
+
+Our primary variable of interest in the birthday data is the __quantitative__ `births` variable which summarizes the number of U.S. births on each individual day between 2000 and 2014.  Before examining the relationship between `births` and any other variable, it's important to develop an understanding of the **univariate** patterns.  We’ll explore 2 of many methods for visualizing quantitative variables: histograms & density plots.    
+
 
 \
 \
 
 
+### Histograms
 
-**Categorical Variables**
+A **histogram** is constructed by (1) dividing up the observed range of the variable into 'bins' of equal width; and (2) counting up the number of cases that fall into each bin.  Try out the code below. 
 
-Consider the categorical `winrep_2016` variable which indicates whether Trump won the county:
-
-```{r collapse=TRUE}
-levels(factor(election$winrep_2016))
+```{r echo = FALSE}
+only_2014 <- subset(birth_data, year == 2014)
 ```
 
-A table provides a simple summary of the number of counties that fall into these 2 categories:
 
-```{r collapseTRUE}
-table(election$winrep_2016)
+\
+
+
+1. __Construct a histogram for the 2014 `births`__    
+    Try out the code below that builds up from a simple to a customized histogram. At each step determine how each piece of code contributes to the plot.        
+    ```{r eval=FALSE}
+    # Focus first on just the 2014 data
+    only_2014 <- subset(birth_data, year == 2014)
+    
+    # Set up a plotting frame
+    ggplot(only_2014, aes(x = births))
+    
+    # Add a histogram layer
+    ggplot(only_2014, aes(x = births)) +
+      geom_histogram()
+    
+    # Change the border colors
+    ggplot(only_2014, aes(x = births)) +
+      geom_histogram(color = "white") 
+    ```
+    
+  
+\
+\
+
+
+2. __Examine the histogram__    
+    Based on the histogram alone...    
+    - Examine the _trend_: roughly, what's the _typical_ number of births per day?    
+    - Examine the _variability_: roughly, what was the smallest number of births?  The largest?  
+    - Describe the _shape_ of the histogram?  Do you have any guesses about what explains this shape?    
+    - How wide are the `births` bins?    
+    - What was the most common bin?  On roughly how many days did the number of births fall into this bin?    
+    
+
+
+\
+\
+
+
+3. __Tune the histogram__    
+    The bin size used above was the default selected by RStudio.  Below, change the bin width and reflect upon how this impacts the visualization.  Specifically, explain why selecting bin width is a _Goldilocks problem_ -- we don't want the bins to be too narrow or too wide, but just right.       
+    
+    ```{r eval = FALSE} 
+    # Decrease bin width
+    ggplot(only_2014, aes(x = births)) +
+      geom_histogram(color = "white", binwidth = 30)
+    
+    # Increase bin width
+    ggplot(only_2014, aes(x = births)) +
+      geom_histogram(color = "white", binwidth = 2500)
+    ```
+
+
+\
+\
+
+
+
+4. __You try__    
+    Construct a histogram of `births` using the entire `birth_data` which spans from 2000 to 2014. How, if at all, do the trends and variability in `births` across all of these years compare to those in 2014 alone?
+
+    
+    
+    
+
+
+\
+\
+\
+\
+\
+
+
+In summary, you constructed: 
+
+```{r echo=FALSE,fig.width=8, fig.height=7}
+g0 = ggplot(only_2014, aes(x=births))
+g1 = g0 + geom_histogram()
+g3 = ggplot(only_2014, aes(x=births)) +
+    geom_histogram(color="white") 
+g4 = ggplot(only_2014, aes(x=births)) +
+    geom_histogram(color="white", binwidth=30)
+g5 = ggplot(only_2014, aes(x=births)) +
+    geom_histogram(color="white", binwidth=2500)
+grid.arrange(g0,g1,g3,g4,g5,ncol=3)
 ```
 
-A bar chart provides a visualization of this table.  Try out the code below that builds up from a simple to a customized bar chart. At each step determine how each piece of code contributes to the plot. 
 
-
-```{r eval=FALSE}
-# Set up a plotting frame
-ggplot(election, aes(x = winrep_2016))
-
-# Add a layer with bars
-ggplot(election, aes(x = winrep_2016)) + 
-    geom_bar()
-```
 
 \
 \
 \
+\
+\
+\
+\
 
-In summary:
 
-```{r echo=FALSE, fig.height=3.5, fig.width=8, warning=FALSE}
-g1=ggplot(election, aes(x=winrep_2016))
-g2=g1 + geom_bar()
+
+
+### Density plots
+
+
+A **density plot** is essentially a smooth version of the histogram.  Instead of sorting cases into discrete bins, the "density" of cases is calculated across the entire range of values.  The greater the number of cases, the greater the density!  The density is then scaled so that the area under the density curve **always equals 1** and the area under any fraction of the curve represents the fraction of cases that lie in that range.    
+
+
+\
+\
+
+
+5. __Construct a density plot for the 2014 `births`__    
+    ```{r eval=FALSE}
+    # Set up the plotting frame
+    ggplot(only_2014, aes(x = births))
+    
+    # Add a density curve
+    ggplot(only_2014, aes(x = births)) +
+        geom_density()
+    ```
+
+
+\
+\
+
+
+
+6. __Examine the density plot for the 2014 `births`__    
+    - Does this visualization provide any information that the histogram doesn't?    
+    - Which do you prefer for visualizing the `births` data, the density plot or histogram?  Why?    
+    
+    
+
+\
+\
+\
+\
+
+
+In summary, you constructed: 
+
+```{r echo=FALSE, fig.width=8, warning=FALSE}
+g1 = ggplot(only_2014, aes(x=births))
+g2 = g1 + geom_density()
 grid.arrange(g1,g2,ncol=2)
 ```
+
 
 
 
@@ -170,108 +272,38 @@ grid.arrange(g1,g2,ncol=2)
 \
 \
 \
-
-
-**Quantitative Variables**
-
-The quantitative `perrep_2016` variable summarizes Trump's percent of the vote in each county.  Quantitative variables require different summary tools than categorical variables. We’ll explore 2 methods for graphing quantitative variables: histograms & density plots.    
-
-**Histograms** are constructed by (1) dividing up the observed range of the variable into 'bins' of equal width; and (2) counting up the number of cases that fall into each bin.  Try out the code below. 
-
-```{r eval=FALSE}
-# Set up a plotting frame
-ggplot(election, aes(x = perrep_2016))
-
-# Add a histogram layer
-ggplot(election, aes(x = perrep_2016)) +
-    geom_histogram()
-
-# Change the border colors
-ggplot(election, aes(x = perrep_2016)) +
-    geom_histogram(color = "white") 
-
-# Change the bin width
-ggplot(election, aes(x = perrep_2016)) +
-    geom_histogram(color = "white", binwidth = 0.10)
-```
-
-
-\
-\
-\
-
-In summary: 
-
-```{r echo=FALSE,fig.width=8, fig.height=6, warning=FALSE, message = FALSE}
-g0=ggplot(election, aes(x=perrep_2016))
-g1= g0 + geom_histogram()
-g3=ggplot(election, aes(x=perrep_2016)) +
-    geom_histogram(color="white") 
-g4=ggplot(election, aes(x=perrep_2016)) +
-    geom_histogram(color="white", binwidth=0.10) 
-grid.arrange(g0,g1,g3,g4,ncol=2)
-```
-
-
-
-\
-\
-\
-\
-\
-
-**Density plots** are essentially smooth versions of the histogram.  Instead of sorting cases into discrete bins, the "density" of cases is calculated across the entire range of values.  The greater the number of cases, the greater the density!  The density is then scaled so that the area under the density curve **always equals 1** and the area under any fraction of the curve represents the fraction of cases that lie in that range.    
-
-```{r eval=FALSE}
-# Set up the plotting frame
-ggplot(election, aes(x = perrep_2016))
-
-# Add a density curve
-ggplot(election, aes(x = perrep_2016)) +
-    geom_density()
-```
-
-\
-\
-\
-
-In summary: 
-
-```{r echo=FALSE, fig.width=8, fig.height=6, warning=FALSE}
-g1= ggplot(election, aes(x=perrep_2016))
-g2= g1 + geom_density()
-grid.arrange(g1,g2,ncol=2)
-```
-
 \
 \
 \
 \
 
 
-## Visualizing Relationships
 
-Consider the data on just 6 of the counties:
+
+
+## Visualizing relationships
+
+Consider the data on just the first 6 days of 2014:
 
 ```{r echo=FALSE}
-suppressPackageStartupMessages(library(dplyr))
-fd <- election %>%
-    filter(region %in% c(8039,28003,40129,29119,13247,27027)) %>%
-    select(c(perrep_2016, perrep_2012, StateColor, median_rent, winrep_2016, abb))
-DT::datatable(fd, options = list(pageLength = 6))
+DT::datatable(head(only_2014), options = list(pageLength = 6))
 ```
 
 
 
-Before constructing graphics of the relationships among these variables, we need to understand what features these graphics should have.  Without peaking at the exercises, challenge yourself to think about how we might graph the relationships among the following sets of variables:
+\
+\
 
-- `perrep_2016` vs `perrep_2012`
 
-- `perrep_2016` vs `StateColor`
 
-- `perrep_2016` vs `perrep_2012` *and* `StateColor` (in 1 plot)
+We saw some goofy patterns in the `births` data.  Perhaps this might be explained by day of year, month, or day of week.  However, before constructing graphics of the relationships among these variables, we need to understand what features these graphics should have.  Challenge yourself to think about how we might visualize the relationships among the following sets of variables:
 
-- `perrep_2016` vs `perrep_2012` *and* `median_rent` (in 1 plot)
+- `births` vs `date`
+
+- `births` vs `day_of_week`
+
+- `births` vs `date` *and* `day_of_week` (in 1 plot)
+
 
 
 \
@@ -279,112 +311,147 @@ Before constructing graphics of the relationships among these variables, we need
 \
 \
 
-Run through the following exercises which introduce different approaches to visualizing *relationships*.
+
+
+### Quantitative vs quantitative
+
+
+
+
+7. **Scatterplots of 2 quantitative variables**    
+    Let's start by visualizing the relationship between the number of daily `births` and the date or day of year for the 2014 births data.  We can think of both as _quantitative variables_.  In order to visualize their numerical scales, both variables need an axis.  On these axes, we can represent each row (day) by a dot.   
+    
+    
+    ```{r eval=FALSE}
+    # Just a graphics frame
+    ggplot(only_2014, aes(y = births, x = date))
+    
+    # Add a scatterplot layer
+    ggplot(only_2014, aes(y = births, x = date)) +
+      geom_point()
+    ```
+    
+
+\
+\
+
+
+
+8. __You try__    
+    Construct a scatterplot of `births` vs `date` using the 2000-2014 `birth_data`.    
+    
+
+\
+\
+
+
+
+9. __Examine the scatterplots__
+    - Do you observe any _s(easonal_ trends?  If so, at what time of year do `births` tend to be the highest?  The lowest?    
+    - Any other strange patterns?  What do you think might explain these patterns?    
+
+
+\
+\
+
+
+
+10. __Visualize the trend__    
+    Finally, we can add a visual summary of the trend in `births` by date.  Explain why this isn't very helpful in this particular example.    
+    
+    ```{r eval=FALSE}
+    # Add a smooth trend line
+    ggplot(only_2014, aes(y = births, x = date)) +
+      geom_point() + 
+      geom_smooth()
+    ```
 
 
 
 \
 \
 \
+\
 
 
-**Scatterplots of 2 quantitative variables**
 
-Each quantitative variable has an axis.  Each case is represented by a dot.
+In summary: 
 
-
-```{r eval=FALSE}
-# Just a graphics frame
-ggplot(election, aes(y = perrep_2016, x = perrep_2012))
-
-# Add a scatterplot layer
-ggplot(election, aes(y = perrep_2016, x = perrep_2012)) +
+```{r echo=FALSE, fig.width=4, fig.height=8, warning=FALSE}
+g1=ggplot(only_2014, aes(y=births, x=date))
+g2=ggplot(only_2014, aes(y=births, x=date)) +
     geom_point()
-
-# Add a scatterplot layer: label by state
-ggplot(election, aes(y = perrep_2016, x = perrep_2012)) +
-    geom_text(aes(label = abb))
-
-# Another predictor
-ggplot(election, aes(y = perrep_2016, x = median_rent)) +
+g3=ggplot(birth_data, aes(y=births, x=date)) +
     geom_point()
+g4=ggplot(only_2014, aes(y=births, x=date)) +
+    geom_point() + 
+    geom_smooth()
+
+grid.arrange(g1,g2,g3,g4, ncol=1)
 ```
 
+
+
+\
+\
+\
+\
+
+
+
+
+### Quantitative vs categorical
+
+Next, consider the relationship between `births` (quantitative) and `day_of_week` (categorical).  Since `day_of_week` is categorical, visualizing this variable requires a _visual grouping_ mechanism.  We'll consider a couple approaches.    
+
+
+\
+\
+
+
+11. __Construct side-by-side plots__    
+    Again focus on the general patterns in the syntax and how we've changed the earlier code.    
+    ```{r eval=FALSE}
+    # Density plots by group
+    ggplot(only_2014, aes(x = births, fill = day_of_week)) +
+      geom_density()
+    
+    # To see better: add transparency
+    ggplot(only_2014, aes(x = births, fill = day_of_week)) +
+      geom_density(alpha = 0.5)
+    
+    # Or use boxplots!
+    ggplot(only_2014, aes(x = day_of_week, y = births)) + 
+      geom_boxplot()
+    
+    ```
+    
+
+\
+\
+
+
+12. __Interpreting the side-by-side plots__    
+    - What do the side-by-side plots reveal about birth patterns?    
+    - Which day tends to see the fewest births?  The greatest?    
+    - There are some outliers here.  What do you suspect explains these outliers?
+    
+    
+\
 \
 \
 \
 
 In summary: 
 
-```{r echo=FALSE, fig.width=8, fig.height=3, warning=FALSE}
-g1=ggplot(election, aes(y=perrep_2016, x=perrep_2012))
-g2=ggplot(election, aes(y=perrep_2016, x=perrep_2012)) +
-    geom_point()
-g2a=ggplot(election, aes(y = perrep_2016, x = perrep_2012)) +
-    geom_text(aes(label = abb))
-g3=ggplot(election, aes(y=perrep_2016, x=median_rent)) +
-    geom_point()
-grid.arrange(g1,g2,g2a,g3,ncol=2)
-```
-
-\
-\
-\
-\
-
-
-
-**Side-by-side plots of 1 quantitative variable vs 1 categorical variable**
-
-```{r eval=FALSE}
-# Density plots by group
-ggplot(election, aes(x = perrep_2016, fill = StateColor)) +
+```{r echo=FALSE, fig.width=8, fig.height = 3, warning=FALSE}
+g1=ggplot(only_2014, aes(x=births, fill=day_of_week)) +
     geom_density()
-
-# To see better: add transparency
-ggplot(election, aes(x = perrep_2016, fill = StateColor)) +
-    geom_density(alpha = 0.5)
-
-# Fix the color scale!
-ggplot(election, aes(x = perrep_2016, fill = StateColor)) +
-    geom_density(alpha = 0.5) +
-    scale_fill_manual(values = c("blue","purple","red"))
-
-# To see better: split groups into separate plots
-ggplot(election, aes(x = perrep_2016, fill = StateColor)) +
-    geom_density(alpha = 0.5) +
-    facet_wrap( ~ StateColor) +
-    scale_fill_manual(values=c("blue","purple","red"))
-
-
-# Or use boxplots!
-ggplot(election, aes(x = StateColor, y = perrep_2016)) + 
-  geom_boxplot()
-
-```
-
-
-\
-\
-\
-
-In summary: 
-
-```{r echo=FALSE, fig.width=8, fig.height=6, warning=FALSE}
-g1=ggplot(election, aes(x=perrep_2016, fill=StateColor)) +
-    geom_density()
-g2=ggplot(election, aes(x=perrep_2016, fill=StateColor)) +
+g2=ggplot(only_2014, aes(x=births, fill=day_of_week)) +
     geom_density(alpha=0.5)
-g3=ggplot(election, aes(x=perrep_2016, fill=StateColor)) +
-    geom_density(alpha=0.5) +
-    scale_fill_manual(values=c("blue","purple","red"))
-g4=ggplot(election, aes(x=perrep_2016, fill=StateColor)) +
-    geom_density(alpha=0.5) +
-    facet_wrap( ~ StateColor) +
-    scale_fill_manual(values=c("blue","purple","red"))
-g5 <- ggplot(election, aes(x = StateColor, y = perrep_2016)) + 
+g3 <- ggplot(only_2014, aes(x = day_of_week, y = births)) + 
   geom_boxplot()
-grid.arrange(g1,g2,g3,g4,g5,ncol=2)
+grid.arrange(g1,g2,g3,ncol=3)
 ```
 
 \
@@ -394,98 +461,65 @@ grid.arrange(g1,g2,g3,g4,g5,ncol=2)
 
 
 
-**Scatterplots of 1 quantitative variable vs 1 categorical & 1 quantitative variable**  
+### Quantitative vs quantitative vs categorical    
 
-If `median_rent` and `StateColor` both explain some of the variability in `perrep_2016`, why not include both in our analysis?!  Let's.
 
-```{r eval=FALSE}
-# Scatterplot: id groups using color
-ggplot(election, aes(y = perrep_2016, x = median_rent, color = StateColor)) +
-    geom_point(alpha = 0.5) 
+13. __Three variables__    
+    If `day_of_week` and `date` both explain some of the variability in `births`, why not include both in our analysis?!  Let's.  Note how the code changes.
 
-# Fix the color scale!
-ggplot(election, aes(y = perrep_2016, x = median_rent, color = StateColor)) +
-    geom_point(alpha = 0.5) + 
-    scale_color_manual(values = c("blue","purple","red"))
+    ```{r eval = FALSE}
+    # births vs date
+    ggplot(only_2014, aes(y = births, x = date)) +
+      geom_point() 
+    
+    # births vs day_of_week
+    ggplot(only_2014, aes(x=births, fill=day_of_week)) +
+      geom_density(alpha=0.5)
+    
+    # births vs date AND day_of_week
+    ggplot(only_2014, aes(y = births, x = date, color = day_of_week)) +
+      geom_point() 
+    ```
 
-# Scatterplot: split/facet by group
-ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
-    geom_point(alpha=0.5) +
-    facet_wrap( ~ StateColor) + 
-    scale_color_manual(values=c("blue","purple","red"))
-```
+
+\
+\
+
+
+14. __Visualize the trend__    
+    Finally, let's visualize the birth trends from 2000-2014.    
+    ```{r eval = FALSE}
+    # add trend lines
+    ggplot(birth_data, aes(y = births, x = date, color = day_of_week)) +
+      geom_point() +
+      geom_smooth()
+    
+    # change the smoothness 
+    ggplot(birth_data, aes(y = births, x = date, color = day_of_week)) +
+      geom_point() +
+      geom_smooth(span = 0.1)
+    ```
+    
 
 
 
 \
 \
-\
-
-In summary: 
-
-```{r echo=FALSE, fig.width=8, fig.height=3, warning=FALSE}
-g1=ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
-    geom_point(alpha=0.5) 
-g2=ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
-    geom_point(alpha=0.5) + 
-    scale_color_manual(values=c("blue","purple","red"))
-g4=ggplot(election, aes(y=perrep_2016, x=median_rent, color=StateColor)) +
-    geom_point(alpha=0.5) +
-    facet_wrap( ~ StateColor) + 
-    scale_color_manual(values=c("blue","purple","red"))
-grid.arrange(g1,g2,g4,ncol=3)
-
-```
-
-\
-\
-\
-\
-
-**Plots of 3 quantitative variables**
 
 
-```{r eval=FALSE}
-# Scatterplot: represent third variable using color
-ggplot(election, aes(y = perrep_2016, x = median_rent, color = perrep_2012)) +
-    geom_point(alpha = 0.5)
 
-# Scatterplot: represent third variable using size
-ggplot(election, aes(y = perrep_2016, x = median_rent, size = perrep_2012)) +
-    geom_point(alpha = 0.5)
-
-# Scatterplot: discretize the third variable 
-ggplot(election, aes(y = perrep_2016, x = median_rent, color = cut(perrep_2012,3))) +
-    geom_point(alpha = 0.5)
-
-```
-
-
+14. __Summarize__    
+    Summarize what you've learned about birth patterns.    
+    - In what month do the most babies tend to be born?  The least?    
+    - On what day of week do the most babies tend to be born?  The least?    
+    - In what year were the most babies born?  The least?    
+    - What explains the outliers in the dataset?
 
 
 \
 \
 \
-
-In summary: 
-
-```{r echo=FALSE, fig.width=8, fig.height=3, warning=FALSE}
-g1=ggplot(election, aes(y=perrep_2016, x=median_rent, color=perrep_2012)) +
-    geom_point(alpha=0.5)
-g1a=ggplot(election, aes(y = perrep_2016, x = median_rent, size = perrep_2012)) +
-    geom_point(alpha = 0.5)
-g2=ggplot(election, aes(y=perrep_2016, x=median_rent, color=cut(perrep_2012,2))) +
-    geom_point(alpha=0.5)
-grid.arrange(g1,g1a,g2,ncol=3)
-
-```
-
 \
-\
-\
-\
-
-
 \
 \
 \
@@ -497,61 +531,112 @@ grid.arrange(g1,g1a,g2,ncol=3)
 
 ## Exercises
 
-Recall the `US_births_2000_2014` data in the `fivethirtyeight package`:
+In the exercises, you'll return to the Bechdel test data:
+
+```{r}
+library(fivethirtyeight)
+data(bechdel)
+dim(bechdel)
+```
+
+**Solutions are provided below.**
+
+\
+\
+
+
+
+1. __Visualizing a categorical variable__    
+    The categorical `binary` variable records whether each film in the dataset passes or fails the Bechdel test:    
+    ```{r collapse=TRUE, eval = FALSE}
+    levels(factor(bechdel$binary))
+    ```
+    
+    A bar chart provides a simple visualization of this variable.  Summarize what you learn from this plot: roughly how many of the films pass / fail the test?
+    
+    ```{r eval=FALSE}
+    # Bar plot
+    ggplot(bechdel, aes(x = binary)) + 
+      geom_bar()
+    ```
+
+
+
+\
+\
+
+
+2. __Visualize potential predictors__    
+    Our ultimate goal will be to better understand which films pass / fail the Bechdel test.  For example, can this be explained the year in which it was made?  The film's budget?  The amount of money it makes at the box office?  Before we can answer these questions, it's important to understand the scales of these variables.  For each variable below, construct and summarize a __univariate visualization__.    
+    - `year`: the year in which the film was released    
+    - `budget_2013`: the film's budget (in 2013 \$)    
+    - `intgross_2013`: the film's total international gross (in 2013 \$)
+    
+
+\
+\
+
+
+3. __binary vs year__    
+    Construct and summarize a visualization of the relationship between whether a film passes the Bechdel (`binary`) and the `year` in which it was made.  Use the hints below if you'd like:    
+    
+    - Is `binary` categorical or quantitative?  What about `year`?  Thus what visualization tool might you use?    
+    - Fill in the following: 
+        
+        ```{r eval = FALSE}
+        ggplot(___, aes(x = ___, y = ___)) + 
+          ___()
+        ```
+    
+
+\
+\
+
+
+4. 
+\
+\
+
+
+
+3. __binary vs budget_2013__    
+    Construct and summarize a visualization of the relationship between whether a film passes the Bechdel (`binary`) and its `budget_2013`.  Use the hint below if you'd like:    
+    
+    ```{r eval = FALSE}
+    ggplot(___, aes(x = ___, y = ___)) + 
+      ___()
+    ```
+  
+
+
+
+
+\
+\
+\
+
+    
+\
+
+**Plots of 3 quantitative variables**
+
 
 ```{r eval=FALSE}
-library(fivethirtyeight)
-data("US_births_2000_2014")
-```
+# Scatterplot: represent third variable using color
+ggplot(only_2014, aes(y = births, x = date, color = date)) +
+    geom_point(alpha = 0.5)
 
-```{r echo=FALSE}
-suppressPackageStartupMessages(library(fivethirtyeight))
-data("US_births_2000_2014")
-```
+# Scatterplot: represent third variable using size
+ggplot(only_2014, aes(y = births, x = date, size = date)) +
+    geom_point(alpha = 0.5)
 
-In the previous activity, we investigated the basic features of this data set:
+# Scatterplot: discretize the third variable 
+ggplot(only_2014, aes(y = births, x = date, color = cut(date,3))) +
+    geom_point(alpha = 0.5)
 
-```{r collapse=TRUE}
-dim(US_births_2000_2014)
-head(US_births_2000_2014, 2)
-names(US_births_2000_2014)
-levels(factor(US_births_2000_2014$day_of_week))
 ```
 
 
-Let's graphically explore these variables and the relationships among them!  **Solutions are below.**   NOTE: This set of exercises is inspired by the work of Randy Pruim for the MAA [statPREP program](https://dtkaplan.github.io/statPREP/index.html).
-
-
-
-\
-\
-\
-
-
-
-1. First, let's focus on 2014:    
-    ```{r}
-    only_2014 <- subset(US_births_2000_2014, year == 2014)
-    ```
-    Construct a *univariate* visualization of `births`.  Describe the variability in births from day to day in 2014.    
-    
-2. The time of year might explain some of this variability. Construct a plot that illustrates the relationship between `births` and `date` in 2014. NOTE: Make sure that births, our variable of interest, is on the y-axis and treat `date` as quantitative.    
-
-3.  One goofy thing that stands out are the 2-3 distinct groups of points. Add a layer to this plot that explains the distinction between these groups.    
-
-4. There are some exceptions to the rule in exercise 3, ie. some cases that should belong to group 1 but behave like the cases in group 2. Explain why these cases are exceptions - what explains the anomalies / why these are special cases?    
-
-5. Next, consider all births from 2000-2014.  Construct 1 graphic that illustrates births trends across all of these years.    
-
-6. Finally, consider only those births that occur on Fridays:    
-    ```{r}
-    only_fri <- subset(US_births_2000_2014, day_of_week=="Fri")
-    ```
-    Define a new variable `fri13` that indicates whether the case falls on a Friday in the 13th date of the month:    
-    ```{r}
-    only_fri$fri13 <- (only_fri$date_of_month == 13)
-    ```
-    Construct and comment on a plot of that illustrates the distribution of births among Fridays that fall on & off the 13th. Do you see any evidence of superstition?
     
     
 
@@ -571,8 +656,7 @@ Let's graphically explore these variables and the relationships among them!  **S
 \
 
 
-**SOLUTIONS:**
-
+## Exercise Solutions
 
 ```{r eval = FALSE}
 # 1
@@ -615,41 +699,6 @@ ggplot(only_fri, aes(y = births, x = fri13)) +
 \
 \
 \
-
-
-
-
-<br>
-<br>
-
-## Extra 
-
-We've covered some basic graphics.  However, different types of relationships require different visualization strategies.  For example, there's a geographical component to the `election` data.  If you have time, try to construct some maps of the election related variables.  To this end, you'll need to install the `choroplethr` and `choroplethrMaps` packages:
-
-
-```{r eval=FALSE}
-install.packages("choroplethr", dependencies = TRUE)
-install.packages("choroplethrMaps", dependencies = TRUE)
-```
-
-
-
-```{r eval=FALSE}
-library(choroplethr)
-library(choroplethrMaps)
-
-# Make a map of Trump support
-election$value <- election$perrep_2016
-county_choropleth(election)
-
-# A map of Trump wins
-election$value <- election$winrep_2016
-county_choropleth(election)
-
-# Try another variable of interest to you!!
-
-```
-
 
 
 

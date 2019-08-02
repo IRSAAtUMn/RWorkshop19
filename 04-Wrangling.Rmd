@@ -1,1 +1,18 @@
 # Data Wrangling & Simple Summaries
+
+
+
+
+## Exercises
+
+1. __Friday the 13th__    
+    Consider only those births that occur on Fridays:    
+    ```{r}
+    only_fri <- subset(US_births_2000_2014, day_of_week == "Fri")
+    ```    
+    Define a new variable `fri13` that indicates whether the case falls on a Friday in the 13th date of the month:    
+    ```{r}
+    only_fri$fri13 <- (only_fri$date_of_month == 13)
+    ```
+    Construct and comment on a plot of that illustrates the distribution of births among Fridays that fall on & off the 13th. Do you see any evidence of superstition?
+    
