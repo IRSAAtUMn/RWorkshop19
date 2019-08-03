@@ -73,3 +73,41 @@ TOPICS COVERED:
 The material herein is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License<br /><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /></a>.
 <br>
 
+
+\
+\
+\
+\
+
+
+# Welcome & Set-Up {-}
+
+Welcome to IRSA's "Introduction to Reproducible Data Science with R"!  As you get settled in, please take the following steps to get set up for the workshop:
+
+1. Introduce yourself to & meet the other students at your table.  Though workshop helpers will be floating around the room, we encourage you to support one another as you learn R.    
+
+2. Open the workshop manual: https://irsaatumn.github.io/RWorkshop19/    
+
+3. Open RStudio.    
+
+4. Within RStudio, type the following into the console (lower left panel):
+
+    ```{r eval = FALSE}
+    library("rmarkdown")
+    library("knitr")
+    library("ggplot2")
+    library("dplyr")
+    library("fivethirtyeight")
+    library("car")
+    library("glmbb")
+    library("pacman")
+    library("RColorBrewer")
+    ```
+    
+    If you get any errors, this likely means that you have not yet installed the packages listed in the participant checklist.  If this is the case, type the following into the console:    
+    
+    ```{r eval = FALSE}
+    install.packages(c("RColorBrewer", "knitr", "car", "ggplot2", "fivethirtyeight", "glmbb", "pacman", "rmarkdown", "dplyr"))
+    ```
+    
+
