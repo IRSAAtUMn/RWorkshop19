@@ -1,6 +1,9 @@
 # Understanding data: Transformations
 
 
+<!-- take subsetting out of module 1? -->
+
+
 *Author: Alicia Johnson*
 
 
@@ -113,7 +116,129 @@ my_dataset %>%
 
 
 
-## Transforming rows: `filter()` and `arrange()`    
+## Transforming rows: `arrange()` and `filter()`    
+
+\
+\
+
+
+The fivethirtyeight article
+[The Ultimate Halloween Candy Power Ranking](http://fivethirtyeight.com/features/the-ultimate-halloween-candy-power-ranking/) analyzes the data from [this experiment](http://walthickey.com/2017/10/18/whats-the-best-halloween-candy/) which presented subjects with a series of head-to-head candy matchups and asked them to indicate which candy they preferred.  __Import__ these __tidy__ data from the `fivethirtyeight` package:
+
+\
+
+```{r}
+# Load the package
+library(fivethirtyeight)
+
+# Load the data
+data("candy_rankings")
+
+# Give the data frame a shorter name
+candy <- candy_rankings
+```
+
+\
+\
+
+
+
+1. __Basics__    
+    ```{r}
+    # Take a glimpse at the data.  What's the unit of observation?
+    
+    # How much data do we have?    
+    
+    ```
+    
+    
+\
+\
+
+
+    
+2. __arrange() rows__    
+    Right now, the order of the rows / candy is somewhat arbitrary.  We can `arrange()` the rows in a more meaningful way:    
+    
+    ```{r message=FALSE, warning=FALSE, eval=FALSE}    
+    # Arrange from least to most popular
+    candy %>% 
+      arrange(winpercent)
+    candy %>% 
+      arrange(winpercent) %>% 
+      head()
+    
+    # Arrange from most to least popular
+    candy %>% 
+      arrange(desc(winpercent))
+    candy %>% 
+      arrange(desc(winpercent)) %>% 
+      head() 
+    
+    # You try: arrange from least to most expensive 
+    
+    
+    # You try: arrange from most to least expensive 
+    
+    ```
+    
+    
+
+\
+\
+
+
+
+4. __filter() rows__    
+    We're not always interested in _all_ rows of a dataset.  For example, here we might be interested in studying only chocolate, not _all_ candy.  `filter()` allows us to keep only certain *rows* that meet a given criterion.  To write these criteria, we must specify the *variable* by which we want to filter the data and the *value(s)* of that variable that we want to keep.  Here are some general rules to try out below:    
+    
+    - If variable `x` is *quantitative*:    
+        `x == 1`, `x < 1`, `x <= 1`, `x > 1`, `x >= 1`, `x != 1`    
+        
+    - If variable `x` is *categorical / factor*:    
+        `x == "a"`, `x != "a"`    
+        
+    - If variable `x` is *logical* (`TRUE` / `FALSE`):    
+        `x == TRUE`, `x == FALSE`    
+    
+    ```{r eval = FALSE}
+    # Keep the sad candies that won less than 30% 
+    candy %>% 
+      filter(___)
+    
+    # Keep only Dots
+    candy %>% 
+      filter(___)
+    
+    # Keep only chocolate-y candies    
+    candy %>% 
+      filter(___)
+    ```
+    
+
+\
+\
+
+
+
+5. __Combining `arrange()` and `filter()`__    
+    We can perform multiple sequential `arrange()` and `filter()` operations.    
+    ```{r eval = FALSE}
+    # Keep only chocolate-y, peanut butter-y candies. Do this in 3 lines.
+    candy %>% 
+      filter(___)  %>% 
+      filter(___)
+    
+    # Keep only chocolate-y, peanut butter-y candies. Do this in 2 lines.
+    candy %>% 
+      filter(___, ___)
+    
+    # Arrange fruity candy from most to least popular
+    candy %>% 
+      ___(___) %>% 
+      ___(___)
+    ```
+
 
 
 
@@ -129,7 +254,43 @@ my_dataset %>%
 ## Transforming columns: `select()` and `mutate()`    
 
 
+6. `select()` columns    
+    There are often more variables (columns) in a dataset than we're interested in.  Keeping these in the dataset doesn't hurt anything, but removing them can make data analysis more manageable and less overwhelming.    
+    ```{r eval = FALSE}
+    # Create a dataset which only contains candy name & winpercent
+    candy %>% 
+      select(competitorname, winpercent) %>% 
+      head()
+    
+    # You try: create a dataset which only contains candy name, chocolate status, & winpercent
+    
+    
+    ```
+    
 
+
+\
+\
+
+
+
+7. `mutate()` columns    
+    We can create new variables (columns) by _mutating_ existing columns.  This is helpful when we want to change the scale of a variable, combine variables into new measurements, etc.    
+    
+    ```{r eval = FALSE}
+    # Create price_percentile variable which transforms pricepercent to 0-100 scale
+    candy %>% 
+      mutate(price_percentile = ___) %>% 
+      head()
+    
+    # You try: create fruity_hard variable which indicates whether candy is fruity AND hard
+    
+    ```
+    
+    
+    
+    
+    
 
 \
 \
@@ -140,6 +301,67 @@ my_dataset %>%
 
 
 ## Simple numerical summaries: `summarize()`
+
+\
+\
+
+8. __Review: univariate visualizations__    
+    Construct a univariate visualization of `winpercent`.  Summarize the trend and variability in the `winpercent` from candy to candy.        
+    ```{r}
+    
+    ```
+    
+
+\
+\
+
+
+9. __Univariate numerical summaries of trend and variability__    
+    The visualization above allows us to _eyeball_ the trend and variability in `winpercent`.  We can support these observations with rigorous numerical summaries.    
+    ```{r eval = FALSE}
+    # Trend: calculate the mean winpercent
+    candy %>% 
+      summarize(mean(winpercent))
+    
+    # Trend: calculate the mean & median winpercent
+    candy %>% 
+      summarize(mean(winpercent), median(winpercent))
+    
+    # Variability: calculate the min & max winpercent
+    candy %>% 
+      summarize(___, ___)
+    ```
+    
+
+\
+\
+
+
+10. __Review: multivariate visualizations__    
+    Construct a visualization of the relationship between `winpercent` and `chocolate`.  Summarize your observations.        
+    ```{r}
+    
+    ```
+    
+
+\
+\
+
+
+
+11. __Numerical summaries by group__    
+    The visualization above illuminates how the trend and variability in `winpercent` differs depending upon `chocolate` status.  We can calculate separate numerical summaries for these groups.    
+    ```{r eval = FALSE}
+    # Trend: calculate the mean winpercent by chocolate group
+    candy %>% 
+      group_by(chocolate) %>% 
+      summarize(mean(winpercent))
+    
+    # (You try) Variability: calculate the min & max winpercent by chocolate group
+    
+    ```
+    
+    
 
 
 
@@ -154,14 +376,244 @@ my_dataset %>%
 
 ## Exercises
 
-1. __Friday the 13th__    
-    Consider only those births that occur on Fridays:    
+Practice, practice, practice is important when learning the `dplyr` verbs.  Try out the following exercises with solutions below.
+
+\
+\
+
+
+### Questions
+
+
+1. __Revisiting movies__    
+    Recall the `bechdel` data:    
+    
     ```{r}
-    only_fri <- subset(US_births_2000_2014, day_of_week == "Fri")
-    ```    
-    Define a new variable `fri13` that indicates whether the case falls on a Friday in the 13th date of the month:    
-    ```{r}
-    only_fri$fri13 <- (only_fri$date_of_month == 13)
+    data("bechdel")
+    ```   
+    
+    To simplify our analysis, create a new dataset named `new_bechdel` which contains only the following variables: `title`, `year`, `binary`, `clean_test`, `budget_2013`, `domgross_2013`.  HINT: Which verb is helpful here: `arrange()`, `filter()`, `select()`, `mutate()`, `summarize()`  
+    
+    ```{r eval = FALSE}
+    new_bechdel <- ___
     ```
-    Construct and comment on a plot of that illustrates the distribution of births among Fridays that fall on & off the 13th. Do you see any evidence of superstition?
+   
+
+
+\
+\
+
+
+2. __Transforming budget and gross__    
+    Film budgets and profits can be huge.  To make these values easier to explore, create two new variables, `budget_mil` and `gross_mil`, which transform `budget_2013` and `domgross_2013` to the millions scale (instead of $ scale).  Be sure to store these in the `new_bechdel` dataset.  HINT: Which verb is helpful here: `arrange()`, `filter()`, `select()`, `mutate()`, `summarize()`  
+    
+    ```{r eval = FALSE}
+    new_bechdel <- ___
+    ```
+    
+
+\
+\
+
+
+
+3. __Most vs least expensive.  Most vs least profitable__    
+    a. Identify the 6 movies with the largest budgets and the 6 movies with the smallest budgets.    
+    b. Identify the 6 movies with the largest gross and the 6 movies with the smallest gross.    
+    c. Among films that _pass_ the Bechdel test, which are the 6 with the largest gross?  HINT: You'll need to combine 2 `dplyr` verbs!
+
+
+
+\
+\
+
+
+4. __Which films?__    
+    Identify which films were...    
+    a. Made in 2013.    
+    b. Made in 2013 and didn't pass the "at least 2 women characters" criterion of the Bechdel test.  HINT: This is indicated by the `nowomen` level of the `clean_test` variable.        
+    c. Made in 2013 and grossed more than $300,000,000.
+    
+
+\
+\
+
+
+5. __Min, Median, Max__    
+    a. Among all films in the dataset, calculate the minimum, median, and maximum budget.    
+    b. Among all films in the dataset, calculate and compare the minimum, median, and maximum budgets for movies that pass and fail the Bechdel test.    
+    c. Among films made in the 1970s, calculate and compare the minimum, median, and maximum budgets for movies that pass and fail the Bechdel test.    
+    d. Among films made in the 2010s, calculate and compare the minimum, median, and maximum budgets for movies that pass and fail the Bechdel test.    
+    e. Compare your results for parts c and d.  What does this reveal about changes in the movie business?    
+    
+    
+
+\
+\
+
+
+6. __Challenge: Friday the 13th__    
+    In this final exercise, you'll need to combine some of the `dplyr` verbs in a more open-ended scenario.  Hints are provided below.  Recall the `US_births_2000_2014` births data:    
+    
+    ```{r}
+    data("US_births_2000_2014")
+    ```
+
+    We'll use these data to determine whether there's any evidence that people are superstitious about giving birth on Friday the 13th.  Specifically:    
+    
+    a. Visualize the birth patterns among Fridays that fall on the 13th day of the month and Fridays that fall off the 13th day.    
+    b. Calculate and compare the median number of births on Fridays that fall on the 13th vs Fridays that fall off the 13th.    
+    c. Summarize your findings.  Mainly, did you find ample evidence of superstition?
+    
+    \
+    
+    
+    HINTS:    
+    - We're only interested in births that occur on Fridays.    
+    - There's currently no variable that lumps Friday birthdays into two categories: those that fall on the 13th day of the month and those that don't.  
+    
+
+\
+\
+\
+\
+
+    
+    
+### Solutions
+
+
+1. .    
+    ```{r}
+    data("bechdel")
+    new_bechdel <- bechdel %>% 
+      select(title, year, binary, clean_test, budget_2013, domgross_2013)
+    ```
+   
+
+
+\
+\
+
+
+2. .    
+    ```{r}
+    new_bechdel <- new_bechdel %>% 
+        mutate(budget_mil = budget_2013 / 1000000, gross_mil = domgross_2013 / 1000000)
+    ```
+    
+
+\
+\
+
+
+
+3. .    
+    ```{r}
+    # a
+    new_bechdel %>% 
+        arrange(desc(budget_mil)) %>% 
+        head()
+    new_bechdel %>% 
+        arrange(budget_mil) %>% 
+        head()
+    
+    # b
+    new_bechdel %>% 
+        arrange(desc(gross_mil)) %>% 
+        head()
+    new_bechdel %>% 
+        arrange(gross_mil) %>% 
+        head()
+    
+    # c 
+    new_bechdel %>% 
+        filter(binary == "PASS") %>% 
+        arrange(desc(gross_mil)) %>% 
+        head()
+    ```
+
+    
+
+\
+\
+
+
+4. .    
+    ```{r}
+    # a
+    new_bechdel %>% 
+        filter(year == 2013) %>% 
+        head()   # just for simplicity
+    
+    # b 
+    new_bechdel %>% 
+        filter(year == 2013, clean_test == "nowomen")
+    
+    # c 
+    new_bechdel %>% 
+        filter(year == 2013, gross_mil > 300)
+    
+    
+    ```
+    
+
+\
+\
+
+
+5. .    
+    ```{r}
+    # a
+    new_bechdel %>% 
+        summarize(min(budget_mil), median(budget_mil), max(budget_mil))
+    
+    # b
+    new_bechdel %>% 
+        group_by(binary) %>% 
+        summarize(min(budget_mil), median(budget_mil), max(budget_mil))
+    
+    # c
+    new_bechdel %>% 
+        filter(year < 1980) %>% 
+        group_by(binary) %>% 
+        summarize(min(budget_mil), median(budget_mil), max(budget_mil))
+    
+    # d
+    new_bechdel %>% 
+        filter(year >= 2010) %>% 
+        group_by(binary) %>% 
+        summarize(min(budget_mil), median(budget_mil), max(budget_mil))
+    ```
+
+
+    
+
+\
+\
+
+
+6. .    
+
+    ```{r}
+    data("US_births_2000_2014")
+    
+    # Filter out all but Fridays and define Friday the 13th variable
+    new_births <- US_births_2000_2014 %>% 
+        filter(day_of_week == "Fri") %>% 
+        mutate(fri13 = (date_of_month == 13))
+    
+    # a
+    ggplot(new_births, aes(x = births, fill = fri13)) + 
+        geom_density(alpha = 0.5)
+    
+    # b
+    new_births %>% 
+        group_by(fri13) %>% 
+        summarize(median(births))
+    ```
+
+    
+    
+
     
