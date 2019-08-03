@@ -1,4 +1,153 @@
-# Data Wrangling & Simple Summaries
+# Understanding data: Transformations
+
+
+*Author: Alicia Johnson*
+
+
+
+\
+\
+
+
+
+## Goal: Understanding Through Transformations
+
+In this module we'll focus on the __"Transform"__ step within the data science workflow:
+
+\
+\
+
+
+<center>
+<div class="image">
+<img src="images/data-science.png" style="width: 475px"/>
+<div>source: [Wickham & Grolemund: R for Data Science](http://r4ds.had.co.nz/) </div>
+</div>
+</center>
+
+
+\
+\
+
+
+In the previous modules, we imported and visualized tidy data.  These visualizations provided us with important insights into the patterns in our data.  Data transformations are also fundamental to understanding data: 
+
+- We can utilize data transformations to: define & explore new variables; filter & focus on subsets of the data; reorder the data.
+
+- Simple numerical summaries calculated via data transformations complement, formalize, and support the patterns observed in our visual summaries.
+
+
+\
+\
+\
+\
+
+
+
+
+## dplyr
+
+We'll construct data transformations using the `dplyr` package:
+
+```{r eval=FALSE}
+library(dplyr)
+```
+
+```{r echo=FALSE}
+suppressPackageStartupMessages(library(dplyr))
+```
+
+
+Like `ggplot`, the `dplyr` "grammar" is intuitive and generalizable once mastered.  The best way to learn about `dplyr` is to just play around.  Don't worry about memorizing the syntax.  Rather, focus on the *patterns* and *potential* of their application.  There's a helpful cheat sheet for future reference:
+
+<center>
+[**DPLYR CHEAT SHEET**](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+</center>
+
+
+\
+\
+
+
+In the `dplyr` grammar, there are 5 _verbs_ (actions):
+
+- `arrange()` = reorder the _rows_    
+- `filter()` = take a subset of _rows_    
+- `select()` = take a subset of _columns_    
+- `mutate()` = create a new variable, ie. _column_    
+- `summarize()` = calculate a numerical summary of a variable, i.e. _column_
+
+
+The general syntax for applying these verbs is below, where we call "`%>%`" a "pipe":
+
+```{r eval = FALSE}
+my_dataset %>% 
+  verb(___)
+```
+
+Just as we can add layers to a `ggplot` utilizing "`+`", we can implement sequential data transformations utilizing "`%>%":
+
+```{r eval = FALSE}
+my_dataset %>% 
+  verb1(___) %>% 
+  verb2(___)
+```
+
+
+
+
+
+
+
+
+
+
+
+\
+\
+\
+\
+
+
+
+
+
+
+## Transforming rows: `filter()` and `arrange()`    
+
+
+
+
+\
+\
+\
+\
+
+
+
+
+## Transforming columns: `select()` and `mutate()`    
+
+
+
+
+\
+\
+\
+\
+
+
+
+
+## Simple numerical summaries: `summarize()`
+
+
+
+\
+\
+\
+\
+
 
 
 

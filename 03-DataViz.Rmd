@@ -1,10 +1,32 @@
-# Data Visualization
+# Understanding data: Visualization
 
 *Author: Alicia Johnson*
 
+<!-- add chapter 0 on getting set up / make sure packages are installed? -->
+<!-- has filter been defined?  is dplyr installed? -->
 <!-- swap subset for filter?! -->
 
-<!-- NEXT TIME: Swap the birthday data (use for discussion) and bechdel data (use for exercises).   -->
+
+\
+\
+
+
+## Goal: Understanding Through Visualizations
+
+
+In this module we'll focus on the __"Visualise"__ step in the data science workflow:
+
+\
+\
+
+
+<center>
+<div class="image">
+<img src="images/data-science.png" style="width: 475px"/>
+<div>source: [Wickham & Grolemund: R for Data Science](http://r4ds.had.co.nz/) </div>
+</div>
+</center>
+
 
 
 \
@@ -12,7 +34,7 @@
 
 
 
-Recall the `US_births_2000_2014` data in the `fivethirtyeight package`:
+Reconsider and __import__ the `US_births_2000_2014` data in the `fivethirtyeight package`:
 
 ```{r}
 library(fivethirtyeight)
@@ -33,8 +55,7 @@ library(gridExtra)
 \
 
 
-
-We investigated the basic structure of this data set in the previous activity.  Now  we can start to ask some __research questions__:    
+We investigated the basic structure of this __tidy__ data set in the previous activity.  Now we can start to ask some __research questions__ to better __understand__ the data:    
 
 - What's the _typical_ number of births per day?    
 - To what degree do the number of births _vary_ from day to day?    
@@ -124,7 +145,9 @@ only_2014 <- subset(birth_data, year == 2014)
     Try out the code below that builds up from a simple to a customized histogram. At each step determine how each piece of code contributes to the plot.        
     ```{r eval=FALSE}
     # Focus first on just the 2014 data
-    only_2014 <- subset(birth_data, year == 2014)
+    library(dplyr)
+    only_2014 <- birth_data %>% 
+      filter(year == 2014)
     
     # Set up a plotting frame
     ggplot(only_2014, aes(x = births))
@@ -258,7 +281,7 @@ A **density plot** is essentially a smooth version of the histogram.  Instead of
 
 In summary, you constructed: 
 
-```{r echo=FALSE, fig.width=8, warning=FALSE}
+```{r echo=FALSE, fig.width=6, fig.height = 2.5, warning=FALSE}
 g1 = ggplot(only_2014, aes(x=births))
 g2 = g1 + geom_density()
 grid.arrange(g1,g2,ncol=2)
@@ -444,7 +467,7 @@ Next, consider the relationship between `births` (quantitative) and `day_of_week
 
 In summary: 
 
-```{r echo=FALSE, fig.width=8, fig.height = 3, warning=FALSE}
+```{r echo=FALSE, fig.width=8, fig.height = 2.5, warning=FALSE}
 g1=ggplot(only_2014, aes(x=births, fill=day_of_week)) +
     geom_density()
 g2=ggplot(only_2014, aes(x=births, fill=day_of_week)) +
@@ -473,7 +496,7 @@ grid.arrange(g1,g2,g3,ncol=3)
       geom_point() 
     
     # births vs day_of_week
-    ggplot(only_2014, aes(x=births, fill=day_of_week)) +
+    ggplot(only_2014, aes(x = births, fill = day_of_week)) +
       geom_density(alpha=0.5)
     
     # births vs date AND day_of_week
@@ -545,6 +568,7 @@ dim(bechdel)
 \
 
 
+### Questions
 
 1. __Visualizing a categorical variable__    
     The categorical `binary` variable records whether each film in the dataset passes or fails the Bechdel test:    
@@ -566,21 +590,28 @@ dim(bechdel)
 \
 
 
-2. __Visualize potential predictors__    
+2. __Visualize potential "predictors"__    
     Our ultimate goal will be to better understand which films pass / fail the Bechdel test.  For example, can this be explained the year in which it was made?  The film's budget?  The amount of money it makes at the box office?  Before we can answer these questions, it's important to understand the scales of these variables.  For each variable below, construct and summarize a __univariate visualization__.    
-    - `year`: the year in which the film was released    
-    - `budget_2013`: the film's budget (in 2013 \$)    
-    - `intgross_2013`: the film's total international gross (in 2013 \$)
+    a. `year`: the year in which the film was released    
+    b. `budget_2013`: the film's budget (in 2013 \$)    
+    c. `domgross_2013`: the film's total domestic gross (in 2013 \$)
     
 
 \
 \
 
 
-3. __binary vs year__    
-    Construct and summarize a visualization of the relationship between whether a film passes the Bechdel (`binary`) and the `year` in which it was made.  Use the hints below if you'd like:    
+3. __binary vs x__    
+    To answer each question below, construct and summarize a visualization between the given pair of variables.  The hints below apply in each scenario.    
+    a. Is there a relationship between the `year` in which a film is made and whether is passes the Bechdel (`binary`)?    
+    b. Do movies that pass the Bechdel test tend to receive more or less funding (as measured by `budget_2013`) than those that fail the test?    
+    c. Do movies that pass the Bechdel test tend to make more or less money (as measured by `domgross_2013`) than those that fail the test?    
     
-    - Is `binary` categorical or quantitative?  What about `year`?  Thus what visualization tool might you use?    
+    \
+    
+    __Hints__    
+    
+    - Is `binary` categorical or quantitative?  What about the other variable?  Thus what visualization tool might you use?    
     - Fill in the following: 
         
         ```{r eval = FALSE}
@@ -593,105 +624,307 @@ dim(bechdel)
 \
 
 
-4. 
+
+
+4. __binary vs x1 and x2__    
+    For each question below, construct and summarize a helpful visualization that includes a `geom_smooth()`.   
+    a. How have the budgets (`budget_2013`) of films that pass / fail the Bechdel test (`binary`) changed and compared over time (`year`)?  HINT: Put `year` on the x-axis.    
+    b. How have the gross profits (`domgross_2013`) of films that pass / fail the Bechdel test (`binary`) changed and compared over time (`year`)?  HINT: Put `year` on the x-axis.
+    c. How does the "return on investment" compare for films that pass / fail the Bechdel test?  Specifically, examine the relationship between `domgross_2013` and `budget_2013` for films that pass / fail the Bechdel test (`binary`).  HINT: Put `budget_2013` on the x-axis.
+    
+
+
+\
+\
+
+
+5. __Extra: identify the outliers__    
+    By now, you've seen some outliers in your visualizations.  Try to identify these by subsetting the `bechdel` data.    
+    
+    
+\
+\
+
+
+6. __Extra visualization practice__    
+    Bike sharing is becoming a more popular means of transportation in many cities. The dataset we will analyze in this assignment comes from Capital Bikeshare, the bike-sharing service for the Washington DC area. The dataset originally comes from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset) and the version we’ll work with is made available at Macalester Prof Shuman’s website:    
+    
+    ```{r}
+    bikes <- read.csv("https://www.macalester.edu/~dshuman1/data/155/bike_share.csv")
+    ```
+    
+    **Codebook**
+
+    variable              meaning
+    --------------------- ----------------------------------------------------
+    `date`                date in format YYYY-MM-DD
+    `season`              winter, spring, summer, or fall
+    `year`                2011 or 2012
+    `month`               3-letter month abbreviation
+    `day_of_week`         3-letter abbreviation for day of week
+    `weekend`             TRUE if the case is a weekend, FALSE otherwise
+    `holiday`             is the day a holiday? (yes or no)
+    `temp_actual`         temperature in degrees Fahrenheit
+    `temp_feel`           what the temperature *feels* like in degrees Fahrenheit
+    `humidity`            fraction from 0 to 1 giving the humidity level
+    `windspeed`           wind speed in miles per hour
+    `weather_cat`         `categ1`: clear to partly cloudy <br> `categ2`: mist + some clouds <br> `categ3`: light precipitation to thunderstorms
+    `riders_casual`       count of daily rides by casual users (non-registered users)
+    `riders_registered`   count of daily rides by registered users
+    `riders_total`        count of total daily rides (`riders_casual + riders_registered`)
+    
+    
+    \
+    \
+    
+    Utilize visualizations to better understand how `riders_registered` might depend upon `windspeed`, `temp_feel`, `weekend`, or `season`.
+    
+    
+
+    
+
+    
+
+    
+    
+
+
+\
+\
+\
+\
 \
 \
 
 
 
-3. __binary vs budget_2013__    
-    Construct and summarize a visualization of the relationship between whether a film passes the Bechdel (`binary`) and its `budget_2013`.  Use the hint below if you'd like:    
+
+\
+\
+\
+
+
+### Solutions
+
+1. More films fail than pass the Bechdel test (~1000 vs ~800).    
+    ```{r fig.width = 3.5, fig.height = 2}
+    ggplot(bechdel, aes(x = binary)) + 
+      geom_bar()
+    ```    
+
+
+2. .   
+    ```{r eval = FALSE}
+    # a
+    ggplot(bechdel, aes(x = year)) + 
+      geom_histogram(color = "white")
+    ggplot(bechdel, aes(x = year)) + 
+      geom_density()
+    
+    # b
+    ggplot(bechdel, aes(x = budget_2013)) + 
+      geom_histogram(color = "white")
+    ggplot(bechdel, aes(x = budget_2013)) + 
+      geom_density()
+    
+    # c
+    ggplot(bechdel, aes(x = domgross_2013)) + 
+      geom_histogram(color = "white")
+    ggplot(bechdel, aes(x = domgross_2013)) + 
+      geom_density()
+    ```
+    
+    ```{r echo = FALSE, fig.width = 5, fig.height = 6}
+    # a
+    g1 <- ggplot(bechdel, aes(x = year)) + 
+      geom_histogram(color = "white")
+    g2 <- ggplot(bechdel, aes(x = year)) + 
+      geom_density()
+    
+    # b
+    g3 <- ggplot(bechdel, aes(x = budget_2013)) + 
+      geom_histogram(color = "white")
+    g4 <- ggplot(bechdel, aes(x = budget_2013)) + 
+      geom_density()
+    
+    # c
+    g5 <- ggplot(bechdel, aes(x = domgross_2013)) + 
+      geom_histogram(color = "white")
+    g6 <- ggplot(bechdel, aes(x = domgross_2013)) + 
+      geom_density()
+    
+    grid.arrange(g1,g2,g3,g4,g5,g6,ncol=2)
+    ```    
+    
+
+
+3. Over time, more films have been passing the Bechdel test.  Further, films that fail the Bechdel tend to have bigger budgets and to make more money.
+
+    ```{r eval = FALSE}
+    # a
+    ggplot(bechdel, aes(x = year, fill = binary)) + 
+      geom_density(alpha = 0.5)
+    ggplot(bechdel, aes(x = binary, y = year)) + 
+      geom_boxplot()
+    
+    # b
+    ggplot(bechdel, aes(x = budget_2013, fill = binary)) + 
+      geom_density(alpha = 0.5)
+    ggplot(bechdel, aes(x = binary, y = budget_2013)) + 
+      geom_boxplot()
+    
+    # c
+    ggplot(bechdel, aes(x = domgross_2013, fill = binary)) + 
+      geom_density(alpha = 0.5)
+    ggplot(bechdel, aes(x = binary, y = domgross_2013)) + 
+      geom_boxplot()
+    ```
+    
+    ```{r echo = FALSE, fig.width = 6, fig.height = 6}
+    # a
+    g1 <- ggplot(bechdel, aes(x = year, fill = binary)) + 
+      geom_density(alpha = 0.5)
+    g2 <- ggplot(bechdel, aes(x = binary, y = year)) + 
+      geom_boxplot()
+    
+    # b
+    g3 <- ggplot(bechdel, aes(x = budget_2013, fill = binary)) + 
+      geom_density(alpha = 0.5)
+    g4 <- ggplot(bechdel, aes(x = binary, y = budget_2013)) + 
+      geom_boxplot()
+    
+    # c
+    g5 <- ggplot(bechdel, aes(x = domgross_2013, fill = binary)) + 
+      geom_density(alpha = 0.5)
+    g6 <- ggplot(bechdel, aes(x = binary, y = domgross_2013)) + 
+      geom_boxplot()
+    
+    grid.arrange(g1,g2,g3,g4,g5,g6,ncol=2)
+    ```   
+    
+    
+4. .
+    
     
     ```{r eval = FALSE}
-    ggplot(___, aes(x = ___, y = ___)) + 
-      ___()
+    # a
+    ggplot(bechdel, aes(x = year, y = budget_2013, color = binary)) + 
+      geom_point() + 
+      geom_smooth()
+    
+    # b
+    ggplot(bechdel, aes(x = year, y = domgross_2013, color = binary)) + 
+      geom_point() + 
+      geom_smooth()
+    
+    # c
+    ggplot(bechdel, aes(x = budget_2013, y = domgross_2013, color = binary)) + 
+      geom_point() + 
+      geom_smooth()
     ```
-  
-
-
-
-
-\
-\
-\
-
     
-\
-
-**Plots of 3 quantitative variables**
-
-
-```{r eval=FALSE}
-# Scatterplot: represent third variable using color
-ggplot(only_2014, aes(y = births, x = date, color = date)) +
-    geom_point(alpha = 0.5)
-
-# Scatterplot: represent third variable using size
-ggplot(only_2014, aes(y = births, x = date, size = date)) +
-    geom_point(alpha = 0.5)
-
-# Scatterplot: discretize the third variable 
-ggplot(only_2014, aes(y = births, x = date, color = cut(date,3))) +
-    geom_point(alpha = 0.5)
-
-```
-
-
+    ```{r echo = FALSE, fig.width = 8, fig.height = 2.5}
+    # a
+    g1 <- ggplot(bechdel, aes(x = year, y = budget_2013, color = binary)) + 
+      geom_point() + 
+      geom_smooth()
     
+    # b
+    g2 <- ggplot(bechdel, aes(x = year, y = domgross_2013, color = binary)) + 
+      geom_point() + 
+      geom_smooth()
+    
+    # c
+    g3 <- ggplot(bechdel, aes(x = budget_2013, y = domgross_2013, color = binary)) + 
+      geom_point() + 
+      geom_smooth()
+    
+    grid.arrange(g1,g2,g3,ncol=3)
+    ```   
+
+
+5. For example, we can i.d. the film that made the most money:    
+    ```{r}
+    library(dplyr)
+    bechdel %>% 
+      filter(domgross_2013 > 1500000000)
+    ```
     
 
+6. Choose your own adventure!  Here are some ideas:
 
-\
-\
-\
-\
-\
-\
+    ```{r eval = FALSE}
+    # rides vs windspeed
+    ggplot(bikes, aes(y = riders_registered, x = windspeed)) + 
+        geom_point() + 
+        geom_smooth()
+    
+    # rides vs temperature
+    ggplot(bikes, aes(y = riders_registered, x = temp_feel)) + 
+        geom_point() + 
+        geom_smooth()
+
+    # rides by weekend
+    ggplot(bikes, aes(y = riders_registered, x = weekend)) + 
+        geom_boxplot()    
+    
+    # rides by season
+    ggplot(bikes, aes(y = riders_registered, x = season)) + 
+        geom_boxplot() 
+    
+    # rides by windspeed and weekend
+    ggplot(bikes, aes(y = riders_registered, x = windspeed, color = weekend)) + 
+        geom_point() + 
+        geom_smooth()
+        
+    # EXTRA: rides by season and weekend
+    ggplot(bikes, aes(y = riders_registered, x = season, fill = weekend)) + 
+        geom_boxplot()
+    
+    # EXTRA: rides by windspeed and temperature
+    ggplot(bikes, aes(y = riders_registered, x = windspeed, color = temp_feel)) + 
+        geom_point()
+    ggplot(bikes, aes(y = riders_registered, x = windspeed, size = temp_feel)) + 
+        geom_point()
+    ```
 
 
+    ```{r echo = FALSE, fig.width = 8, fig.height = 5}
+    g1 <- ggplot(bikes, aes(y = riders_registered, x = windspeed)) + 
+        geom_point() + 
+        geom_smooth()
+    g2 <- ggplot(bikes, aes(y = riders_registered, x = temp_feel)) + 
+        geom_point() + 
+        geom_smooth()
+    g3 <- ggplot(bikes, aes(y = riders_registered, x = weekend)) + 
+        geom_boxplot()    
+    g4 <- ggplot(bikes, aes(y = riders_registered, x = season)) + 
+        geom_boxplot() 
+    grid.arrange(g1,g2,g3,g4,ncol=2)
+    ```
+    
 
-
-\
-\
-\
-
-
-## Exercise Solutions
-
-```{r eval = FALSE}
-# 1
-only_2014 <- subset(US_births_2000_2014, year == 2014)
-ggplot(only_2014, aes(x = births)) + 
-  geom_histogram(color = "white")
-ggplot(only_2014, aes(x = births)) + 
-  geom_density()
-
-#2
-ggplot(only_2014, aes(y = births, x = date)) + 
-  geom_point()
-
-#3
-ggplot(only_2014, aes(y = births, x = date, color = day_of_week)) + 
-  geom_point()    
-ggplot(only_2014, aes(y = births, x = date)) +
-    geom_text(aes(label = day_of_week))
-
-#4
-#HOLIDAYS!  For example, Thanksgiving is a Thursday in late November
-
-#5
-ggplot(US_births_2000_2014, aes(y = births, x = date, color = day_of_week)) + 
-  geom_point()    
-
-#6
-only_fri <- subset(US_births_2000_2014, day_of_week=="Fri")
-only_fri$fri13 <- (only_fri$date_of_month == 13)
-ggplot(only_fri, aes(x = births, fill = fri13)) + 
-  geom_density(alpha = 0.5)
-ggplot(only_fri, aes(y = births, x = fri13)) + 
-  geom_boxplot()
-```
-
+    ```{r echo = FALSE, fig.width = 8, fig.height = 5}
+    # rides by windspeed and weekend
+    g1 <- ggplot(bikes, aes(y = riders_registered, x = windspeed, color = weekend)) + 
+        geom_point() + 
+        geom_smooth()
+        
+    # EXTRA: rides by season and weekend
+    g2 <- ggplot(bikes, aes(y = riders_registered, x = season, fill = weekend)) + 
+        geom_boxplot()
+    
+    # EXTRA: rides by windspeed and temperature
+    g3 <- ggplot(bikes, aes(y = riders_registered, x = windspeed, color = temp_feel)) + 
+        geom_point()
+    g4 <- ggplot(bikes, aes(y = riders_registered, x = windspeed, size = temp_feel)) + 
+        geom_point()
+    
+    
+    grid.arrange(g1,g2,g3,g4,ncol=2)
+    ```
+    
+    
     
     
     
