@@ -13,5 +13,5 @@ In order to collate the materials into a single git book, you can simply drop yo
 
 4. "Build the book" by knitting the index file.   This will update the files in the "docs" folder of your project.    
 
-5. Push changes to github.  
+5. Push changes to github including any changes to any doc files (which only impacts the website) and Rmd files for your chapters (which others can use to build the book with your updated materials). 
     
