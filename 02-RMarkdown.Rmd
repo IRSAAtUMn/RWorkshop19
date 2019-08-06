@@ -184,17 +184,150 @@ Markdown is an easy to use text formating language that can be converted to HTML
 
 **Headings**
 
+Headings are indicated with `#`, with the number of `#` corresponding to the header level. 
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/markdown-headings.png")
+```
+
+
+Try it - Add a new first and second level heading to your example R Markdown file. 
+
+
+\
+\
+\
+\
+\
+\
+
+**Text formating**
+
+For plain text, just type as is. 
+
+* `**` or `__` for **bold** text
+* `*` for `_` for *italic* text
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/markdown-textformat.png")
+```
+
+Try it - make a word in the first paragraph of your example R Markdown file bold. 
+
+
+\
+\
+\
+\
+
+You can also create bulleted lists in Markdown:
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/markdown-listformat.png")
+```
+
+Try creating a bulleted list in your example R Markdown document. 
+
+\
+\
+\
+\
+\
+
+
+## R chunks
+
+To run and display R code and its output, you'll need to add in an R code chunk. 
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/rchunks-overview.png")
+```
+
+
+\
+\
+\
+\
+\
+
+**Chunk options**
+
+You can specify how you want the R code and output to appear inside the R code chunk. 
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/rchunks-options.png")
+```
+
+\
+\
+\
+\
+
+Using the `cars` chunk in the example R Markdown file, test what each option does:
+
+* `echo=FALSE`
+* `results='hide'`
+* `comment=""`
+
+\
+\
+\
+\
+\
+
+Chunk options
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/rchunks-options2.png")
+```
+
+\
+\
+\
+\
+\
+
+## Working in R Markdown
+
+Working in R Markdown and R scripts have several similarities:
+
+* Within R chunks, run a line of R code by clicking on "Run" or pressing "cmd/cntrl + enter". 
+* Order matters - need to create objects before computing on them and load packages before using functions from them. 
+* Need to have objects present in your environment in order for R code to work in console
+
+\
+\
+
+However there are some differences:
+
+* When "knit", all the R code is run in separate session 
+* Objects created in one chunk are available to use in later chunks
+* You can run all the code in a single chunk by pressing the green triangle button on the right side of the chunk
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/rchunks-run.png")
+```
+
+
+\
+\
+\
+\
+
+
+**Exercises**
+
+Revisit the `bechdal` data exploration you did in the exercises from the previous session. 
+
+This time, we will create an R Markdown document with these findings. 
+
+* Start by creating separate R chunks for each exercise question
+* Write the question above each chunk in Markdown
+* Write a sentence interpreting the result below each chunk in Markdown
+* Knit the document to produce your report
 
 
 
 
-Markdown
-- Try adding levels of headers or a link
 
-R chunks
-- Try creating a new chunk 
-- Hide the code
-- show the code and hide the output
-
-TRY it
-- small version of what I had?
