@@ -322,5 +322,12 @@ Revisit the `bechdal` data exploration you did in the exercises from the previou
 
 This time, we will create an R Markdown document with these findings. 
 
+* Start by creating separate R chunks for each exercise question
+* Write the question above each chunk in Markdown
+* Write a sentence interpreting the result below each chunk in Markdown
+* Knit the document to produce your report
+
+
+
 
 
