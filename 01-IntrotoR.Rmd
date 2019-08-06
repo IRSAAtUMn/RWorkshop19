@@ -119,12 +119,12 @@ knitr::include_graphics("images/RStudio-Ball.png")
 
 ## R Studio Overview
 
+Here's what you will see when you first open R Studio:
 
 ```{r, fig.align="center", echo=FALSE, out.width="120%"}
-knitr::include_graphics("images/Rstudiolayout.png")
+knitr::include_graphics("images/Rstudiolayout_noscript.png")
 ```
 
-Note that when you first open RStudio, you will only see three windows (because you won't have any scripts or files open yet).
 
 \
 \
@@ -281,6 +281,8 @@ Rep(2, 3)
 
 How do you know what a function does, what arguments are available, and what they are named? Look in the help window!
 
+\
+\
 
 You can find the help page for a function by typing the function name in the search bar
 
@@ -288,6 +290,7 @@ You can find the help page for a function by typing the function name in the sea
 knitr::include_graphics("images/Helpbar.png")
 ```
 
+\
 \
 
 Or by typing "?" followed by the function name in the console
@@ -359,10 +362,12 @@ library(ggplot2)
 
 \
 \
+\
+\
 
 Note: There are *MANY* ways to do the same thing in R. 
 
-For example, cronbach's alpha (a common measure of internal scale consistency) is not built into base R. 
+For example, Cronbach's alpha (a common measure of internal scale consistency) is not built into base R. 
 
 * psych package: alpha()
 * psy package: cronbach()
@@ -408,8 +413,17 @@ This window provides a list of all the commands you have entered in the console
 knitr::include_graphics("images/history.png")
 ```
 
+\
+\
+\
+\
+\
 
 While this can serve as a nice reminder of what you have done, think about how well you will remember what all this means tomorrow. Or six months from now. 
+
+\
+\
+\
 
 
 For procedures you care about (for example, anything with data), you will want to capture what you do in an *R script*. 
@@ -464,6 +478,9 @@ You can run code from a script in the console by pressing "cmd+enter" (Mac) or "
 ```{r, eval=FALSE}
 # Calculate 3 squared
 3^2
+
+# Save result to use later
+my_result <- 3^2
 ```
 
 \
