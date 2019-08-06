@@ -522,7 +522,7 @@ datatable(US_births_2000_2014,  options = list(pageLength = 10))
 
 1. Each row represents a single **observational unit** of the sample.    
 
-2. Each column represents a **variable**, ie. an attribute of the cases.    
+2. Each column represents a **variable**, i.e., an attribute of the cases.    
 
 3. There are no extras in the dataset - no row summaries, column summaries, data entry notes, comments, graphs, etc. All comments about the data collection, variables, etc should be provided in a separate **codebook**.
 
@@ -541,7 +541,9 @@ datatable(US_births_2000_2014,  options = list(pageLength = 10))
 
 **Importing Data**
 
-You can read data into R from a file on your computer, a dataset on the internet, or use data that are included in a package in R. Luckily for us, the Friday the 13th data are already stored within R in the `fivethirtyeight` package. 
+You can read data into R from a file on your computer, a dataset on the internet, or use data that are included in a package in R. 
+
+Luckily for us, the Friday the 13th data are already stored within R in the `fivethirtyeight` package. 
 
 **IF AND ONLY IF** you did not install the `fivethirtyeight` package before the workshop, you can do so now by typing the following code **in the console**:
 
@@ -618,57 +620,42 @@ levels(factor(US_births_2000_2014$day_of_week))
 \
 \
 
-**Subsetting datasets**
+**Importing data from other sources**
 
-We can take subsets of observations in the data that satisfy a criterion defined by a variable in the dataset: 
+R can take in data in many different formats, including from proprietary statistical program such as SPSS, SAS, or Stata. However, the most commonly used files are comma delimited. 
 
-```{r, eval=FALSE}
-# Subset of dates that fell on a Friday
-fridays <- subset(US_births_2000_2014, US_births_2000_2014$day_of_week == "Fri")
-dim(fridays)
-summary(fridays)
+* Comma delimited: `read.csv()`
+* Tab delimited: `read.delim()`
+* Excel files: `library(readxl)`; `read_excel()`
+* SPSS files: `library(haven)`; `read_spss()`
+* Stata files: `library(haven)`; `read_dta()`
+* SAS files: `library(haven)`; `read_sas()`
 
+\
+\
+\
 
-# Subset of dates that were on the 13th of the month
-thirteens <- subset(US_births_2000_2014, US_births_2000_2014$date_of_month == "13")
-dim(thirteens)
-summary(thirteens)
+To read in a data file, assign the output of the `read.csv()` function to an object name. 
 
-
-# Subset of dates that were on the 13th AND a Friday
-fridays13 <- subset(US_births_2000_2014, US_births_2000_2014$day_of_week == "Fri" & US_births_2000_2014$date_of_month == "13")
-dim(fridays13)
-summary(fridays13)
-
-
-# Subset of dates that were on the 13th OR a Friday
-fridays_or_13 <- subset(US_births_2000_2014, US_births_2000_2014$day_of_week == "Fri" | US_births_2000_2014$date_of_month == "13")
-dim(fridays_or_13)
-summary(fridays_or_13)
-
+```{r}
+# Example csv data on women's shoes
+shoes <- read.csv(file="https://github.com/IRSAAtUMn/RWorkshop19/blob/master/data/womens-shoes.csv?raw=true")
 ```
 
-\
-\
-\
-\
-\
-
-Some useful syntax for subsetting:    
-
-- `<` (less than), `<=` (less than or equal to), `>` (greater than), `>=` (greater than or equal to), `==` (equal to)    
-
-- `&` (and), `|` (or)
-
-
 
 \
 \
 \
 \
-\
-\
-\
+
+You can read in files from your computer by replacing the web address with a file path. 
+
+```{r, eval=FALSE}
+# Example csv from computer
+shoes <- read.csv(file="~/Documents/MyProject/data/womens-shoes.csv")
+```
+
+
 
 
 **Exercises**
@@ -698,9 +685,19 @@ A movie passes the test if it meets the following criteria:
 
 7. Access the variable `clean_test` alone. What are the levels of this variable?
 
-8. Create a subset of the data that contain only movies that fail the bechdal test. Store this as `failures`. How many rows does this subset contain?  
 
-9. Create a subset of the data that contain movies with a 2013 budget under one million dollars. Store this subset as `cheap`. How many rows does this subset contain? 
+\
+\
+
+Now download the "beers.csv" dataset from https://z.umn.edu/beer-data. This dataset contains information from over 2,000 craft can beers made in the US. 
+
+1. Save the file in a folder on your desktop 
+
+2. Read in this dataset using `read.csv`, saving it as the object `beer`
+
+3. View this dataset in a separate tab
+
+4. Look at the summary information for this dataset
 
 
 \
@@ -744,12 +741,21 @@ bechdel$clean_test
 levels(factor(bechdel$clean_test))
 
 
-#8. Create a subset of the data that contain only movies that fail the bechdal test. Store this as `failures`. How many rows does this subset contain? 
-failures <- subset(bechdel, bechdel$binary == "FAIL")
-dim(failures)
 
-#9. Create a subset of the data that contain movies with a 2013 budget under one million dollars. Store this subset as `cheap`. How many rows does this subset contain? 
-cheap <- subset(bechdel, bechdel$budget_2013 < 1000000)
+## Beers dataset:
+
+#1. Save the file on your desktop
+# You will need to determine your computer's file path to that location 
+
+#2. Read in the .csv file
+beers <- read.csv("~/Desktop/beers.csv") #on a Mac
+beers <- read.csv("C:\Users\[USERNAME]\Desktop\beers.csv") #on a PC
+
+#3. View this dataset in another tab
+View(beers)
+
+#4. Look at the summary information for this dataset
+summary(beers)
 
 ```
 
