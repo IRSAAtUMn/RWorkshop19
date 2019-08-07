@@ -29,7 +29,8 @@ This workflow is often **iterative** and to ensure we can trust the outcomes, th
 
 \
 \
-
+\
+\
 
 
 
@@ -89,7 +90,10 @@ Before this workshop, you were asked to download/update both R and RStudio.
 
 What's the difference?
 
-```{r, echo=FALSE, out.width="20%"}
+<div class="col2">
+
+
+```{r, echo=FALSE, out.width="40%", fig.align='center'}
 knitr::include_graphics("images/R.jpeg")
 ```
 
@@ -99,16 +103,24 @@ knitr::include_graphics("images/R.jpeg")
 * Can create and run scripts directly in R
 * Text editing on a Mac
 
+\
+\
+\
+\
+\
+\
 
-```{r, echo=FALSE, out.width="20%"}
+```{r, echo=FALSE, out.width="30%", fig.align='center'}
 knitr::include_graphics("images/RStudio-Ball.png")
 ```
 
-<https://www.rstudio.com/products/rstudio/download/>  
+<https://www.rstudio.com/products/rstudio/>  
 
-* Integrated Development Environment (IDE) for R
+* Integrated Development Environment (IDE)
 * Text editing for Mac and PC
 * Easy integration with R Markdown, Shiny, git, etc
+
+</div>
 
 \
 \
@@ -134,7 +146,7 @@ knitr::include_graphics("images/Rstudiolayout_noscript.png")
 
 ###  The R console
 
-The R console is where R commands are executed and most output will be displayed. You can type commands directly into the console and run them by pressing "enter".
+The R console is where R commands are executed and most output will be displayed. You can type commands directly into the console and run them by pressing the "enter" or "return" key.
 
 \
 \
@@ -346,13 +358,14 @@ Or use `install.packages()` in the console
 install.packages("ggplot2")
 ```
 
-
-\
-\
-\
-
-
 You only need to install packages once for each computer/version of R.
+
+\
+\
+\
+\
+
+
 
 To access the functions in R, you need to load the packages with the `library()` command each time start a new R session. 
 
@@ -415,9 +428,6 @@ knitr::include_graphics("images/history.png")
 
 \
 \
-\
-\
-\
 
 While this can serve as a nice reminder of what you have done, think about how well you will remember what all this means tomorrow. Or six months from now. 
 
@@ -451,8 +461,8 @@ R scripts
 
 * Contain R code for a given analysis/project (just as you would type it in the console)
 * Include comments (R ignores lines starting with `#`)
-* Can be run line by line ("run") or all at once ("source")
 * Need to be written in order (i.e., code to create an object needs to come before code that uses the object) 
+* Can be run line by line ("run" or "cmd/cntl+enter") or all at once ("source")
 
 \
 \
@@ -474,7 +484,6 @@ Let's prep our R script for data exploration. You can use comments to describe w
 \
 \
 
-You can run code from a script in the console by pressing "cmd+enter" (Mac) or "cntl+enter" (PC)
 ```{r, eval=FALSE}
 # Calculate 3 squared
 3^2
@@ -482,6 +491,8 @@ You can run code from a script in the console by pressing "cmd+enter" (Mac) or "
 # Save result to use later
 my_result <- 3^2
 ```
+
+You can run code from a script in the console by pressing "cmd+enter" (Mac) or "cntl+enter" (PC)
 
 \
 \
@@ -554,21 +565,31 @@ install.packages("fivethirtyeight", dependencies = TRUE)
 \
 \
 \
+\
+\
 
 You only need to install a package one time for a given computer and version of R. However, each time you want to use functions or data in a package, you will need to load the package into R. 
 
-Put the following code **in your script**:
+Put the following code **in your script** (*hint: future you will thank present you if you include the comments as well)*:
 
 ```{r}
+#load required package
 library(fivethirtyeight)
+
+#load in data
 data(US_births_2000_2014)
 ```
 
 
 \
+\
+\
+\
+
 
 To learn more about this data, you can access **codebook** information:
 ```{r}
+#See codebook information about the data
 ?US_births_2000_2014
 ```
 
@@ -639,8 +660,11 @@ To read in a data file, assign the output of the `read.csv()` function to an obj
 
 ```{r}
 # Example csv data on women's shoes
-shoes <- read.csv(file="https://github.com/IRSAAtUMn/RWorkshop19/blob/master/data/womens-shoes.csv?raw=true")
+shoes <- read.csv(file="https://z.umn.edu/shoe-data")
+
 ```
+
+
 
 
 \
@@ -655,14 +679,38 @@ You can read in files from your computer by replacing the web address with a fil
 shoes <- read.csv(file="~/Documents/MyProject/data/womens-shoes.csv")
 ```
 
+\
+\
+\
+\
+\
+\
 
 
 
 **Exercises**
 
-Let's apply the above tools to the `bechdel` data in the `fivethirtyeight` package. This data was used in the fivethirtyeight.com's article ["The Dollar-And-Cents Case Against Hollywood's Exclusion of Women"](http://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/) which analyzes movies that do/don't pass the **Bechdel test**. 
+
+
+First, let's look at the `shoes` data above. This data contains price information for various brands of women's shoes. 
+
+1. Load the data from the website into your environment with the `read.csv` command, if you haven't already. 
+
+2. View the dataset in a separate tab
+
+3. Check out the first 6 cases of the data
+
+4. How many rows/columns does this dataset have?
+
+5. Access the variable `prices.amountMax` alone. What is the mean maximum price of shoes in the dataset? 
+
 
 \
+\
+\
+
+Next, let's look at the `bechdel` data in the `fivethirtyeight` package. This data was used in the fivethirtyeight.com's article ["The Dollar-And-Cents Case Against Hollywood's Exclusion of Women"](http://fivethirtyeight.com/features/the-dollar-and-cents-case-against-hollywoods-exclusion-of-women/) which analyzes movies that do/don't pass the **Bechdel test**. 
+
 
 A movie passes the test if it meets the following criteria:    
 
@@ -670,34 +718,21 @@ A movie passes the test if it meets the following criteria:
 - the female characters talk to each other    
 - at least 1 time, they talk about something other than a male character
 
+\
 
 1. Load the data into your environment and examine the codebook information. 
 
 2. View the dataset in a separate tab. 
 
-3. Check out the first 6 cases of the data. 
+3. Look at the summary information for the data. 
 
 4. What are the units of observation (rows)? 
 
-5. How many rows/columns does this dataset have?
+5. What are the names of the variables?
 
-6. What are the names of the variables?
+6. Access the variable `clean_test` alone. What are the levels of this variable?
 
-7. Access the variable `clean_test` alone. What are the levels of this variable?
-
-
-\
-\
-
-Now download the "beers.csv" dataset from https://z.umn.edu/beer-data. This dataset contains information from over 2,000 craft can beers made in the US. 
-
-1. Save the file in a folder on your desktop 
-
-2. Read in this dataset using `read.csv`, saving it as the object `beer`
-
-3. View this dataset in a separate tab
-
-4. Look at the summary information for this dataset
+7. Access the variable `budget_2013` alone. What is the largest amount spent on a movie in this dataset?
 
 
 \
@@ -709,6 +744,35 @@ Now download the "beers.csv" dataset from https://z.umn.edu/beer-data. This data
 
 **Solutions:**
 
+
+Shoes data:
+
+```{r, eval=FALSE}
+#1. Load the data from the website into your environment with the `read.csv` command, if you haven't already. 
+shoes <- read.csv(file="https://z.umn.edu/shoe-data")
+
+#2. View the dataset in a separate tab
+View(shoes)
+
+#3. Check out the first 6 cases of the data
+head(shoes)
+
+#4. How many rows/columns does this dataset have?
+dim(shoes)
+
+#5. Access the variable `prices.amountMax` alone. What is the mean maximum price of shoes in the dataset? 
+shoes$prices.amountMax
+
+#can look at the summary information
+summary(shoes$prices.amountMax)
+
+#or use the mean command
+mean(shoes$prices.amountMax)
+
+```
+
+
+Bechdel data: 
 ```{r, eval=FALSE}
 #1. Load the data into your environment and examine the codebook information. 
 library(fivethirtyeight)
@@ -720,43 +784,30 @@ data("bechdel")
 View(bechdel)
 
 
-#3. Check out the first 6 cases of the data. 
-head(bechdel)
+#3. Look at the summary information for the data. 
+summary(bechdel)
 
 
 #4. What are the units of observation (rows)? 
 # each row = a movie
 
 
-#5. How many rows/columns does this dataset have?
-dim(bechdel)
-
-
-#6. What are the names of the variables?
+#5. What are the names of the variables?
 names(bechdel)
 
 
-#7. Access the variable `clean_test` alone. What are the levels of this variable?
+#6. Access the variable `clean_test` alone. What are the levels of this variable?
 bechdel$clean_test
 levels(factor(bechdel$clean_test))
 
+#7. Access the variable `budget_2013` alone. What is the largest amount spent on a movie in this dataset?
+bechdel$budget_2013
 
+#can look at summary
+summary(bechdel$budget_2013)
 
-## Beers dataset:
-
-#1. Save the file on your desktop
-# You will need to determine your computer's file path to that location 
-
-#2. Read in the .csv file
-beers <- read.csv("~/Desktop/beers.csv") #on a Mac
-beers <- read.csv("C:\Users\[USERNAME]\Desktop\beers.csv") #on a PC
-
-#3. View this dataset in another tab
-View(beers)
-
-#4. Look at the summary information for this dataset
-summary(beers)
-
+#or use max() function
+max(bechdel$budget_2013)
 ```
 
 
