@@ -217,10 +217,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>A not-so-great workflow</strong></p>
 <p>While R scripts contain all the R code you produce in a format that can be easily re-run, they do not include the output or results of your analysis. Comments can be used to describe reactions or intepretations of results, but they are not the best way to present this interpretation in a readable way.</p>
 <p><br />
-<br />
 </p>
 <p>Therefore, to use R for data analysis and reporting, you may find yourself engaging in a workflow that involves a lot of copying and pasting (or transcribing) between your R script, console, and a document editor.</p>
-<p><img src="images/not-a-great-workflow.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="images/not-a-great-workflow.png" width="480" height="120%" style="display: block; margin: auto;" /></p>
 <p><br />
 <br />
 <br />
@@ -229,21 +228,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>A better way</strong></p>
 <p>What if there was a better way to run R code, capture output, and present interpretation together?</p>
 <p><img src="images/a-better-workflow.png" width="480" style="display: block; margin: auto;" /></p>
+<p><br />
+<br />
+<br />
+</p>
 <p>There is - R Markdown!</p>
 <p><br />
 <br />
 <br />
 </p>
 <p><strong>Reproducible Reports</strong></p>
-<p>R Markdown is a considered a literate programming tool, which is a form of coding that combines text meant for a human to understand with snippets or sections of code for a computer to execute.</p>
+<p>R Markdown is a considered a <em>literate programming</em> tool, which is a form of coding that combines text meant for a human to understand with snippets or sections of code for a computer to execute.</p>
+<p><br />
+</p>
 <p><img src="images/reproducible-report.png" width="460" style="display: block; margin: auto;" /></p>
 <p><br />
 <br />
 <br />
 </p>
-<p>R Markdown uses Markdown as its human readable text language. Markdown is a straightforward text-to-HTML tool that can format text for the web. This is interspersed with code chunks R can read and execute.</p>
+<p>R Markdown uses <strong>Markdown</strong> as its human readable text language. Markdown is a straightforward text-to-HTML tool that can format text for the web. This is interspersed with <strong>code chunks</strong> R can read and execute.</p>
 <p>If you are familiar with the text editing language LaTeX, there is a fully LaTeX option for reproducible reports in R using Sweave.</p>
-<p><img src="images/rmarkdown-overview.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="images/rmarkdown-overview.png" width="480" height="110%" style="display: block; margin: auto;" /></p>
 <p><br />
 <br />
 <br />
@@ -255,9 +260,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br />
 <br />
 <br />
-<br />
 </p>
 <p>If you have not yet installed the <code>rmarkdown</code> package, you may see a window prompting you to install that package and any related dependencies. If you see this, click to install the required packages.</p>
+<p><br />
+<br />
+<br />
+<br />
+</p>
 <p>Once you have all the packages installed, you will see a pop-up window with various options for the type of R Markdown document and the output. There are many different options for each - in fact, this website was created using R Markdown!</p>
 <p><img src="images/rmarkdown-options.png" width="298" style="display: block; margin: auto;" /></p>
 <p>For this workshop, we will stick with the default options and click ok.</p>
@@ -286,19 +295,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="yaml" class="section level2">
 <h2><span class="header-section-number">2.2</span> YAML</h2>
 <p>The YAML section contains the front matter of your document - title, authors, date, etc. It also controls the formatting of the report output.</p>
-<p><img src="images/example-yaml.png" width="162" style="display: block; margin: auto;" /></p>
+<p><img src="images/example-yaml.png" width="305" style="display: block; margin: auto;" /></p>
 <p><br />
 <br />
 <br />
 </p>
 <p>For example, you can add a table of contents to your document:</p>
-<p><img src="images/example-yaml-toc.png" width="162" style="display: block; margin: auto;" /></p>
+<p><img src="images/example-yaml-toc.png" width="272" style="display: block; margin: auto;" /></p>
 <p><br />
 <br />
 <br />
 </p>
 <p>Or add options to make the table of contents float as you scroll:</p>
-<p><img src="images/example-yaml-tocfloat.png" width="154" style="display: block; margin: auto;" /></p>
+<p><img src="images/example-yaml-tocfloat.png" width="258" style="display: block; margin: auto;" /></p>
+<p><br />
+<br />
+<br />
+</p>
 <p>There are many other adjustments you can make to the document. The <a href="https://bookdown.org/yihui/rmarkdown/">Definitive Guide to R Markdown</a> website is a great place to learn about these options.</p>
 <p><br />
 <br />
@@ -310,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Markdown is an easy to use text formating language that can be converted to HTML. The markdown portion of the document is where you add in headings, narrative information about the analysis, and any interpretations.</p>
 <p><strong>Headings</strong></p>
 <p>Headings are indicated with <code>#</code>, with the number of <code>#</code> corresponding to the header level.</p>
-<p><img src="images/markdown-headings.png" width="456" style="display: block; margin: auto;" /></p>
+<p><img src="images/markdown-headings.png" width="590" style="display: block; margin: auto;" /></p>
 <p>Try it - Add a new first and second level heading to your example R Markdown file.</p>
 <p><br />
 <br />
@@ -322,10 +335,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Text formating</strong></p>
 <p>For plain text, just type as is.</p>
 <ul>
-<li><code>**</code> or <code>__</code> for <strong>bold</strong> text</li>
-<li><code>*</code> for <code>_</code> for <em>italic</em> text</li>
+<li><code>**</code> or <code>__</code> around words for <strong>bold</strong> text</li>
+<li><code>*</code> for <code>_</code> around words for <em>italic</em> text</li>
+<li><code>[linked text](link-url)</code> for hyperlinks</li>
 </ul>
-<p><img src="images/markdown-textformat.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="images/markdown-textformat.png" width="606" style="display: block; margin: auto;" /></p>
 <p>Try it - make a word in the first paragraph of your example R Markdown file bold.</p>
 <p><br />
 <br />
@@ -333,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <br />
 </p>
 <p>You can also create bulleted lists in Markdown:</p>
-<p><img src="images/markdown-listformat.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="images/markdown-listformat.png" width="552" style="display: block; margin: auto;" /></p>
 <p>Try creating a bulleted list in your example R Markdown document.</p>
 <p><br />
 <br />
@@ -345,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-chunks" class="section level2">
 <h2><span class="header-section-number">2.4</span> R chunks</h2>
 <p>To run and display R code and its output, you’ll need to add in an R code chunk.</p>
-<p><img src="images/rchunks-overview.png" width="452" style="display: block; margin: auto;" /></p>
+<p><img src="images/rchunks-overview.png" width="730" style="display: block; margin: auto;" /></p>
 <p><br />
 <br />
 <br />
@@ -354,7 +368,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 <p><strong>Chunk options</strong></p>
 <p>You can specify how you want the R code and output to appear inside the R code chunk.</p>
-<p><img src="images/rchunks-options.png" width="221" style="display: block; margin: auto;" /></p>
+<p><img src="images/rchunks-options.png" width="415" style="display: block; margin: auto;" /></p>
 <p><br />
 <br />
 <br />
@@ -383,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="working-in-r-markdown" class="section level2">
 <h2><span class="header-section-number">2.5</span> Working in R Markdown</h2>
-<p>Working in R Markdown and R scripts have several similarities:</p>
+<p>Working in R Markdown and R scripts have several <em>similarities</em>:</p>
 <ul>
 <li>Within R chunks, run a line of R code by clicking on “Run” or pressing “cmd/cntrl + enter”.</li>
 <li>Order matters - need to create objects before computing on them and load packages before using functions from them.</li>
@@ -392,24 +406,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br />
 <br />
 </p>
-<p>However there are some differences:</p>
+<p>However there are some <em>differences</em>:</p>
 <ul>
 <li>When “knit”, all the R code is run in separate session</li>
 <li>Objects created in one chunk are available to use in later chunks</li>
 <li>You can run all the code in a single chunk by pressing the green triangle button on the right side of the chunk</li>
 </ul>
-<p><img src="images/rchunks-run.png" width="141" style="display: block; margin: auto;" /></p>
+<p><img src="images/rchunks-run.png" width="429" style="display: block; margin: auto;" /></p>
 <p><br />
 <br />
 <br />
 <br />
 </p>
 <p><strong>Exercises</strong></p>
-<p>Revisit the <code>bechdal</code> data exploration you did in the exercises from the previous session.</p>
-<p>This time, we will create an R Markdown document with these findings.</p>
+<p>Revisit the <code>bechdal</code> data exploration exercises from the previous session.</p>
+<p>This time, we will create an R Markdown document with these findings. You can start fresh in a new R Markdown document, or use the existing one you have been modifying.</p>
 <ul>
 <li>Start by creating separate R chunks for each exercise question</li>
 <li>Write the question above each chunk in Markdown</li>
+<li>Put the R code for the exercise in an R code chunk (remove the comments - that will be in the Markdown above)</li>
 <li>Write a sentence interpreting the result below each chunk in Markdown</li>
 <li>Knit the document to produce your report</li>
 </ul>
