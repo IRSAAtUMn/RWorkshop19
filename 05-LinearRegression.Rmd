@@ -6,7 +6,110 @@
 *Author: Christina Knudson*
 
 
+## Introduction
 
-\
-\
+Simple linear regression characterizes the linear relationship between two quantitative variables. 
+
+Multiple linear regression extends simple linear regression by allowing the addition of predictor variables.
+
+
+### Goals
+
+
+
+In this chapter, we will cover how to...
+
+* Fit simple and multiple linear regression models
+* Plot and interpret the regression results
+* Make predictions from regression models
+
+
+R's **lm** (linear model) function will be the primary tool used in the chapter.
+
+
+## Model Basics
+
+### Notation and Setup
+
+Recall the equation for a line with intercept $a$ and slope  $b$ is
+\[
+y = a + b x .
+\]
+
+
+A simple linear regression model has the following form:
+\[
+\hat{y}_i = \beta_0 + \beta_1 x_i 
+\]
+where  $x_i$ is  the quantitative predictor, $\beta_0$ is the unknown regression intercept,  $\beta_1$ is the unknown regression slope, and $\hat{y}_i$ is the predicted response given $x_i$. 
+
+
+We estimate $\beta_0$ and $\beta_1$ using data. This estimation allows us to characterize the linear relationship between $x_i$ and $y_i$ in the simple linear regression setting. 
+
+### Fit a Simple Linear Regression Model
+
+To fit a linear regression model, we can use the **lm** function:
+```{r}
+mod <- lm(intgross ~ domgross,  data = bechdel)
+```
+The first input is the regression formula (Response ~ Predictor),  the second input indicates we have a binary response, and the third input is the data frame. To find the regression coefficients (i.e. the estimates of $\beta_0$ and $\beta_1$), we can use the **coef** command
+```{r}
+coef(mod)
+```
+
+We can now enter these estimates into our linear regression equation: 
+\[
+\log \left( \dfrac{p_i}{1-p_i} \right) = 12.3508 + 0.4972 \; \text{width}_i, 
+\]
+where $\text{width}_i$ is the width of a female crab's carapace shell and  $p_i$ is her probability of having one or more satellites.
+
+
+
+
+### Interpret the Model
+
+To do some basic interpretation, let's focus on the predictor's coefficient: . First, notice this is a **positive** number. This tells us that wider crabs have **higher** chances of having one or more satellites. If the predictor's coefficient were **zero**, there would be **no** linear relationship between the width of a female's shell and her log odds of having one or more satellites. If the predictor's coefficient were **negative**, then wider crabs would have **lower** chances of having one or more satellites.
+
+
+
+### Calculate Point Predictions
+
+Let's use our model 
+
+
+We often want to use a fit regression model to create predictions for new data. In R, this involves first creating the data frame of new predictor scores
+```{r}
+newdata <- data.frame(ABV = seq(4.2, 7.5, by = 0.1))
+```
+which we input to the **predict** function along with the fit model
+```{r}
+newfit <- predict(mod, newdata)
+newfit
+```
+
+
+
+
+
+
+
+
+### Plot the Regression Line
+
+It's easy to include the least-squares regression line on a scatterplot by adding a `geom_smooth()` to the `ggplot()`:
+
+```{r}
+# Without "standard error bars"
+#ggplot(beer, aes(x = IBU, y = ABV)) + 
+ # geom_point() + 
+  #geom_smooth(method = "lm", se = FALSE)
+
+# With "standard error bars"
+#ggplot(beer, aes(x = IBU, y = ABV)) + 
+ # geom_point() + 
+  #geom_smooth(method = "lm", se = TRUE)
+```
+
+```
+
 
