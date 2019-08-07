@@ -19,15 +19,28 @@ Multiple linear regression extends simple linear regression by allowing the addi
 
 In this chapter, we will cover how to...
 
-* Fit simple and multiple linear regression models
+* Fit simple linear regression models
 * Plot and interpret the regression results
 * Make predictions from regression models
+* Test whether two quantitative variables have a linear relationship
 
 
 R's **lm** (linear model) function will be the primary tool used in the chapter.
 
+### Setting the Scene
 
-## Model Basics
+Recall the bike-share data from the chapter on data visualization.  Riding on a windy day can be challenging, but is it challenging enough that it deters people from taking the bikes out for a spin? Let's start by visualizing the data. Since the wind-speed is the predictor, we put it on the x-axis. Let's use the number of registered riders as the response variable. 
+
+```{r}
+library(ggplot2)
+bikes <- read.csv("https://www.macalester.edu/~dshuman1/data/155/bike_share.csv")
+ggplot(bikes, aes(y = riders_registered, x = windspeed)) + 
+    geom_point()
+```
+
+This plot doesn't provide a clear answer, but we can dig in with regression. Our goal is to fit a line to characterize this linear relationship between the number of registered riders and the windspeed.
+
+## Simple Linear Regression Basics
 
 ### Notation and Setup
 
@@ -36,8 +49,7 @@ Recall the equation for a line with intercept $a$ and slope  $b$ is
 y = a + b x .
 \]
 
-
-A simple linear regression model has the following form:
+The general equation for a simple linear regression model has the following form:
 \[
 \hat{y}_i = \beta_0 + \beta_1 x_i 
 \]
@@ -46,70 +58,68 @@ where  $x_i$ is  the quantitative predictor, $\beta_0$ is the unknown regression
 
 We estimate $\beta_0$ and $\beta_1$ using data. This estimation allows us to characterize the linear relationship between $x_i$ and $y_i$ in the simple linear regression setting. 
 
+Let's write the regression equation for our bike-share example. The variable name "number of registered riders" is a bit long, so let's shorten it down to "nriders." The number of registered riders is our response variable, so we put that on the left-hand side of the equality. The windspeed is our predictor, so we write our regression equation as follows: 
+
+\[
+\hat{nriders}_i = \beta_0 + \beta_1 windspeed_i .
+\]
+
+Our goal is to use the bike-share data set to estimate $\beta_0$ and $\beta_1$.
+
 ### Fit a Simple Linear Regression Model
 
-To fit a linear regression model, we can use the **lm** function:
+To fit a linear regression model, we  use the **lm** function:
 ```{r}
-mod <- lm(intgross ~ domgross,  data = bechdel)
+bikemod <- lm(riders_registered ~ windspeed,  data = bikes)
 ```
-The first input is the regression formula (Response ~ Predictor),  the second input indicates we have a binary response, and the third input is the data frame. To find the regression coefficients (i.e. the estimates of $\beta_0$ and $\beta_1$), we can use the **coef** command
+The first input is the regression formula (Response ~ Predictor)  and the next argument is the name of the data set. The **lm** command estimates the regreesion coefficients and calculates other quantitaties. To find the regression coefficients (i.e. the estimates of $\beta_0$ and $\beta_1$), we can use the **coef** command
 ```{r}
-coef(mod)
-```
-
-We can now enter these estimates into our linear regression equation: 
-\[
-\log \left( \dfrac{p_i}{1-p_i} \right) = 12.3508 + 0.4972 \; \text{width}_i, 
-\]
-where $\text{width}_i$ is the width of a female crab's carapace shell and  $p_i$ is her probability of having one or more satellites.
-
-
-
-
-### Interpret the Model
-
-To do some basic interpretation, let's focus on the predictor's coefficient: . First, notice this is a **positive** number. This tells us that wider crabs have **higher** chances of having one or more satellites. If the predictor's coefficient were **zero**, there would be **no** linear relationship between the width of a female's shell and her log odds of having one or more satellites. If the predictor's coefficient were **negative**, then wider crabs would have **lower** chances of having one or more satellites.
-
-
-
-### Calculate Point Predictions
-
-Let's use our model 
-
-
-We often want to use a fit regression model to create predictions for new data. In R, this involves first creating the data frame of new predictor scores
-```{r}
-newdata <- data.frame(ABV = seq(4.2, 7.5, by = 0.1))
-```
-which we input to the **predict** function along with the fit model
-```{r}
-newfit <- predict(mod, newdata)
-newfit
+coef(bikemod)
 ```
 
-
-
-
-
+We can now enter these estimates into our linear regression equation: $\hat{\text{nriders}}_i = 4490.10  + -65.34  \; \text{windspeed}_i $.
 
 
 
 ### Plot the Regression Line
 
-It's easy to include the least-squares regression line on a scatterplot by adding a `geom_smooth()` to the `ggplot()`:
+It's easy to include the regression line on a scatterplot by adding a `geom_smooth()` to the `ggplot()`:
 
 ```{r}
-# Without "standard error bars"
-#ggplot(beer, aes(x = IBU, y = ABV)) + 
- # geom_point() + 
-  #geom_smooth(method = "lm", se = FALSE)
-
-# With "standard error bars"
-#ggplot(beer, aes(x = IBU, y = ABV)) + 
- # geom_point() + 
-  #geom_smooth(method = "lm", se = TRUE)
+ggplot(bikes, aes(y = riders_registered, x = windspeed)) + 
+    geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
 ```
 
+We can see the line is downward sloping. We'll discuss that in a moment.
+
+
+### Interpret the Model
+
+First, let's focus on the sign of predictor's coefficient ( -65.34). This is a **negative** number. This tells us that there are **fewer** registered riders on windier days. That is, the line is downward sloping. If the predictor's coefficient were **zero**, there would be **no** linear relationship between the windspeed and the number of registered riders, and the line would be totally horizontal. If the predictor's coefficient were **positive**, then windier days would have **more** registered riders, and the line would be upward sloping.
+
+Next, let's look at the magnitude of the predictor's coefficient (-65.34). We can interpret this by thinking back to the interpretation of the slope of a line
+
+### Calculate Point Predictions
+
+Let's use our model to predict the number of riders on a day with 15 mph winds. All we need to do is plug 15mph into the variable windspeed in our regression equation: $\hat{\text{nriders}}_i = 4490.10  + -65.34  \; \text{windspeed}_i = 4490.10  + -65.34 * 15 = 3510$. Thus, we predict 3510 riders on a day with 15mph winds.
+
+
+### Test the Linear Relationship
+
+Based on the data collected, we found that windier days have fewer riders. Did this result pop up by random chance in this data set, or do windier days truly have fewer riders in general? We can answer this question by conducting a test. 
+
+Several methods exist for testing the linear relationship between two variables. One of the easiest ways to conduct our test is to use the **summary** function. The only argument for this is our model.
+
+```{r}
+summary(bikemod)
 ```
+The summary outputs a wealth of information, which can be kind of overwhelming. To test whether our two variables in a simple linear regression have a linear relationship, look at the number at the very bottom right (labeled p-value). 
+
+For our bike example, this number is 2.844e-09, or $2.844 \times 10^{-9}$. Because the p-value is quite small (and smaller than the "usual" threshold of .05), we conclude that there is indeed a linear relationship between the windspeed and the number of registered riders.
+
+If the p-value were large (perhaps larger than a threshold such as .05), we would say that no linear relationship existed between the windspeed and the number of registered riders. 
+
+
 
 
