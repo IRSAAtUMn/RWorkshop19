@@ -6,18 +6,31 @@
 *Author: Christina Knudson*
 
 
-## Introduction
-
-Simple linear regression characterizes the linear relationship between two quantitative variables. 
-
-Multiple linear regression extends simple linear regression by allowing the addition of predictor variables.
 
 
-### Goals
+## Goals
+
+
+In this module we'll focus on the __"Model"__ and __"Communicate"__ steps in the data science workflow:
+
+\
+\
+
+
+<center>
+<div class="image">
+<img src="images/data-science.png" style="width: 475px"/>
+<div>source: [Wickham & Grolemund: R for Data Science](http://r4ds.had.co.nz/) </div>
+</div>
+</center>
 
 
 
-In this chapter, we will cover how to...
+\
+\
+
+
+This chapter will cover how to do the following:
 
 * Fit simple linear regression models
 * Plot and interpret the regression results
@@ -27,7 +40,7 @@ In this chapter, we will cover how to...
 
 R's **lm** (linear model) function will be the primary tool used in the chapter.
 
-### Setting the Scene
+## Visualize the Data
 
 Recall the bike-share data from the chapter on data visualization.  Riding on a windy day can be challenging, but is it challenging enough that it deters people from taking the bikes out for a spin? Let's start by visualizing the data. Since the wind-speed is the predictor, we put it on the x-axis. Let's use the number of registered riders as the response variable. 
 
@@ -40,9 +53,8 @@ ggplot(bikes, aes(y = riders_registered, x = windspeed)) +
 
 This plot doesn't provide a clear answer, but we can dig in with regression. Our goal is to fit a line to characterize this linear relationship between the number of registered riders and the windspeed.
 
-## Simple Linear Regression Basics
 
-### Notation and Setup
+## Notation and Setup
 
 Recall the equation for a line with intercept $a$ and slope  $b$ is
 \[
@@ -66,7 +78,7 @@ Let's write the regression equation for our bike-share example. The variable nam
 
 Our goal is to use the bike-share data set to estimate $\beta_0$ and $\beta_1$.
 
-### Fit a Simple Linear Regression Model
+## Fit a Simple Linear Regression Model
 
 To fit a linear regression model, we  use the **lm** function:
 ```{r}
@@ -81,7 +93,7 @@ We can now enter these estimates into our linear regression equation: $\hat{\tex
 
 
 
-### Plot the Regression Line
+## Plot the Regression Line
 
 It's easy to include the regression line on a scatterplot by adding a `geom_smooth()` to the `ggplot()`:
 
@@ -94,32 +106,90 @@ ggplot(bikes, aes(y = riders_registered, x = windspeed)) +
 We can see the line is downward sloping. We'll discuss that in a moment.
 
 
-### Interpret the Model
+## Interpret the Model
 
 First, let's focus on the sign of predictor's coefficient ( -65.34). This is a **negative** number. This tells us that there are **fewer** registered riders on windier days. That is, the line is downward sloping. If the predictor's coefficient were **zero**, there would be **no** linear relationship between the windspeed and the number of registered riders, and the line would be totally horizontal. If the predictor's coefficient were **positive**, then windier days would have **more** registered riders, and the line would be upward sloping.
 
-Next, let's look at the magnitude of the predictor's coefficient (-65.34). We can interpret this by thinking back to the interpretation of the slope of a line
+Next, let's look at the magnitude of the predictor's coefficient (-65.34). We can interpret this by thinking back to the interpretation of the slope of a line. Every one mile per hour increase in the wind speed is associated with about 65 fewer registered riders. One mile per hour is an imperceptible difference for most people, so let's think about a 5 mph increase in wind speed. A five mph increase in windspeed is associated with about 323 fewer registered riders.
 
-### Calculate Point Predictions
+Finally, let's look at the y-intercept. The y-intercept is the value of the line when the predictor is 0. We can interpret the y-intercept only if 0 is a plausible value for the predictor AND if we have values around 0 in our data set. The lowest windspeed in our dataset is 1.5 mph, so it's questionable whether we can safely interpret this. If we decide to interpret it, we'd say that on a day with absolutely no wind (that is, the wind is 0 mph), we expect about 4490 registered riders. 
+
+## Calculate Point Predictions
 
 Let's use our model to predict the number of riders on a day with 15 mph winds. All we need to do is plug 15mph into the variable windspeed in our regression equation: $\hat{\text{nriders}}_i = 4490.10  + -65.34  \; \text{windspeed}_i = 4490.10  + -65.34 * 15 = 3510$. Thus, we predict 3510 riders on a day with 15mph winds.
 
 
-### Test the Linear Relationship
+## Bonus: Test the Linear Relationship
+
+This section is a bit more advanced, so don't stress over it. We will cover this in much more detail in the upcoming regression workshop.
 
 Based on the data collected, we found that windier days have fewer riders. Did this result pop up by random chance in this data set, or do windier days truly have fewer riders in general? We can answer this question by conducting a test. 
 
-Several methods exist for testing the linear relationship between two variables. One of the easiest ways to conduct our test is to use the **summary** function. The only argument for this is our model.
+Several methods exist for testing the linear relationship between two variables. One of the easiest ways to conduct our test is to use the **summary** function. The only input for this function is our model.
 
 ```{r}
 summary(bikemod)
 ```
-The summary outputs a wealth of information, which can be kind of overwhelming. To test whether our two variables in a simple linear regression have a linear relationship, look at the number at the very bottom right (labeled p-value). 
+The summary outputs a wealth of information, which can be kind of overwhelming for those without much experience with statistics. To test whether our two variables in a simple linear regression have a linear relationship, look at the number at the very bottom right (labeled p-value). 
 
 For our bike example, this number is 2.844e-09, or $2.844 \times 10^{-9}$. Because the p-value is quite small (and smaller than the "usual" threshold of .05), we conclude that there is indeed a linear relationship between the windspeed and the number of registered riders.
 
 If the p-value were large (perhaps larger than a threshold such as .05), we would say that no linear relationship existed between the windspeed and the number of registered riders. 
 
 
+## Exercises
+
+### Bechdel 
+
+Use linear regression to predict worldwide (international) gross box office sales based on domestic gross box office sales. Use the 2013 adjusted sales. Given the domestic box office gross sales for __12 Years a Slave__, predict the movie's international gross sales.
+
+```{r}
+library(fivethirtyeight)
+data(bechdel)
+bechdel[3,"domgross_2013"] 
+#here's the domestic gross for 12 years a slave
+```
+
+
+## Solutions
+
+### Bechdel
+
+Begin by visualizing the data:
+
+```{r}
+ggplot(bechdel, aes(y = intgross_2013, x = domgross_2013)) + 
+    geom_point()
+```
+
+Next, create the regression model.
+
+```{r}
+moviemod <- lm(intgross_2013 ~ domgross_2013, data = bechdel)
+coef(moviemod)
+```
+
+Unsurprisingly, there is a positive association between domestic and worldwide gross. A one dollar increase in the domestic gross is associated with a two dollar (and nine cent) increase in the worldwide gross, in 2013 US dollars.
+
+For fun, let's add the line to our plot.
+
+```{r}
+ggplot(bechdel, aes(y = intgross_2013, x = domgross_2013)) + 
+    geom_point() +
+    geom_smooth(method = "lm", se = FALSE)
+
+```
+
+Now, let's predict for __12 Years a Slave__. The domestic gross for this movie was 53107035. Plugging that value into the regression equation produces the predicted worldwide gross box office sales in US dollars:
+
+```{r}
+-364528.19765 + 2.09019 * 53107035
+```
+
+If you want to get a bit fancier, here are two more ways to do prediction. These are a bit more accurate because they use more decimal places.
+```{r}
+predict(moviemod, bechdel[3,])
+moviemod$fitted.values[3]
+```
 
 
