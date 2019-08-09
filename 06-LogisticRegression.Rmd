@@ -199,9 +199,21 @@ Use this data set to understand the relationship between a tree's diameter and i
 
 ### Beer
 
-Recall the beer data set introduced by Alicia Johnson and Nathaniel Helwig. Imagine that you have a friend with a rather black-and-white outlook. If a beer's rating is 90 or higher, your friend considers this beer good. Scores lower than 90 indicate the beer is not good, according to your friend's rule. We have added a binary variable (**Good**) to to represent your friend's classification strategy: **Good**  is 1 if the beer has a score of at least 90 and 0 otherwise.
+The Minnesota beer data has 44 beers measured on 7 variables: 
 
-* Use logistic regression to decide whether beers with higher **ABV** (alcohol by volume) are more likely to be "Good."
+1) *Brewery*: Name of the brewery (**factor** with 8 levels)
+2) *Beer*: Name of the beer (**factor** with 44 levels)
+3) *Description*: Description of the beer (**factor** with 37 levels)
+4) *Style*: Style of the beer (**factor** with 3 levels)
+5) *ABV*: Alcohol by volume (**numeric**)
+6) *IBU*: International bitterness units (**integer**)
+7) *Rating*: Beer Advocate rating (**integer**)
+8) *Good*: 1 if the beer has a score of at least 90 and 0 otherwise
+
+Data obtained from [Beer Advocate](http://beeradvocate.com) and the websites of the eight breweries.
+
+
+* Use logistic regression to decide whether beers with higher **ABV** (alcohol by volume) are more likely to have a rating of at least 90. (Hint: Use the variable *Good* as your response.)
 * Choose your favorite beer off the list and calculate its probability of having a score of at least 90.
 
 ```{r}
@@ -284,3 +296,67 @@ This tells us that
 * the probability of satellites for a female with one good spine is `r round(probs[3],3)`
 
 
+## Partial Solutions
+
+### Crab Weight
+
+We create the model and look at the summary to find the p-value for the coefficient on weight The p-value is small ($1.45 \times 10^{-6}$) so we can conclude that a female crab's weight **does** have a significant linear relationship with the log odds of her having one or more satellites.
+
+```{r}
+weightmod <- glm(y ~ weight, family = binomial, data = crabs)
+summary(weightmod)
+```
+
+Now we can use our regression equation to calculate the probability of a 2000 gram female having one or more satellites.
+```{r}
+logodds <- sum(coef(weightmod) * c(1, 2000))
+exp(logodds)/(1+exp(logodds))
+```
+The probability of a 2000 gram female having satellites is about half (.48).
+
+### Boundary Water Blowdown
+
+We create the model, isolate the coefficients, and find the summary using the code below.
+```{r}
+treemod <- glm(y ~ D, data = blowdown, family = binomial)
+coef(treemod)
+summary(treemod)
+```
+
+First, the coefficient on the diameter is positive. This tells us that larger trees were more likely to die. Moreover, the relationship between a trees diameter and its log odds of death is statistically significant: the p-value is quite small (smaller than $2 \times 10^{-16}$).
+
+Finally, the probability of death for a tree that was 20 cm in diameter is calculated below.
+```{r}
+(logodds <- coef(treemod) %*% c(1, 20))
+exp(logodds)/(1+exp(logodds))
+```
+
+
+### Beer
+We create the model and look at the summary to find the p-value for the coefficient on ABV. The p-value is small ($0.00747$) so we can conclude that ABV **does** have a significant linear relationship with the log odds of a beer earning a score of at least 90.
+
+```{r}
+beermod <- glm(Good ~ ABV, family = binomial, data = beer)
+summary(beermod)
+```
+
+Next, we create our model with both ABV and IBU.
+```{r}
+beermod2 <- glm(Good ~ ABV + IBU, family = binomial, data = beer)
+coef(beermod2)
+summary(beermod2)
+```
+The coefficient on ABV is positive: this tells us that, after accounting for IBU, beers with higher ABV are more likely to be "Good." The p-value for this regression coefficient is $.0697 < .1$, therefore we can conclude that, even after accounting for IBU, there is a significant linear relationship between a beers ABV and its log odds of being "Good."
+
+### State Colors
+We create the model and look at the summary to find the p-value for the coefficient on per capita income. The p-value is very small (smaller than $2.2 \times 10^{-16}$) so we can conclude that per capita income **does** have a significant linear relationship with the log odds of a state being red.
+```{r}
+electionmod <- glm(Red ~  per_capita_income, family = binomial, data = election)
+summary(electionmod)
+```
+
+```{r}
+lowhighmod <- glm(Red ~ IncomeBracket, data = election, family = binomial)
+exp(coef(lowhighmod))
+```
+The odds of a high income state being red is about .62. The odds of a low income state being red are about 1.82 times the odds of a high income state being red. That is, low income states are more likely to be red than high income states.
