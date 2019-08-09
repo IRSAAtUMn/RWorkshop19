@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> 5 Linear Regression | Introduction to Reproducible Data Science with R</title>
+  <meta name="description" content=" 5 Linear Regression | Introduction to Reproducible Data Science with R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content=" 5 Linear Regression | Introduction to Reproducible Data Science with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="IRSAAtUMn/RWorkshop19/docs" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 5 Linear Regression | Introduction to Reproducible Data Science with R" />
+  
+  
+  
+
+<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="understanding-data-transformations.html">
+<link rel="next" href="logistic-regression.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.7/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Home</a></li>
+<li class="chapter" data-level="" data-path="welcome-set-up.html"><a href="welcome-set-up.html"><i class="fa fa-check"></i>Welcome &amp; Set-Up</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#getting-started"><i class="fa fa-check"></i><b>1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#r-studio-overview"><i class="fa fa-check"></i><b>1.2</b> R Studio Overview</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#the-help-window"><i class="fa fa-check"></i><b>1.2.1</b> The Help window</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#working-with-data"><i class="fa fa-check"></i><b>1.2.2</b> Working with data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="reproducible-reports-with-r-markdown.html"><a href="reproducible-reports-with-r-markdown.html"><i class="fa fa-check"></i><b>2</b> Reproducible Reports with R Markdown</a><ul>
+<li class="chapter" data-level="2.1" data-path="reproducible-reports-with-r-markdown.html"><a href="reproducible-reports-with-r-markdown.html#markdown"><i class="fa fa-check"></i><b>2.1</b> Markdown</a></li>
+<li class="chapter" data-level="2.2" data-path="reproducible-reports-with-r-markdown.html"><a href="reproducible-reports-with-r-markdown.html#r-chunks"><i class="fa fa-check"></i><b>2.2</b> R chunks</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Understanding data: Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#goal-understanding-through-visualizations"><i class="fa fa-check"></i><b>3.1</b> Goal: Understanding Through Visualizations</a></li>
+<li class="chapter" data-level="3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#ggplot"><i class="fa fa-check"></i><b>3.2</b> ggplot</a></li>
+<li class="chapter" data-level="3.3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#univariate-visualizations"><i class="fa fa-check"></i><b>3.3</b> Univariate visualizations</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#histograms"><i class="fa fa-check"></i><b>3.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#density-plots"><i class="fa fa-check"></i><b>3.3.2</b> Density plots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#visualizing-relationships"><i class="fa fa-check"></i><b>3.4</b> Visualizing relationships</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#quantitative-vs-quantitative"><i class="fa fa-check"></i><b>3.4.1</b> Quantitative vs quantitative</a></li>
+<li class="chapter" data-level="3.4.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#quantitative-vs-categorical"><i class="fa fa-check"></i><b>3.4.2</b> Quantitative vs categorical</a></li>
+<li class="chapter" data-level="3.4.3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#quantitative-vs-quantitative-vs-categorical"><i class="fa fa-check"></i><b>3.4.3</b> Quantitative vs quantitative vs categorical</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#questions"><i class="fa fa-check"></i><b>3.5.1</b> Questions</a></li>
+<li class="chapter" data-level="3.5.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#solutions"><i class="fa fa-check"></i><b>3.5.2</b> Solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html"><i class="fa fa-check"></i><b>4</b> Understanding data: Transformations</a><ul>
+<li class="chapter" data-level="4.1" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#goal-understanding-through-transformations"><i class="fa fa-check"></i><b>4.1</b> Goal: Understanding Through Transformations</a></li>
+<li class="chapter" data-level="4.2" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#dplyr"><i class="fa fa-check"></i><b>4.2</b> dplyr</a></li>
+<li class="chapter" data-level="4.3" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#transforming-rows-arrange-and-filter"><i class="fa fa-check"></i><b>4.3</b> Transforming rows: <code>arrange()</code> and <code>filter()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#transforming-columns-select-and-mutate"><i class="fa fa-check"></i><b>4.4</b> Transforming columns: <code>select()</code> and <code>mutate()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#simple-numerical-summaries-summarize"><i class="fa fa-check"></i><b>4.5</b> Simple numerical summaries: <code>summarize()</code></a></li>
+<li class="chapter" data-level="4.6" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#exercises-1"><i class="fa fa-check"></i><b>4.6</b> Exercises</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#questions-1"><i class="fa fa-check"></i><b>4.6.1</b> Questions</a></li>
+<li class="chapter" data-level="4.6.2" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#solutions-1"><i class="fa fa-check"></i><b>4.6.2</b> Solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>5</b> Linear Regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="linear-regression.html"><a href="linear-regression.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-regression.html"><a href="linear-regression.html#visualize-the-data"><i class="fa fa-check"></i><b>5.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-regression.html"><a href="linear-regression.html#notation-and-setup"><i class="fa fa-check"></i><b>5.3</b> Notation and Setup</a></li>
+<li class="chapter" data-level="5.4" data-path="linear-regression.html"><a href="linear-regression.html#fit-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>5.4</b> Fit a Simple Linear Regression Model</a></li>
+<li class="chapter" data-level="5.5" data-path="linear-regression.html"><a href="linear-regression.html#plot-the-regression-line"><i class="fa fa-check"></i><b>5.5</b> Plot the Regression Line</a></li>
+<li class="chapter" data-level="5.6" data-path="linear-regression.html"><a href="linear-regression.html#interpret-the-model"><i class="fa fa-check"></i><b>5.6</b> Interpret the Model</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-regression.html"><a href="linear-regression.html#calculate-point-predictions"><i class="fa fa-check"></i><b>5.7</b> Calculate Point Predictions</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="linear-regression.html"><a href="linear-regression.html#the-type-it-in-method"><i class="fa fa-check"></i><b>5.7.1</b> The Type-It-In Method</a></li>
+<li class="chapter" data-level="5.7.2" data-path="linear-regression.html"><a href="linear-regression.html#more-reproducible-methods"><i class="fa fa-check"></i><b>5.7.2</b> More Reproducible Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="linear-regression.html"><a href="linear-regression.html#bonus-test-the-linear-relationship"><i class="fa fa-check"></i><b>5.8</b> Bonus: Test the Linear Relationship</a></li>
+<li class="chapter" data-level="5.9" data-path="linear-regression.html"><a href="linear-regression.html#exercises-2"><i class="fa fa-check"></i><b>5.9</b> Exercises</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="linear-regression.html"><a href="linear-regression.html#problem-1"><i class="fa fa-check"></i><b>5.9.1</b> Problem 1</a></li>
+<li class="chapter" data-level="5.9.2" data-path="linear-regression.html"><a href="linear-regression.html#problem-2"><i class="fa fa-check"></i><b>5.9.2</b> Problem 2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="linear-regression.html"><a href="linear-regression.html#solutions-2"><i class="fa fa-check"></i><b>5.10</b> Solutions</a><ul>
+<li class="chapter" data-level="5.10.1" data-path="linear-regression.html"><a href="linear-regression.html#problem-1-1"><i class="fa fa-check"></i><b>5.10.1</b> Problem 1</a></li>
+<li class="chapter" data-level="5.10.2" data-path="linear-regression.html"><a href="linear-regression.html#problem-2-1"><i class="fa fa-check"></i><b>5.10.2</b> Problem 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Logistic Regression</a><ul>
+<li class="chapter" data-level="6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#goals-1"><i class="fa fa-check"></i><b>6.1.1</b> Goals</a></li>
+<li class="chapter" data-level="6.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>6.1.2</b> Horseshoe Crab Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#model-basics"><i class="fa fa-check"></i><b>6.2</b> Model Basics</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#notation-and-setup-1"><i class="fa fa-check"></i><b>6.2.1</b> Notation and Setup</a></li>
+<li class="chapter" data-level="6.2.2" data-path="logistic-regression.html"><a href="logistic-regression.html#fit-a-logistic-regression-model"><i class="fa fa-check"></i><b>6.2.2</b> Fit a Logistic Regression Model</a></li>
+<li class="chapter" data-level="6.2.3" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-the-model-1"><i class="fa fa-check"></i><b>6.2.3</b> Interpret the Model</a></li>
+<li class="chapter" data-level="6.2.4" data-path="logistic-regression.html"><a href="logistic-regression.html#calculate-probabilities"><i class="fa fa-check"></i><b>6.2.4</b> Calculate Probabilities</a></li>
+<li class="chapter" data-level="6.2.5" data-path="logistic-regression.html"><a href="logistic-regression.html#test-a-regression-coefficient"><i class="fa fa-check"></i><b>6.2.5</b> Test a Regression Coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="logistic-regression.html"><a href="logistic-regression.html#half-time-exercises"><i class="fa fa-check"></i><b>6.3</b> Half-Time Exercises</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#female-horseshoe-crab-weight"><i class="fa fa-check"></i><b>6.3.1</b> Female Horseshoe Crab Weight</a></li>
+<li class="chapter" data-level="6.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#boundary-water-blowdown"><i class="fa fa-check"></i><b>6.3.2</b> Boundary Water Blowdown</a></li>
+<li class="chapter" data-level="6.3.3" data-path="logistic-regression.html"><a href="logistic-regression.html#beer"><i class="fa fa-check"></i><b>6.3.3</b> Beer</a></li>
+<li class="chapter" data-level="6.3.4" data-path="logistic-regression.html"><a href="logistic-regression.html#state-colors"><i class="fa fa-check"></i><b>6.3.4</b> State Colors</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="logistic-regression.html"><a href="logistic-regression.html#beyond-the-basics"><i class="fa fa-check"></i><b>6.4</b> Beyond the Basics</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-the-model-again"><i class="fa fa-check"></i><b>6.4.1</b> Interpret the Model (Again!)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#incorporate-a-categorical-predictor"><i class="fa fa-check"></i><b>6.4.2</b> Incorporate a Categorical Predictor</a></li>
+<li class="chapter" data-level="6.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#incorporate-multiple-predictors"><i class="fa fa-check"></i><b>6.4.3</b> Incorporate Multiple Predictors</a></li>
+<li class="chapter" data-level="6.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#test-a-regression-coefficient-again"><i class="fa fa-check"></i><b>6.4.4</b> Test a Regression Coefficient (Again!)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="logistic-regression.html"><a href="logistic-regression.html#more-exercises"><i class="fa fa-check"></i><b>6.5</b> More Exercises</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#crabs-revisited"><i class="fa fa-check"></i><b>6.5.1</b> Crabs, Revisited</a></li>
+<li class="chapter" data-level="6.5.2" data-path="logistic-regression.html"><a href="logistic-regression.html#beer-revisited"><i class="fa fa-check"></i><b>6.5.2</b> Beer, Revisited</a></li>
+<li class="chapter" data-level="6.5.3" data-path="logistic-regression.html"><a href="logistic-regression.html#state-colors-revisited"><i class="fa fa-check"></i><b>6.5.3</b> State Colors, Revisited</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="logistic-regression.html"><a href="logistic-regression.html#partial-solutions"><i class="fa fa-check"></i><b>6.6</b> Partial Solutions</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#crab-weight"><i class="fa fa-check"></i><b>6.6.1</b> Crab Weight</a></li>
+<li class="chapter" data-level="6.6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#boundary-water-blowdown-1"><i class="fa fa-check"></i><b>6.6.2</b> Boundary Water Blowdown</a></li>
+<li class="chapter" data-level="6.6.3" data-path="logistic-regression.html"><a href="logistic-regression.html#beer-1"><i class="fa fa-check"></i><b>6.6.3</b> Beer</a></li>
+<li class="chapter" data-level="6.6.4" data-path="logistic-regression.html"><a href="logistic-regression.html#state-colors-1"><i class="fa fa-check"></i><b>6.6.4</b> State Colors</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Reproducible Data Science with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linear-regression" class="section level1">
+<h1><span class="header-section-number"> 5</span> Linear Regression</h1>
+<p><em>Author: Christina Knudson</em></p>
+<div id="goals" class="section level2">
+<h2><span class="header-section-number">5.1</span> Goals</h2>
+<p>In this module we’ll focus on the <strong>“Model”</strong> and <strong>“Communicate”</strong> steps in the data science workflow:</p>
+<p><br />
+<br />
+</p>
+<center>
+<div class="image">
+<img src="images/data-science.png" style="width: 475px"/>
+<div>
+source: <a href="http://r4ds.had.co.nz/">Wickham &amp; Grolemund: R for Data Science</a>
+</div>
+</div>
+</center>
+<p><br />
+<br />
+</p>
+<p>This chapter will cover how to do the following:</p>
+<ul>
+<li>Fit simple linear regression models</li>
+<li>Plot and interpret the regression results</li>
+<li>Make predictions from regression models</li>
+<li>Test whether two quantitative variables have a linear relationship</li>
+</ul>
+<p>R’s <strong>lm</strong> (linear model) function will be the primary tool used in the chapter.</p>
+</div>
+<div id="visualize-the-data" class="section level2">
+<h2><span class="header-section-number">5.2</span> Visualize the Data</h2>
+<p>Recall the bike-share data from the chapter on data visualization. Riding on a windy day can be challenging, but is it challenging enough that it deters people from taking the bikes out for a spin? Let’s start by visualizing the data. Since the wind-speed is the predictor, we put it on the x-axis. Let’s use the number of registered riders as the response variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+bikes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.macalester.edu/~dshuman1/data/155/bike_share.csv&quot;</span>)
+<span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_registered, <span class="dt">x =</span> windspeed)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-115-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>This plot doesn’t provide a clear answer, but we can dig in with regression. Our goal is to fit a line to characterize this linear relationship between the number of registered riders and the windspeed.</p>
+</div>
+<div id="notation-and-setup" class="section level2">
+<h2><span class="header-section-number">5.3</span> Notation and Setup</h2>
+<p>Recall the equation for a line with intercept <span class="math inline">\(a\)</span> and slope <span class="math inline">\(b\)</span> is <span class="math display">\[
+y = a + b x .
+\]</span></p>
+<p>The general equation for a simple linear regression model has the following form: <span class="math display">\[
+\hat{y}_i = \beta_0 + \beta_1 x_i 
+\]</span> where <span class="math inline">\(x_i\)</span> is the quantitative predictor, <span class="math inline">\(\beta_0\)</span> is the unknown regression intercept, <span class="math inline">\(\beta_1\)</span> is the unknown regression slope, and <span class="math inline">\(\hat{y}_i\)</span> is the predicted response given <span class="math inline">\(x_i\)</span>.</p>
+<p>We estimate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> using data. This estimation allows us to characterize the linear relationship between <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> in the simple linear regression setting.</p>
+<p>Let’s write the regression equation for our bike-share example. The variable name “number of registered riders” is a bit long, so let’s shorten it down to “nriders.” The number of registered riders is our response variable, so we put that on the left-hand side of the equality. The windspeed is our predictor, so we write our regression equation as follows:</p>
+<p><span class="math display">\[
+\hat{nriders}_i = \beta_0 + \beta_1 windspeed_i .
+\]</span></p>
+<p>Our goal is to use the bike-share data set to estimate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>.</p>
+</div>
+<div id="fit-a-simple-linear-regression-model" class="section level2">
+<h2><span class="header-section-number">5.4</span> Fit a Simple Linear Regression Model</h2>
+<p>To fit a linear regression model, we use the <strong>lm</strong> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bikemod &lt;-<span class="st"> </span><span class="kw">lm</span>(riders_registered <span class="op">~</span><span class="st"> </span>windspeed,  <span class="dt">data =</span> bikes)</code></pre></div>
+<p>The first input is the regression formula (Response ~ Predictor) and the next argument is the name of the data set. The <strong>lm</strong> command estimates the regreesion coefficients and calculates other quantitaties. To find the regression coefficients (i.e. the estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>), we can use the <strong>coef</strong> command</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(bikemod)
+## (Intercept)   windspeed 
+##  4490.09761   -65.34145</code></pre></div>
+<p>We can now enter these estimates into our linear regression equation: $_i = 4490.10 + -65.34 ; _i $.</p>
+</div>
+<div id="plot-the-regression-line" class="section level2">
+<h2><span class="header-section-number">5.5</span> Plot the Regression Line</h2>
+<p>It’s easy to include the regression line on a scatterplot by adding a <code>geom_smooth()</code> to the <code>ggplot()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_registered, <span class="dt">x =</span> windspeed)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-118-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can see the line is downward sloping. We’ll discuss that in a moment.</p>
+</div>
+<div id="interpret-the-model" class="section level2">
+<h2><span class="header-section-number">5.6</span> Interpret the Model</h2>
+<p>First, let’s focus on the sign of predictor’s coefficient ( -65.34). This is a <strong>negative</strong> number. This tells us that there are <strong>fewer</strong> registered riders on windier days. That is, the line is downward sloping. If the predictor’s coefficient were <strong>zero</strong>, there would be <strong>no</strong> linear relationship between the windspeed and the number of registered riders, and the line would be totally horizontal. If the predictor’s coefficient were <strong>positive</strong>, then windier days would have <strong>more</strong> registered riders, and the line would be upward sloping.</p>
+<p>Next, let’s look at the magnitude of the predictor’s coefficient (-65.34). We can interpret this by thinking back to the interpretation of the slope of a line. Every one mile per hour increase in the wind speed is associated with about 65 fewer registered riders. One mile per hour is an imperceptible difference for most people, so let’s think about a 5 mph increase in wind speed. A five mph increase in windspeed is associated with about 323 fewer registered riders.</p>
+<p>Finally, let’s look at the y-intercept. The y-intercept is the value of the line when the predictor is 0. We can interpret the y-intercept only if 0 is a plausible value for the predictor AND if we have values around 0 in our data set. The lowest windspeed in our dataset is 1.5 mph, so it’s questionable whether we can safely interpret this. If we decide to interpret it, we’d say that on a day with absolutely no wind (that is, the wind is 0 mph), we expect about 4490 registered riders.</p>
+</div>
+<div id="calculate-point-predictions" class="section level2">
+<h2><span class="header-section-number">5.7</span> Calculate Point Predictions</h2>
+<div id="the-type-it-in-method" class="section level3">
+<h3><span class="header-section-number">5.7.1</span> The Type-It-In Method</h3>
+<p>Let’s use our model to predict the number of riders on a day with 15 mph winds. All we need to do is plug 15mph into the variable windspeed in our regression equation</p>
+<p><span class="math inline">\(\hat{\text{nriders}}_i = 4490.10 + -65.34 \; \text{windspeed}_i = 4490.10 + -65.34 * 15 = 3510\)</span>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">4490.10</span>  <span class="op">+</span><span class="st"> </span><span class="op">-</span><span class="fl">65.34</span> <span class="op">*</span><span class="st"> </span><span class="dv">15</span>
+## [1] 3510</code></pre></div>
+<p>Thus, we predict 3510 riders on a day with 15mph winds.</p>
+</div>
+<div id="more-reproducible-methods" class="section level3">
+<h3><span class="header-section-number">5.7.2</span> More Reproducible Methods</h3>
+<p>You can do sums in R’s console, but a safer (more reproducible) method is to take advantage of some of R’s functions, such as <strong>predict</strong>. Before you can use <strong>predict</strong>, you need to create a new data frame with the predictor value. We want to predict for a windspeed of 15 mph, so we specify that in our data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new_windspeed &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">windspeed =</span> <span class="dv">15</span> )
+new_windspeed
+##   windspeed
+## 1        15</code></pre></div>
+<p>Now we can use the <strong>predict</strong> command. The first input is the model that we want to use for the prediction. We want to use the regression model in bikemod. The second input is the new data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(bikemod, new_windspeed )
+##        1 
+## 3509.976</code></pre></div>
+</div>
+</div>
+<div id="bonus-test-the-linear-relationship" class="section level2">
+<h2><span class="header-section-number">5.8</span> Bonus: Test the Linear Relationship</h2>
+<p>This section is a bit more advanced, so don’t stress over it. We will cover this in much more detail in the upcoming regression workshop.</p>
+<p>Based on the data collected, we found that windier days have fewer riders. Did this result pop up by random chance in this data set, or do windier days truly have fewer riders in general? We can answer this question by conducting a test.</p>
+<p>Several methods exist for testing the linear relationship between two variables. One of the easiest ways to conduct our test is to use the <strong>summary</strong> function. The only input for this function is our model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(bikemod)
+## 
+## Call:
+## lm(formula = riders_registered ~ windspeed, data = bikes)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3575.7 -1126.8   -48.3  1089.2  3525.9 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  4490.10     149.66  30.002  &lt; 2e-16 ***
+## windspeed     -65.34      10.86  -6.015 2.84e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1524 on 729 degrees of freedom
+## Multiple R-squared:  0.04728,    Adjusted R-squared:  0.04598 
+## F-statistic: 36.18 on 1 and 729 DF,  p-value: 2.844e-09</code></pre></div>
+<p>The summary outputs a wealth of information, which can be kind of overwhelming for those without much experience with statistics. To test whether our two variables in a simple linear regression have a linear relationship, look at the number at the very bottom right (labeled p-value).</p>
+<p>For our bike example, this number is 2.844e-09, or <span class="math inline">\(2.844 \times 10^{-9}\)</span>. Because the p-value is quite small (and smaller than the “usual” threshold of .05), we conclude that there is indeed a linear relationship between the windspeed and the number of registered riders.</p>
+<p>If the p-value were large (perhaps larger than a threshold such as .05), we would say that no linear relationship existed between the windspeed and the number of registered riders.</p>
+</div>
+<div id="exercises-2" class="section level2">
+<h2><span class="header-section-number">5.9</span> Exercises</h2>
+<p>All of your practice problems use the bechdel data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fivethirtyeight)
+<span class="kw">data</span>(bechdel)</code></pre></div>
+<div id="problem-1" class="section level3">
+<h3><span class="header-section-number">5.9.1</span> Problem 1</h3>
+<p>Use linear regression to predict worldwide (international) gross profits based on domestic gross profits. Use the 2013 adjusted sales. Given the domestic box office gross sales for <strong>12 Years a Slave</strong>, predict the movie’s international gross sales. Here’s the domestic gross for <strong>12 Years a Slave</strong> in 2013 dollars:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bechdel[<span class="dv">3</span>,<span class="st">&quot;domgross_2013&quot;</span>] 
+## # A tibble: 1 x 1
+##   domgross_2013
+##           &lt;dbl&gt;
+## 1      53107035</code></pre></div>
+</div>
+<div id="problem-2" class="section level3">
+<h3><span class="header-section-number">5.9.2</span> Problem 2</h3>
+<p>The <code>intgross</code> and <code>intgross_2013</code> variables represent the worldwide gross profits of films. To find the non-US (ie foreign) gross profits, you can subtract the domestic gross profits from the international gross profits. Do this (that is, use the <strong>mutate</strong> function) and use linear regression to predict the non-US (foreign) gross profits for <strong>12 Years a Slave</strong> based on the film’s domestic gross profits.</p>
+</div>
+</div>
+<div id="solutions-2" class="section level2">
+<h2><span class="header-section-number">5.10</span> Solutions</h2>
+<div id="problem-1-1" class="section level3">
+<h3><span class="header-section-number">5.10.1</span> Problem 1</h3>
+<p>Begin by visualizing the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> intgross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-125-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Next, create the regression model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">moviemod &lt;-<span class="st"> </span><span class="kw">lm</span>(intgross_<span class="dv">2013</span> <span class="op">~</span><span class="st"> </span>domgross_<span class="dv">2013</span>, <span class="dt">data =</span> bechdel)
+<span class="kw">coef</span>(moviemod)
+##   (Intercept) domgross_2013 
+## -364528.19765       2.09019</code></pre></div>
+<p>Unsurprisingly, there is a positive association between domestic and worldwide gross. A one dollar increase in the domestic gross is associated with a two dollar (and nine cent) increase in the worldwide gross, in 2013 US dollars.</p>
+<p>For fun, let’s add the line to our plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> intgross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-127-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Now, let’s predict for <strong>12 Years a Slave</strong>. The domestic gross for this movie was 53107035. Plugging that value into the regression equation produces the predicted worldwide gross profits in US dollars:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">twelve &lt;-<span class="st"> </span>bechdel[<span class="dv">3</span>, <span class="st">&quot;domgross_2013&quot;</span>]
+<span class="kw">predict</span>(moviemod, twelve )
+##         1 
+## 110639278</code></pre></div>
+</div>
+<div id="problem-2-1" class="section level3">
+<h3><span class="header-section-number">5.10.2</span> Problem 2</h3>
+<p>Begin by creating the new variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bechdel &lt;-<span class="st"> </span>bechdel <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">foregross_2013 =</span> intgross_<span class="dv">2013</span> <span class="op">-</span><span class="st"> </span>domgross_<span class="dv">2013</span>)</code></pre></div>
+<p>Second, visualize the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> foregross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>() </code></pre></div>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-130-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Third, create the regression model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">foremod &lt;-<span class="st"> </span><span class="kw">lm</span> (foregross_<span class="dv">2013</span> <span class="op">~</span><span class="st"> </span>domgross_<span class="dv">2013</span>, <span class="dt">data =</span> bechdel)
+<span class="kw">coef</span>(foremod)
+##   (Intercept) domgross_2013 
+## -364528.19765       1.09019</code></pre></div>
+<p>Let’s interpret this regression equation for fun. First, can we interpret the intercept? No, because none of the films in our data-set have a domestic gross profit of 0 USD, as you can see in the summary below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bechdel <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(domgross_<span class="dv">2013</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()
+##  domgross_2013      
+##  Min.   :8.990e+02  
+##  1st Qu.:2.055e+07  
+##  Median :5.599e+07  
+##  Mean   :9.517e+07  
+##  3rd Qu.:1.217e+08  
+##  Max.   :1.772e+09  
+##  NA&#39;s   :18</code></pre></div>
+<p>Fine, we can’t interpret the intercept. Let’s interpret the slope then. First of all, the slope is positive, which makes sense: films that make money in the US probably tend to make money in non-US markets, too. (If the slope were negative, this would mean that films that are more lucrative in the US are less lucrative in foreign markets.) Now let’s check out the magnitude of the slope: 1.09. For every additional dollar of profit in the US, we expect the film to make an additional 1.09 USD profit in foreign markets.</p>
+<p>Next, predict the foreign gross profit in 2013 dollars for <strong>12 Years a Slave</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(foremod, twelve)
+##        1 
+## 57532243</code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="understanding-data-transformations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"depth": 2,
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
