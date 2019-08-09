@@ -11,7 +11,7 @@
 ## Goals
 
 
-In this module we'll focus on the __"Model"__ and __"Communicate"__ steps in the data science workflow:
+In this module we'll focus on the __"Model"__ and __"Communicate"__ steps in the data science workflow. We'll also call on your understanding of data visualization and transformation.
 
 \
 \
@@ -156,6 +156,7 @@ For our bike example, this number is 2.844e-09, or $2.844 \times 10^{-9}$. Becau
 
 If the p-value were large (perhaps larger than a threshold such as .05), we would say that no linear relationship existed between the windspeed and the number of registered riders. 
 
+As a final note, the p-value in the last line matches a p-value in the second row of the coefficients table. In the simple linear regression setting (where you have a single predictor), these numbers match and you can pull the p-value from either place. If/when you move into multiple linear regression, these numbers will no longer match. You can learn more about this on your own or in our upcoming regression workshop.
 
 ## Exercises
 
