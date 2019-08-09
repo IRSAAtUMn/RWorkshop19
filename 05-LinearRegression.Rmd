@@ -57,9 +57,9 @@ This plot doesn't provide a clear answer, but we can dig in with regression. Our
 ## Notation and Setup
 
 Recall the equation for a line with intercept $a$ and slope  $b$ is
-\[
+\begin{equation}
 y = a + b x .
-\]
+\end{equation}
 
 The general equation for a simple linear regression model has the following form:
 \[
@@ -72,8 +72,7 @@ We estimate $\beta_0$ and $\beta_1$ using data. This estimation allows us to cha
 
 Let's write the regression equation for our bike-share example. The variable name "number of registered riders" is a bit long, so let's shorten it down to "nriders." The number of registered riders is our response variable, so we put that on the left-hand side of the equality. The windspeed is our predictor, so we write our regression equation as follows: 
 
-\[
-\hat{nriders}_i = \beta_0 + \beta_1 windspeed_i .
+\[\widehat{nriders}_i = \beta_0 + \beta_1 windspeed_i .
 \]
 
 Our goal is to use the bike-share data set to estimate $\beta_0$ and $\beta_1$.
@@ -89,7 +88,7 @@ The first input is the regression formula (Response ~ Predictor)  and the next a
 coef(bikemod)
 ```
 
-We can now enter these estimates into our linear regression equation: $\hat{\text{nriders}}_i = 4490.10  + -65.34  \; \text{windspeed}_i $.
+We can now enter these estimates into our linear regression equation: $$\hat{\text{nriders}}_i = 4490.10  + -65.34  \; \text{windspeed}_i $$.
 
 
 
@@ -199,6 +198,11 @@ Next, create the regression model.
 moviemod <- lm(intgross_2013 ~ domgross_2013, data = bechdel)
 coef(moviemod)
 ```
+Then, write the regression equation.
+\[
+\widehat{\text{int gross}}_i = -364528.19765 + 2.09019 \, \text{domestic}_i 
+\]
+
 
 Unsurprisingly, there is a positive association between domestic and worldwide gross. A one dollar increase in the domestic gross is associated with a two dollar (and nine cent) increase in the worldwide gross, in 2013 US dollars.
 
@@ -222,6 +226,7 @@ predict(moviemod, twelve )
 
 Begin by creating the new variable.
 ```{r}
+library(dplyr)
 bechdel <- bechdel %>%
   mutate(foregross_2013 = intgross_2013 - domgross_2013)
 ```
@@ -238,6 +243,12 @@ Third, create the regression model.
 foremod <- lm (foregross_2013 ~ domgross_2013, data = bechdel)
 coef(foremod)
 ```
+
+Then, write the regression equation.
+\[
+\widehat{\text{foreign}}_i = -364528.19765 + 1.09019 \, \text{domestic}_i 
+\]
+
 
 Let's interpret this regression equation for fun. First, can we interpret the intercept? No, because none of the films in our data-set have a domestic gross profit of 0 USD, as you can see in the summary below.
 
