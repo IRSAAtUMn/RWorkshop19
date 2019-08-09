@@ -84,7 +84,7 @@ To fit a linear regression model, we  use the **lm** function:
 ```{r}
 bikemod <- lm(riders_registered ~ windspeed,  data = bikes)
 ```
-The first input is the regression formula (Response ~ Predictor)  and the next argument is the name of the data set. The **lm** command estimates the regreesion coefficients and calculates other quantitaties. To find the regression coefficients (i.e. the estimates of $\beta_0$ and $\beta_1$), we can use the **coef** command
+The first input is the regression formula (Response ~ Predictor)  and the next argument is the name of the data set. The **lm** command estimates the regreesion coefficients and calculates other quantitaties. To find the regression coefficients (i.e. the estimates of $\beta_0$ and $\beta_1$), we can use the **coef** command. The only input for this command is the model.
 ```{r}
 coef(bikemod)
 ```
@@ -108,7 +108,7 @@ We can see the line is downward sloping. We'll discuss that in a moment.
 
 ## Interpret the Model
 
-First, let's focus on the sign of predictor's coefficient ( -65.34). This is a **negative** number. This tells us that there are **fewer** registered riders on windier days. That is, the line is downward sloping. If the predictor's coefficient were **zero**, there would be **no** linear relationship between the windspeed and the number of registered riders, and the line would be totally horizontal. If the predictor's coefficient were **positive**, then windier days would have **more** registered riders, and the line would be upward sloping.
+First, let's focus on the sign of predictor's coefficient ( -65.34). This is a **negative** number. This tells us that there are **fewer** registered riders on windier days. That is, the line is downward sloping. If the predictor's coefficient were **zero**, there would be **no** linear relationship between the windspeed and the number of registered riders, and the line would be horizontal. If the predictor's coefficient were **positive**, then windier days would have **more** registered riders, and the line would be upward sloping.
 
 Next, let's look at the magnitude of the predictor's coefficient (-65.34). We can interpret this by thinking back to the interpretation of the slope of a line. Every one mile per hour increase in the wind speed is associated with about 65 fewer registered riders. One mile per hour is an imperceptible difference for most people, so let's think about a 5 mph increase in wind speed. A five mph increase in windspeed is associated with about 323 fewer registered riders.
 
@@ -116,7 +116,28 @@ Finally, let's look at the y-intercept. The y-intercept is the value of the line
 
 ## Calculate Point Predictions
 
-Let's use our model to predict the number of riders on a day with 15 mph winds. All we need to do is plug 15mph into the variable windspeed in our regression equation: $\hat{\text{nriders}}_i = 4490.10  + -65.34  \; \text{windspeed}_i = 4490.10  + -65.34 * 15 = 3510$. Thus, we predict 3510 riders on a day with 15mph winds.
+### The Type-It-In Method
+Let's use our model to predict the number of riders on a day with 15 mph winds. All we need to do is plug 15mph into the variable windspeed in our regression equation
+
+$\hat{\text{nriders}}_i = 4490.10  + -65.34  \; \text{windspeed}_i = 4490.10  + -65.34 * 15 = 3510$. 
+
+```{r}
+4490.10  + -65.34 * 15
+```
+Thus, we predict 3510 riders on a day with 15mph winds.
+
+### More Reproducible Methods
+
+You can do sums in R's console, but a safer (more reproducible) method is to take advantage of some of R's functions, such as  **predict**. Before you can use **predict**, you need to create a new data frame with the predictor value. We want to predict for a windspeed of 15 mph, so we specify that in our data frame.
+```{r}
+new_windspeed <- data.frame(windspeed = 15 )
+new_windspeed
+```
+Now we can use the **predict** command. The first input is the model that we want to use for the prediction. We want to use the regression model in bikemod. The second input is the new data frame.
+
+```{r}
+predict(bikemod, new_windspeed )
+```
 
 
 ## Bonus: Test the Linear Relationship
@@ -139,21 +160,31 @@ If the p-value were large (perhaps larger than a threshold such as .05), we woul
 
 ## Exercises
 
-### Bechdel 
-
-Use linear regression to predict worldwide (international) gross box office sales based on domestic gross box office sales. Use the 2013 adjusted sales. Given the domestic box office gross sales for __12 Years a Slave__, predict the movie's international gross sales.
+All of your practice problems use the bechdel data.
 
 ```{r}
 library(fivethirtyeight)
 data(bechdel)
-bechdel[3,"domgross_2013"] 
-#here's the domestic gross for 12 years a slave
 ```
+
+### Problem 1 
+
+Use linear regression to predict worldwide (international) gross profits based on domestic gross profits. Use the 2013 adjusted sales. Given the domestic box office gross sales for __12 Years a Slave__, predict the movie's international gross sales. Here's the domestic gross for __12 Years a Slave__ in 2013 dollars:
+
+```{r}
+bechdel[3,"domgross_2013"] 
+```
+
+
+### Problem 2
+
+The `intgross` and `intgross_2013` variables represent the worldwide gross profits of films. To find the non-US (ie foreign) gross profits, you can subtract the domestic gross profits from the international gross profits. Do this (that is, use the **mutate** function) and use linear regression to predict the non-US (foreign) gross profits for __12 Years a Slave__ based on the film's domestic gross profits. 
 
 
 ## Solutions
 
-### Bechdel
+
+### Problem 1
 
 Begin by visualizing the data:
 
@@ -180,16 +211,44 @@ ggplot(bechdel, aes(y = intgross_2013, x = domgross_2013)) +
 
 ```
 
-Now, let's predict for __12 Years a Slave__. The domestic gross for this movie was 53107035. Plugging that value into the regression equation produces the predicted worldwide gross box office sales in US dollars:
+Now, let's predict for __12 Years a Slave__. The domestic gross for this movie was 53107035. Plugging that value into the regression equation produces the predicted worldwide gross profits in US dollars:
 
 ```{r}
--364528.19765 + 2.09019 * 53107035
+twelve <- bechdel[3, "domgross_2013"]
+predict(moviemod, twelve )
 ```
 
-If you want to get a bit fancier, here are two more ways to do prediction. These are a bit more accurate because they use more decimal places.
+### Problem 2 
+
+Begin by creating the new variable.
 ```{r}
-predict(moviemod, bechdel[3,])
-moviemod$fitted.values[3]
+bechdel <- bechdel %>%
+  mutate(foregross_2013 = intgross_2013 - domgross_2013)
 ```
 
+Second, visualize the data.
+```{r}
+ggplot(bechdel, aes(y = foregross_2013, x = domgross_2013)) + 
+    geom_point() 
+```
+
+Third, create the regression model.
+
+```{r}
+foremod <- lm (foregross_2013 ~ domgross_2013, data = bechdel)
+coef(foremod)
+```
+
+Let's interpret this regression equation for fun. First, can we interpret the intercept? No, because none of the films in our data-set have a domestic gross profit of 0 USD, as you can see in the summary below.
+
+```{r}
+bechdel %>% select(domgross_2013) %>% summary()
+```
+Fine, we can't interpret the intercept. Let's interpret the slope then. First of all, the slope is positive, which makes sense: films that make money in the US probably tend to make money in non-US markets, too. (If the slope were negative, this would mean that films that are more lucrative in the US are less lucrative in foreign markets.) Now let's check out the magnitude of the slope: 1.09. For every additional dollar of profit in the US, we expect the film to make an additional 1.09 USD profit in foreign markets.
+
+
+Next, predict the foreign gross profit in 2013 dollars for __12 Years a Slave__:
+```{r}
+predict(foremod, twelve)
+```
 
