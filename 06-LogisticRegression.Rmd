@@ -109,27 +109,36 @@ where $\text{width}_i$ is the width of a female crab's carapace shell and  $p_i$
 
 To do some basic interpretation, let's focus on the predictor's coefficient: `r round(coef(mod)[2], 4)`. This is a **positive** number. This tells us that wider crabs have **higher** chances of having one or more satellites. If the predictor's coefficient were **zero**, there would be **no** linear relationship between the width of a female's shell and her log odds of having one or more satellites. If the predictor's coefficient were **negative**, then wider crabs would have **lower** chances of having one or more satellites.
 
-We can learn more from the regression coefficients, but it's a bit advanced for this workshop (and I promised a "gentle" introduction to regression!).
 
 ### Calculate Probabilities
 
 Let's use our model for a female crab with a carapace shell that is 25 centimeters in width.  We start by simply substituting  this crab's width into our regression equation:
 \begin{align*}
-\log \left( \dfrac{p_i}{1-p_i} \right) &= -12.3508 + 0.4972 \; \text{width}_i \\
- &= -12.3508 + 0.4972 * 25 \\
- &= 0.0792.
+\log \left( \dfrac{p_i}{1-p_i} \right) &= -12.3508177 + 0.4972306 \; \text{width}_i \\
+ &= -12.3508177 + 0.4972306 * 25 \\
+ &= 0.0799473.
 \end{align*}
-We could say that the log odds of a 25 cm female having satellites is about `r -12.3508 + 0.4972 * 25`, but let's make this more interpretable to everyday humans by translating this to a probability. We use a little algebra to solve for $p_i$:
+
+Now that you understand the idea of prediction, let's use our **predict** command, which we learned about in the regression chapter. We can use it for logistic regression. Again, create a data frame with a value for the predictor, and then use the **predict** command. The first input is the model and the second is the new crab's data frame.
+
+```{r}
+newcrab <- data.frame(width =25)
+predict(mod, newcrab)
+```
+
+
+
+
+We could say that the log odds of a 25 cm female having satellites is about `r round(predict(mod, newcrab), 5)`, but let's make this more interpretable to everyday humans by translating this to a probability. We use a little algebra to solve for $p_i$:
 
 \begin{align*}
-\log \left( \dfrac{p_i}{1-p_i} \right) &= 0.0792 \\
-\Rightarrow \left( \dfrac{p_i}{1-p_i} \right) &= \exp(0.0792) \\
-\Rightarrow p_i &= \dfrac{\exp(0.0792)}{1+\exp(0.0792)} \\
-&= 0.5198
+\log \left( \dfrac{p_i}{1-p_i} \right) &= 0.0799473 \\
+\Rightarrow \left( \dfrac{p_i}{1-p_i} \right) &= \exp(0.0799473) \\
+\Rightarrow p_i &= \dfrac{\exp(0.0799473)}{1+\exp(0.0799473)} \\
+&= 0.5199762
 \end{align*}
 
-Here is our interpretation: the probability of a 25 cm wide female crab having one of more satellites is about `r round(exp(0.0792)/(1+exp(0.0792)), 4)`.
-
+Here is our interpretation: the probability of a 25 cm wide female crab having one of more satellites is about `r round(exp(predict(mod, newcrab))/(1+exp(predict(mod, newcrab))), 5)`.
 
 
 
@@ -165,6 +174,7 @@ Although the summary provides many details about our model, we  focus for now on
 
 Our p-value is 1.02e-06 (or $1.02 \times 10^{-6}$). We compare our p-value to a threshold (such as $0.05$); **because our p-value is smaller than our threshold of $.05$, we have evidence that the log odds of satellites have a significant linear relationship with the carapace width.**
 
+If the p-value were large, we would not have evidence to say that there is a linear relationship between a female's carapace width and her log odds of having satellites.
 
 
 ##  Half-Time Exercises
@@ -177,7 +187,7 @@ Continue using the  horseshoe crab data to investigate the relationship between 
 * Write down the regression equation.
 * Do heavier females having higher or lower chances of  having satellites?
 * Consider a female weighing 2000 grams. What is the probability that she has one or more satellites?
-* Is there a linear relationship between  a female crab's weight and her log odds of satellites? Find the p-value and use a significance level of $0.05$.
+* Is there a linear relationship between  a female crab's weight and her log odds of satellites? Find the p-value and compare it to a threshold of $0.05$.
 
 ### Boundary Water Blowdown
 
@@ -231,7 +241,64 @@ Recall the election data set introduced by Alicia Johnson. The variable **Red** 
 ```{r}
 election <- read.csv("https://www.macalester.edu/~ajohns24/data/IMAdata1.csv")
 election$Red <- as.numeric(election$StateColor == "red")
+
 ```
+
+## Half-Time Solutions
+
+### Crab Weight
+
+We create the model and look at the summary to find the p-value for the coefficient on weight The p-value is small ($1.45 \times 10^{-6}$) so we can conclude that a female crab's weight **does** have a significant linear relationship with the log odds of her having one or more satellites.
+
+```{r}
+weightmod <- glm(y ~ weight, family = binomial, data = crabs)
+summary(weightmod)
+```
+
+Now we can use our regression equation to calculate the probability of a 2000 gram female having one or more satellites.
+```{r}
+newcrab2000 <- data.frame(weight = 2000)
+logodds <- predict(weightmod, newcrab2000)
+exp(logodds)/(1+exp(logodds))
+```
+The probability of a 2000 gram female having satellites is `r exp(logodds)/(1+exp(logodds))
+`.
+
+### Boundary Water Blowdown
+
+We create the model, isolate the coefficients, and find the summary using the code below.
+```{r}
+treemod <- glm(y ~ D, data = blowdown, family = binomial)
+coef(treemod)
+summary(treemod)
+```
+
+First, the coefficient on the diameter is positive. This tells us that larger trees were more likely to die. Moreover, the relationship between a trees diameter and its log odds of death is statistically significant: the p-value is quite small (smaller than $2 \times 10^{-16}$).
+
+Finally, the probability of death for a tree that was 20 cm in diameter is calculated below.
+```{r}
+newtree <- data.frame(D = 20)
+(logodds <- predict(treemod, newtree))
+exp(logodds)/(1+exp(logodds))
+```
+
+
+### Beer
+We create the model and look at the summary to find the p-value for the coefficient on ABV. The p-value is small ($0.00747$) so we can conclude that ABV **does** have a significant linear relationship with the log odds of a beer earning a score of at least 90.
+
+```{r}
+beermod <- glm(Good ~ ABV, family = binomial, data = beer)
+summary(beermod)
+```
+
+### State Colors
+We create the model and look at the summary to find the p-value for the coefficient on per capita income. The p-value is very small (smaller than $2.2 \times 10^{-16}$) so we can conclude that per capita income **does** have a significant linear relationship with the log odds of a state being red.
+```{r}
+electionmod <- glm(Red ~  per_capita_income, family = binomial, data = election)
+summary(electionmod)
+```
+
+Also, because the coefficient on per capita income is negative, we know that states with **higher** per capita incomes are **less** likely to be red.
 
 ## Beyond the Basics
 
@@ -296,67 +363,119 @@ This tells us that
 * the probability of satellites for a female with one good spine is `r round(probs[3],3)`
 
 
-## Partial Solutions
-
-### Crab Weight
-
-We create the model and look at the summary to find the p-value for the coefficient on weight The p-value is small ($1.45 \times 10^{-6}$) so we can conclude that a female crab's weight **does** have a significant linear relationship with the log odds of her having one or more satellites.
+If we eliminate the **0+** in the **glm** formula, we create a model with a reference group; this will compare the bad spine group to the other two groups.
 
 ```{r}
-weightmod <- glm(y ~ weight, family = binomial, data = crabs)
-summary(weightmod)
+spinemod2 <- glm(y ~ spine, data = crabs, family = binomial)
+coef(spinemod2)
+exp(coef(spinemod2))
 ```
 
-Now we can use our regression equation to calculate the probability of a 2000 gram female having one or more satellites.
+This model tells us that
+
+* the  odds of satellites for a female with two bad spines is  1.8.
+* the odds of satellites for a female with two good spines is 1.3 times the odds of satellites for a female with two bad spines.
+* the odds of satellites for a female with one good spine and one bad spine is .48 times the odds of satellites for a female with two bad spines.
+
+Sometimes people have a hard time interpreting odds ratios below 1. In this case, it is useful to flip the ratio.
 ```{r}
-logodds <- sum(coef(weightmod) * c(1, 2000))
-exp(logodds)/(1+exp(logodds))
+1/exp(coef(spinemod2))
 ```
-The probability of a 2000 gram female having satellites is about half (.48).
 
-### Boundary Water Blowdown
+Therefore, we can reword the third bullet to the following: the odds of satellites for a female with two bad spines is 2 times the odds of satellites for a female with one bad spine and one good spine.
 
-We create the model, isolate the coefficients, and find the summary using the code below.
+
+
+
+## More Problems
+
+### Interpret the Slopes
+
+Revisit the models you created in the half-time problems and interpret the slopes.
+
+###  State Colors Again
+
+Return to the election data. Find the probability of a state being red based on its income bracket.
+
+### Beer Again
+
+Return to the beer data. For each style of beer, calculate  the probability of receiving a rating of 90 or higher.
+
+
+## More Solutions
+
+### Interpret the Slopes
+
+#### Crab Weight
+
 ```{r}
-treemod <- glm(y ~ D, data = blowdown, family = binomial)
-coef(treemod)
-summary(treemod)
+logodds <- coef(weightmod)[2]
+exp(logodds)
 ```
 
-First, the coefficient on the diameter is positive. This tells us that larger trees were more likely to die. Moreover, the relationship between a trees diameter and its log odds of death is statistically significant: the p-value is quite small (smaller than $2 \times 10^{-16}$).
+A one gram increase in a crab's weight is associated with a multiplicative change of `r exp(logodds)` in the odds of her having satellites.
 
-Finally, the probability of death for a tree that was 20 cm in diameter is calculated below.
-```{r}
-(logodds <- coef(treemod) %*% c(1, 20))
-exp(logodds)/(1+exp(logodds))
-```
+A 100 gram increase in a crab's weight is associated with a multiplicative change of `r exp(logodds*100)` in her odds of having satellites.
 
 
-### Beer
-We create the model and look at the summary to find the p-value for the coefficient on ABV. The p-value is small ($0.00747$) so we can conclude that ABV **does** have a significant linear relationship with the log odds of a beer earning a score of at least 90.
+#### Boundary Water Blowdown
 
 ```{r}
-beermod <- glm(Good ~ ABV, family = binomial, data = beer)
-summary(beermod)
+exp(coef(treemod)[2])
 ```
 
-Next, we create our model with both ABV and IBU.
-```{r}
-beermod2 <- glm(Good ~ ABV + IBU, family = binomial, data = beer)
-coef(beermod2)
-summary(beermod2)
-```
-The coefficient on ABV is positive: this tells us that, after accounting for IBU, beers with higher ABV are more likely to be "Good." The p-value for this regression coefficient is $.0697 < .1$, therefore we can conclude that, even after accounting for IBU, there is a significant linear relationship between a beers ABV and its log odds of being "Good."
+A one centimeter increase in a tree's diameter was associated with a `r exp(coef(treemod)[2])
+` multiplicative change in the odds of it blowing down.
 
-### State Colors
-We create the model and look at the summary to find the p-value for the coefficient on per capita income. The p-value is very small (smaller than $2.2 \times 10^{-16}$) so we can conclude that per capita income **does** have a significant linear relationship with the log odds of a state being red.
+A ten centimeter increase in a tree's diameter was associated with a `r exp(coef(treemod)[2]*10)` multiplicative change in the odds of it blowing down.
+
 ```{r}
-electionmod <- glm(Red ~  per_capita_income, family = binomial, data = election)
-summary(electionmod)
+exp(coef(treemod)[2]*10)
+
 ```
+
+#### Beer
+
+
+```{r}
+exp(coef(beermod)[2])
+```
+
+A one percentage point increase in a beer's ABV is associated with a `r exp(coef(treemod)[2])` multiplicative change in its log odds of having a rating of 90 or higher.
+
+#### State Colors
+
+We could look at a one dollar increase in per capita income, but that is not very useful because a dollar is not very meaningful. Let's instead look at a one thousand dollar increase in per capita income.
+
+```{r}
+exp((coef(electionmod)[2]*1000))
+```
+
+A one thousand dollar increase in a state's average per capita income is associated with a multiplicative change of `r exp((coef(electionmod)[2]*1000))`
+in its odds of being red.
+
+
+### State Colors Again
+
 
 ```{r}
 lowhighmod <- glm(Red ~ IncomeBracket, data = election, family = binomial)
 exp(coef(lowhighmod))
 ```
 The odds of a high income state being red is about .62. The odds of a low income state being red are about 1.82 times the odds of a high income state being red. That is, low income states are more likely to be red than high income states.
+
+### Beer Again
+
+```{r}
+beermod2 <- glm(Good ~ 0+ Style, data=beer, family = binomial)
+logodds <- coef(beermod2)
+probs <- round(exp(logodds)/(1+exp(logodds)),3)
+probs
+```
+
+Ales have a `r probs[1]` probability of having a rating of 90 or higher.
+
+IPAs have a `r probs[2]` probability of having a rating of 90 or higher.
+
+The poor lagers have no chance of having a rating of 90 or higher. This  is just based on the data in our data set. Surely if we looked at ALL lagers all over the world, we'd eventually find
+one that deserves a rating of 90 or higher.
