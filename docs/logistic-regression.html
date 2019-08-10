@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> 6 Logistic Regression | Introduction to Reproducible Data Science with R</title>
+  <meta name="description" content=" 6 Logistic Regression | Introduction to Reproducible Data Science with R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content=" 6 Logistic Regression | Introduction to Reproducible Data Science with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="IRSAAtUMn/RWorkshop19/docs" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 6 Logistic Regression | Introduction to Reproducible Data Science with R" />
+  
+  
+  
+
+<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="linear-regression.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.7/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Home</a></li>
+<li class="chapter" data-level="" data-path="welcome-set-up.html"><a href="welcome-set-up.html"><i class="fa fa-check"></i>Welcome &amp; Set-Up</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Introduction to R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#getting-started"><i class="fa fa-check"></i><b>1.1</b> Getting Started</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#r-studio-overview"><i class="fa fa-check"></i><b>1.2</b> R Studio Overview</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#the-r-console"><i class="fa fa-check"></i><b>1.2.1</b> The R console</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#the-help-window"><i class="fa fa-check"></i><b>1.2.2</b> The Help window</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#the-package-window"><i class="fa fa-check"></i><b>1.2.3</b> The Package window</a></li>
+<li class="chapter" data-level="1.2.4" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#the-environment-window"><i class="fa fa-check"></i><b>1.2.4</b> The Environment window</a></li>
+<li class="chapter" data-level="1.2.5" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#the-history-window"><i class="fa fa-check"></i><b>1.2.5</b> The History window</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#r-script"><i class="fa fa-check"></i><b>1.3</b> R script</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-r-and-rstudio.html"><a href="introduction-to-r-and-rstudio.html#working-with-data"><i class="fa fa-check"></i><b>1.3.1</b> Working with data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="reproducible-reports-with-r-markdown.html"><a href="reproducible-reports-with-r-markdown.html"><i class="fa fa-check"></i><b>2</b> Reproducible Reports with R Markdown</a><ul>
+<li class="chapter" data-level="2.1" data-path="reproducible-reports-with-r-markdown.html"><a href="reproducible-reports-with-r-markdown.html#overview-of-r-markdown"><i class="fa fa-check"></i><b>2.1</b> Overview of R Markdown</a></li>
+<li class="chapter" data-level="2.2" data-path="reproducible-reports-with-r-markdown.html"><a href="reproducible-reports-with-r-markdown.html#yaml"><i class="fa fa-check"></i><b>2.2</b> YAML</a></li>
+<li class="chapter" data-level="2.3" data-path="reproducible-reports-with-r-markdown.html"><a href="reproducible-reports-with-r-markdown.html#markdown"><i class="fa fa-check"></i><b>2.3</b> Markdown</a></li>
+<li class="chapter" data-level="2.4" data-path="reproducible-reports-with-r-markdown.html"><a href="reproducible-reports-with-r-markdown.html#r-chunks"><i class="fa fa-check"></i><b>2.4</b> R chunks</a></li>
+<li class="chapter" data-level="2.5" data-path="reproducible-reports-with-r-markdown.html"><a href="reproducible-reports-with-r-markdown.html#working-in-r-markdown"><i class="fa fa-check"></i><b>2.5</b> Working in R Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Understanding data: Visualization</a><ul>
+<li class="chapter" data-level="3.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#goal-understanding-through-visualizations"><i class="fa fa-check"></i><b>3.1</b> Goal: Understanding Through Visualizations</a></li>
+<li class="chapter" data-level="3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#ggplot"><i class="fa fa-check"></i><b>3.2</b> ggplot</a></li>
+<li class="chapter" data-level="3.3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#univariate-visualizations"><i class="fa fa-check"></i><b>3.3</b> Univariate visualizations</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#histograms"><i class="fa fa-check"></i><b>3.3.1</b> Histograms</a></li>
+<li class="chapter" data-level="3.3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#density-plots"><i class="fa fa-check"></i><b>3.3.2</b> Density plots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#visualizing-relationships"><i class="fa fa-check"></i><b>3.4</b> Visualizing relationships</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#quantitative-vs-quantitative"><i class="fa fa-check"></i><b>3.4.1</b> Quantitative vs quantitative</a></li>
+<li class="chapter" data-level="3.4.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#quantitative-vs-categorical"><i class="fa fa-check"></i><b>3.4.2</b> Quantitative vs categorical</a></li>
+<li class="chapter" data-level="3.4.3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#quantitative-vs-quantitative-vs-categorical"><i class="fa fa-check"></i><b>3.4.3</b> Quantitative vs quantitative vs categorical</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#exercises"><i class="fa fa-check"></i><b>3.5</b> Exercises</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#questions"><i class="fa fa-check"></i><b>3.5.1</b> Questions</a></li>
+<li class="chapter" data-level="3.5.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#solutions"><i class="fa fa-check"></i><b>3.5.2</b> Solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html"><i class="fa fa-check"></i><b>4</b> Understanding data: Transformations</a><ul>
+<li class="chapter" data-level="4.1" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#goal-understanding-through-transformations"><i class="fa fa-check"></i><b>4.1</b> Goal: Understanding Through Transformations</a></li>
+<li class="chapter" data-level="4.2" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#dplyr"><i class="fa fa-check"></i><b>4.2</b> dplyr</a></li>
+<li class="chapter" data-level="4.3" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#transforming-rows-arrange-and-filter"><i class="fa fa-check"></i><b>4.3</b> Transforming rows: <code>arrange()</code> and <code>filter()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#transforming-columns-select-and-mutate"><i class="fa fa-check"></i><b>4.4</b> Transforming columns: <code>select()</code> and <code>mutate()</code></a></li>
+<li class="chapter" data-level="4.5" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#simple-numerical-summaries-summarize"><i class="fa fa-check"></i><b>4.5</b> Simple numerical summaries: <code>summarize()</code></a></li>
+<li class="chapter" data-level="4.6" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#exercises-1"><i class="fa fa-check"></i><b>4.6</b> Exercises</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#questions-1"><i class="fa fa-check"></i><b>4.6.1</b> Questions</a></li>
+<li class="chapter" data-level="4.6.2" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#solutions-1"><i class="fa fa-check"></i><b>4.6.2</b> Solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>5</b> Linear Regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="linear-regression.html"><a href="linear-regression.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
+<li class="chapter" data-level="5.2" data-path="linear-regression.html"><a href="linear-regression.html#visualize-the-data"><i class="fa fa-check"></i><b>5.2</b> Visualize the Data</a></li>
+<li class="chapter" data-level="5.3" data-path="linear-regression.html"><a href="linear-regression.html#notation-and-setup"><i class="fa fa-check"></i><b>5.3</b> Notation and Setup</a></li>
+<li class="chapter" data-level="5.4" data-path="linear-regression.html"><a href="linear-regression.html#fit-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>5.4</b> Fit a Simple Linear Regression Model</a></li>
+<li class="chapter" data-level="5.5" data-path="linear-regression.html"><a href="linear-regression.html#plot-the-regression-line"><i class="fa fa-check"></i><b>5.5</b> Plot the Regression Line</a></li>
+<li class="chapter" data-level="5.6" data-path="linear-regression.html"><a href="linear-regression.html#interpret-the-model"><i class="fa fa-check"></i><b>5.6</b> Interpret the Model</a></li>
+<li class="chapter" data-level="5.7" data-path="linear-regression.html"><a href="linear-regression.html#calculate-point-predictions"><i class="fa fa-check"></i><b>5.7</b> Calculate Point Predictions</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="linear-regression.html"><a href="linear-regression.html#the-type-it-in-method"><i class="fa fa-check"></i><b>5.7.1</b> The Type-It-In Method</a></li>
+<li class="chapter" data-level="5.7.2" data-path="linear-regression.html"><a href="linear-regression.html#more-reproducible-methods"><i class="fa fa-check"></i><b>5.7.2</b> More Reproducible Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="linear-regression.html"><a href="linear-regression.html#bonus-test-the-linear-relationship"><i class="fa fa-check"></i><b>5.8</b> Bonus: Test the Linear Relationship</a></li>
+<li class="chapter" data-level="5.9" data-path="linear-regression.html"><a href="linear-regression.html#exercises-2"><i class="fa fa-check"></i><b>5.9</b> Exercises</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="linear-regression.html"><a href="linear-regression.html#problem-1"><i class="fa fa-check"></i><b>5.9.1</b> Problem 1</a></li>
+<li class="chapter" data-level="5.9.2" data-path="linear-regression.html"><a href="linear-regression.html#problem-2"><i class="fa fa-check"></i><b>5.9.2</b> Problem 2</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="linear-regression.html"><a href="linear-regression.html#solutions-2"><i class="fa fa-check"></i><b>5.10</b> Solutions</a><ul>
+<li class="chapter" data-level="5.10.1" data-path="linear-regression.html"><a href="linear-regression.html#problem-1-1"><i class="fa fa-check"></i><b>5.10.1</b> Problem 1</a></li>
+<li class="chapter" data-level="5.10.2" data-path="linear-regression.html"><a href="linear-regression.html#problem-2-1"><i class="fa fa-check"></i><b>5.10.2</b> Problem 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>6</b> Logistic Regression</a><ul>
+<li class="chapter" data-level="6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#goals-1"><i class="fa fa-check"></i><b>6.2</b> Goals</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#horseshoe-crab-data"><i class="fa fa-check"></i><b>6.2.1</b> Horseshoe Crab Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="logistic-regression.html"><a href="logistic-regression.html#model-basics"><i class="fa fa-check"></i><b>6.3</b> Model Basics</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#notation-and-setup-1"><i class="fa fa-check"></i><b>6.3.1</b> Notation and Setup</a></li>
+<li class="chapter" data-level="6.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#fit-a-logistic-regression-model"><i class="fa fa-check"></i><b>6.3.2</b> Fit a Logistic Regression Model</a></li>
+<li class="chapter" data-level="6.3.3" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-the-model-1"><i class="fa fa-check"></i><b>6.3.3</b> Interpret the Model</a></li>
+<li class="chapter" data-level="6.3.4" data-path="logistic-regression.html"><a href="logistic-regression.html#calculate-probabilities"><i class="fa fa-check"></i><b>6.3.4</b> Calculate Probabilities</a></li>
+<li class="chapter" data-level="6.3.5" data-path="logistic-regression.html"><a href="logistic-regression.html#test-a-regression-coefficient"><i class="fa fa-check"></i><b>6.3.5</b> Test a Regression Coefficient</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="logistic-regression.html"><a href="logistic-regression.html#half-time-exercises"><i class="fa fa-check"></i><b>6.4</b> Half-Time Exercises</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#female-horseshoe-crab-weight"><i class="fa fa-check"></i><b>6.4.1</b> Female Horseshoe Crab Weight</a></li>
+<li class="chapter" data-level="6.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#boundary-water-blowdown"><i class="fa fa-check"></i><b>6.4.2</b> Boundary Water Blowdown</a></li>
+<li class="chapter" data-level="6.4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#beer"><i class="fa fa-check"></i><b>6.4.3</b> Beer</a></li>
+<li class="chapter" data-level="6.4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#state-colors"><i class="fa fa-check"></i><b>6.4.4</b> State Colors</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="logistic-regression.html"><a href="logistic-regression.html#half-time-solutions"><i class="fa fa-check"></i><b>6.5</b> Half-Time Solutions</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#crab-weight"><i class="fa fa-check"></i><b>6.5.1</b> Crab Weight</a></li>
+<li class="chapter" data-level="6.5.2" data-path="logistic-regression.html"><a href="logistic-regression.html#boundary-water-blowdown-1"><i class="fa fa-check"></i><b>6.5.2</b> Boundary Water Blowdown</a></li>
+<li class="chapter" data-level="6.5.3" data-path="logistic-regression.html"><a href="logistic-regression.html#beer-1"><i class="fa fa-check"></i><b>6.5.3</b> Beer</a></li>
+<li class="chapter" data-level="6.5.4" data-path="logistic-regression.html"><a href="logistic-regression.html#state-colors-1"><i class="fa fa-check"></i><b>6.5.4</b> State Colors</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="logistic-regression.html"><a href="logistic-regression.html#beyond-the-basics"><i class="fa fa-check"></i><b>6.6</b> Beyond the Basics</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-the-model-again"><i class="fa fa-check"></i><b>6.6.1</b> Interpret the Model (Again!)</a></li>
+<li class="chapter" data-level="6.6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#incorporate-a-categorical-predictor"><i class="fa fa-check"></i><b>6.6.2</b> Incorporate a Categorical Predictor</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="logistic-regression.html"><a href="logistic-regression.html#more-problems"><i class="fa fa-check"></i><b>6.7</b> More Problems</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-the-slopes"><i class="fa fa-check"></i><b>6.7.1</b> Interpret the Slopes</a></li>
+<li class="chapter" data-level="6.7.2" data-path="logistic-regression.html"><a href="logistic-regression.html#state-colors-again"><i class="fa fa-check"></i><b>6.7.2</b> State Colors Again</a></li>
+<li class="chapter" data-level="6.7.3" data-path="logistic-regression.html"><a href="logistic-regression.html#beer-again"><i class="fa fa-check"></i><b>6.7.3</b> Beer Again</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="logistic-regression.html"><a href="logistic-regression.html#more-solutions"><i class="fa fa-check"></i><b>6.8</b> More Solutions</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpret-the-slopes-1"><i class="fa fa-check"></i><b>6.8.1</b> Interpret the Slopes</a></li>
+<li class="chapter" data-level="6.8.2" data-path="logistic-regression.html"><a href="logistic-regression.html#state-colors-again-1"><i class="fa fa-check"></i><b>6.8.2</b> State Colors Again</a></li>
+<li class="chapter" data-level="6.8.3" data-path="logistic-regression.html"><a href="logistic-regression.html#beer-again-1"><i class="fa fa-check"></i><b>6.8.3</b> Beer Again</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Reproducible Data Science with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="logistic-regression" class="section level1">
+<h1><span class="header-section-number"> 6</span> Logistic Regression</h1>
+<p><em>Author: Christina Knudson</em></p>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">6.1</span> Introduction</h2>
+<p>The previous chapter covered linear regression, which models a quantitative response variable. This chapter covers logistic regression, which is used to model a binary response variable. Here are some examples of binary responses:</p>
+<ul>
+<li>Whether or not a person wears a helmet while biking</li>
+<li>Whether or not a dog is adopted</li>
+<li>Whether or not a beer is given an award</li>
+<li>Whether or not a tree survives a storm</li>
+</ul>
+</div>
+<div id="goals-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> Goals</h2>
+<p>In this module we’ll focus on the <strong>“Model”</strong> and <strong>“Communicate”</strong> steps in the data science workflow.</p>
+<p><br />
+<br />
+</p>
+<center>
+<div class="image">
+<img src="images/data-science.png" style="width: 475px"/>
+<div>
+source: <a href="http://r4ds.had.co.nz/">Wickham &amp; Grolemund: R for Data Science</a>
+</div>
+</div>
+</center>
+<p><br />
+<br />
+</p>
+<p>This chapter will cover how to do the following:</p>
+<ul>
+<li>Fit a logistic regression model in R with quantitative and/or categorical predictors.</li>
+<li>Interpret logistic regression models.</li>
+<li>Calculate probabilities.</li>
+<li>Test the significance of regression coefficients.</li>
+</ul>
+<p>R’s <strong>glm</strong> (generalized linear model) function will be the primary tool used in the chapter.</p>
+<div id="horseshoe-crab-data" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Horseshoe Crab Data</h3>
+<p>Throughout this module, we will refer to the horseshoe crab data. Some female crabs attract many males while others do not attract any. The males that cluster around a female are called “satellites.” In order to understand what influences the presence of satellite crabs, researchers selected female crabs and collected data on the following characteristics:</p>
+<ul>
+<li>the color of her shell</li>
+<li>the condition of her spine</li>
+<li>the width of her carapace shell (in centimeters)</li>
+<li>the number of male satellites</li>
+<li>the weight of the female (in grams)</li>
+</ul>
+<p>In today’s example, we will use the width of a female’s shell to predict the probability of her having one or more satellites. Let’s start by loading the data.</p>
+<pre class="sourceCode r"><code class="sourceCode r">crabs &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cknudson.com/data/crabs.csv&quot;</span>)
+<span class="kw">head</span>(crabs)
+<span class="co">##    color spine width satell weight y</span>
+<span class="co">## 1 medium   bad  28.3      8   3050 1</span>
+<span class="co">## 2   dark   bad  22.5      0   1550 0</span>
+<span class="co">## 3  light  good  26.0      9   2300 1</span>
+<span class="co">## 4   dark   bad  24.8      0   2100 0</span>
+<span class="co">## 5   dark   bad  26.0      4   2600 1</span>
+<span class="co">## 6 medium   bad  23.8      0   2100 0</span></code></pre>
+<p>You can learn more about this data set <a href="http://users.stat.ufl.edu/~aa/cda/data.html">here</a>.</p>
+</div>
+</div>
+<div id="model-basics" class="section level2">
+<h2><span class="header-section-number">6.3</span> Model Basics</h2>
+<div id="notation-and-setup-1" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Notation and Setup</h3>
+<p>Recall that a simple linear regression model has the following form:
+<span class="math display">\[
+\hat{y}_i = \beta_0 + \beta_1 x_i 
+\]</span>
+where <span class="math inline">\(x_i\)</span> is the predictor, <span class="math inline">\(\beta_0\)</span> is the unknown regression intercept, <span class="math inline">\(\beta_1\)</span> is the unknown regression slope, and <span class="math inline">\(\hat{y}_i\)</span> is the predicted response given <span class="math inline">\(x_i\)</span>.</p>
+<p>In order to model a binary response variable, we need to introduce <span class="math inline">\(p_i\)</span>, the probability of something happening. For example, this might be the probability of a person wearing a helmet, the probability of a dog being adopted, or the probability of a beer winning an award. Then our logistic regression model has the following form:
+<span class="math display">\[
+\log \left( \dfrac{p_i}{1-p_i} \right) = \beta_0 + \beta_1 x_i .
+\]</span></p>
+<p>Recall that we estimated <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> to characterize the linear relationship between <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> in the simple linear regression setting. In the logistic regression setting, we will estimate <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> in order to understand the relationship between <span class="math inline">\(x_i\)</span> and <span class="math inline">\(p_i\)</span>.</p>
+<p>As a final introductory note, we define the odds as <span class="math inline">\(\dfrac{p_i}{1-p_i}\)</span>.</p>
+</div>
+<div id="fit-a-logistic-regression-model" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Fit a Logistic Regression Model</h3>
+<p>To fit a logistic regression model, we can use the <strong>glm</strong> function:</p>
+<pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>width, <span class="dt">family =</span> binomial, <span class="dt">data =</span> crabs)</code></pre>
+<p>The first input is the regression formula (Response ~ Predictor), the second input indicates we have a binary response, and the third input is the data frame. To find the regression coefficients (i.e. the estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>), we can use the <strong>coef</strong> command</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod)
+<span class="co">## (Intercept)       width </span>
+<span class="co">## -12.3508177   0.4972306</span></code></pre>
+<p>We can now enter these estimates into our logistic regression equation, just as we did in the simple linear regression setting. Our logistic regression equation is
+<span class="math display">\[
+\log \left( \dfrac{p_i}{1-p_i} \right) = -12.3508 + 0.4972 \; \text{width}_i, 
+\]</span>
+where <span class="math inline">\(\text{width}_i\)</span> is the width of a female crab’s carapace shell and <span class="math inline">\(p_i\)</span> is her probability of having one or more satellites.</p>
+</div>
+<div id="interpret-the-model-1" class="section level3">
+<h3><span class="header-section-number">6.3.3</span> Interpret the Model</h3>
+<p>To do some basic interpretation, let’s focus on the predictor’s coefficient: 0.4972. This is a <strong>positive</strong> number. This tells us that wider crabs have <strong>higher</strong> chances of having one or more satellites. If the predictor’s coefficient were <strong>zero</strong>, there would be <strong>no</strong> linear relationship between the width of a female’s shell and her log odds of having one or more satellites. If the predictor’s coefficient were <strong>negative</strong>, then wider crabs would have <strong>lower</strong> chances of having one or more satellites.</p>
+</div>
+<div id="calculate-probabilities" class="section level3">
+<h3><span class="header-section-number">6.3.4</span> Calculate Probabilities</h3>
+<p>Let’s use our model for a female crab with a carapace shell that is 25 centimeters in width. We start by simply substituting this crab’s width into our regression equation:
+<span class="math display">\[\begin{align*}
+\log \left( \dfrac{p_i}{1-p_i} \right) &amp;= -12.3508177 + 0.4972306 \; \text{width}_i \\
+ &amp;= -12.3508177 + 0.4972306 * 25 \\
+ &amp;= 0.0799473.
+\end{align*}\]</span></p>
+<p>Now that you understand the idea of prediction, let’s use our <strong>predict</strong> command, which we learned about in the regression chapter. We can use it for logistic regression. Again, create a data frame with a value for the predictor, and then use the <strong>predict</strong> command. The first input is the model and the second is the new crab’s data frame.</p>
+<pre class="sourceCode r"><code class="sourceCode r">newcrab &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">width =</span><span class="dv">25</span>)
+<span class="kw">predict</span>(mod, newcrab)
+<span class="co">##          1 </span>
+<span class="co">## 0.07994696</span></code></pre>
+<p>We could say that the log odds of a 25 cm female having satellites is about 0.07995, but let’s make this more interpretable to everyday humans by translating this to a probability. We use a little algebra to solve for <span class="math inline">\(p_i\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+\log \left( \dfrac{p_i}{1-p_i} \right) &amp;= 0.0799473 \\
+\Rightarrow \left( \dfrac{p_i}{1-p_i} \right) &amp;= \exp(0.0799473) \\
+\Rightarrow p_i &amp;= \dfrac{\exp(0.0799473)}{1+\exp(0.0799473)} \\
+&amp;= 0.5199762
+\end{align*}\]</span></p>
+<p>Here is our interpretation: the probability of a 25 cm wide female crab having one of more satellites is about 0.51998.</p>
+</div>
+<div id="test-a-regression-coefficient" class="section level3">
+<h3><span class="header-section-number">6.3.5</span> Test a Regression Coefficient</h3>
+<p>Recall that an essential question in regression is “Does this predictor actually have a linear relationship the response?”
+In the context of the crabs, we want to know whether the carapace width really does have a linear relationship with the log odds of satellites.</p>
+<!-- * The null hypothesis is that her carapace width has no linear relationship to her log odds of having satellites.  -->
+<!-- * The alternative hypothesis is that her carapace width has a linear relationship to her log odds of having satellites.  -->
+<!-- Remember: we assume there is *no* relationship until we find evidence that there *is* a relationship. That is, we assume that carapace width is unrelated to the probability of satellites; in order to say the carapace width is related to the probability of satellites, we need evidence. This evidence comes in the form of a statistical test. -->
+<p>Recall the <strong>summary</strong> command, which was introduced in the linear regression setting. We can use it in the logistic regression setting, too. Below is the summary for our crab model.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = y ~ width, family = binomial, data = crabs)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##     Min       1Q   Median       3Q      Max  </span>
+<span class="co">## -2.0281  -1.0458   0.5480   0.9066   1.6942  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##             Estimate Std. Error z value Pr(&gt;|z|)    </span>
+<span class="co">## (Intercept) -12.3508     2.6287  -4.698 2.62e-06 ***</span>
+<span class="co">## width         0.4972     0.1017   4.887 1.02e-06 ***</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 225.76  on 172  degrees of freedom</span>
+<span class="co">## Residual deviance: 194.45  on 171  degrees of freedom</span>
+<span class="co">## AIC: 198.45</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 4</span></code></pre>
+<p>Although the summary provides many details about our model, we focus for now on the p-value in the second row of the coefficients table of the summary output.</p>
+<!-- Recall that our model has two regression coefficients: the intercept $\beta_0$ and the slope $\beta_1$. The first row of the coefficients table displays information for $\beta_0$ and the second row displays information for $\beta_1$. The columns of the coefficients table provide the estimates of our regression coefficients, their standard errors (smaller standard errors indicate higher certainty), test statistics (for testing whether the regression coefficients differ from zero), and the p-values associated with the test statistics. -->
+<!-- In order to answer our question ("Does this predictor actually help us predict the response?"), we focus on $\beta_1$, the regression coefficient on the predictor.   (Recall that if $\beta_1 = 0$, then the log odds have no linear relationship with the predictor.) We find the test results in the two right-most columns and the second row in the the coefficients table of the summary. These entries show us that our test statistic is 4.887 and -->
+<p>Our p-value is 1.02e-06 (or <span class="math inline">\(1.02 \times 10^{-6}\)</span>). We compare our p-value to a threshold (such as <span class="math inline">\(0.05\)</span>); <strong>because our p-value is smaller than our threshold of <span class="math inline">\(.05\)</span>, we have evidence that the log odds of satellites have a significant linear relationship with the carapace width.</strong></p>
+<p>If the p-value were large, we would not have evidence to say that there is a linear relationship between a female’s carapace width and her log odds of having satellites.</p>
+</div>
+</div>
+<div id="half-time-exercises" class="section level2">
+<h2><span class="header-section-number">6.4</span> Half-Time Exercises</h2>
+<div id="female-horseshoe-crab-weight" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Female Horseshoe Crab Weight</h3>
+<p>Continue using the horseshoe crab data to investigate the relationship between a female’s weight and the log odds of her having satellites.</p>
+<ul>
+<li>Create a logistic regression using the female’s weight as the predictor and whether she has satellites as the response variable.</li>
+<li>Write down the regression equation.</li>
+<li>Do heavier females having higher or lower chances of having satellites?</li>
+<li>Consider a female weighing 2000 grams. What is the probability that she has one or more satellites?</li>
+<li>Is there a linear relationship between a female crab’s weight and her log odds of satellites? Find the p-value and compare it to a threshold of <span class="math inline">\(0.05\)</span>.</li>
+</ul>
+</div>
+<div id="boundary-water-blowdown" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Boundary Water Blowdown</h3>
+<p>The Boundary Water Canoe Area experienced wind speeds over 90 miles per hour on July 4, 1999. As a result, many trees were blown down. The data set below contains information on the diameter of each tree (<strong>D</strong>) and whether the tree died (<strong>y</strong>). <strong>y</strong> is 1 if the tree died and 0 if the tree survived. You can learn more about this data set <a href="https://www.rdocumentation.org/packages/alr4/versions/1.0.5/topics/Blowdown">here</a>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">blowdown &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cknudson.com/data/blowdown.csv&quot;</span>)</code></pre>
+<p>Use this data set to understand the relationship between a tree’s diameter and its log odds of death.</p>
+<ul>
+<li>Create a logistic regression using the tree’s diameter the predictor and whether it died as the response variable.</li>
+<li>Write down the regression equation.</li>
+<li>Did thicker trees having higher or lower chances of dying?</li>
+<li>Consider a tree 20 cm in diameter. What is the probability that it died?</li>
+<li>Is there a linear relationship between the tree’s diameter and its log odds of dying? Find the p-value and compare it to the threshold of <span class="math inline">\(0.05\)</span>.</li>
+</ul>
+</div>
+<div id="beer" class="section level3">
+<h3><span class="header-section-number">6.4.3</span> Beer</h3>
+<p>The Minnesota beer data has 44 beers measured on 7 variables:</p>
+<ol style="list-style-type: decimal">
+<li><em>Brewery</em>: Name of the brewery (<strong>factor</strong> with 8 levels)</li>
+<li><em>Beer</em>: Name of the beer (<strong>factor</strong> with 44 levels)</li>
+<li><em>Description</em>: Description of the beer (<strong>factor</strong> with 37 levels)</li>
+<li><em>Style</em>: Style of the beer (<strong>factor</strong> with 3 levels)</li>
+<li><em>ABV</em>: Alcohol by volume (<strong>numeric</strong>)</li>
+<li><em>IBU</em>: International bitterness units (<strong>integer</strong>)</li>
+<li><em>Rating</em>: Beer Advocate rating (<strong>integer</strong>)</li>
+<li><em>Good</em>: 1 if the beer has a score of at least 90 and 0 otherwise</li>
+</ol>
+<p>Data obtained from <a href="http://beeradvocate.com">Beer Advocate</a> and the websites of the eight breweries.</p>
+<ul>
+<li>Use logistic regression to decide whether beers with higher <strong>ABV</strong> (alcohol by volume) are more likely to have a rating of at least 90. (Hint: Use the variable <em>Good</em> as your response.)</li>
+<li>Choose your favorite beer off the list and calculate its probability of having a score of at least 90.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">beer &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cknudson.com/data/MNbeer.csv&quot;</span>)</code></pre>
+</div>
+<div id="state-colors" class="section level3">
+<h3><span class="header-section-number">6.4.4</span> State Colors</h3>
+<p>Recall the election data set introduced by Alicia Johnson. The variable <strong>Red</strong> has been added to the data set to indicate whether the state’s color is red (1 if red, 0 otherwise).</p>
+<ul>
+<li>Is per capita income related to whether a state is red?</li>
+<li>If a state has a high per capita income, is it more or less likely to be red?</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">election &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.macalester.edu/~ajohns24/data/IMAdata1.csv&quot;</span>)
+election<span class="op">$</span>Red &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(election<span class="op">$</span>StateColor <span class="op">==</span><span class="st"> &quot;red&quot;</span>)</code></pre>
+</div>
+</div>
+<div id="half-time-solutions" class="section level2">
+<h2><span class="header-section-number">6.5</span> Half-Time Solutions</h2>
+<div id="crab-weight" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> Crab Weight</h3>
+<p>We create the model and look at the summary to find the p-value for the coefficient on weight The p-value is small (<span class="math inline">\(1.45 \times 10^{-6}\)</span>) so we can conclude that a female crab’s weight <strong>does</strong> have a significant linear relationship with the log odds of her having one or more satellites.</p>
+<pre class="sourceCode r"><code class="sourceCode r">weightmod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>weight, <span class="dt">family =</span> binomial, <span class="dt">data =</span> crabs)
+<span class="kw">summary</span>(weightmod)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = y ~ weight, family = binomial, data = crabs)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##     Min       1Q   Median       3Q      Max  </span>
+<span class="co">## -2.1108  -1.0749   0.5426   0.9122   1.6285  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##               Estimate Std. Error z value Pr(&gt;|z|)    </span>
+<span class="co">## (Intercept) -3.6947264  0.8801975  -4.198 2.70e-05 ***</span>
+<span class="co">## weight       0.0018151  0.0003767   4.819 1.45e-06 ***</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 225.76  on 172  degrees of freedom</span>
+<span class="co">## Residual deviance: 195.74  on 171  degrees of freedom</span>
+<span class="co">## AIC: 199.74</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 4</span></code></pre>
+<p>Now we can use our regression equation to calculate the probability of a 2000 gram female having one or more satellites.</p>
+<pre class="sourceCode r"><code class="sourceCode r">newcrab2000 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">weight =</span> <span class="dv">2000</span>)
+logodds &lt;-<span class="st"> </span><span class="kw">predict</span>(weightmod, newcrab2000)
+<span class="kw">exp</span>(logodds)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(logodds))
+<span class="co">##         1 </span>
+<span class="co">## 0.4838963</span></code></pre>
+<p>The probability of a 2000 gram female having satellites is 0.4838963.</p>
+</div>
+<div id="boundary-water-blowdown-1" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> Boundary Water Blowdown</h3>
+<p>We create the model, isolate the coefficients, and find the summary using the code below.</p>
+<pre class="sourceCode r"><code class="sourceCode r">treemod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>D, <span class="dt">data =</span> blowdown, <span class="dt">family =</span> binomial)
+<span class="kw">coef</span>(treemod)
+<span class="co">## (Intercept)           D </span>
+<span class="co">## -1.70211206  0.09755846</span>
+<span class="kw">summary</span>(treemod)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = y ~ D, family = binomial, data = blowdown)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##     Min       1Q   Median       3Q      Max  </span>
+<span class="co">## -3.6309  -0.9616  -0.7211   1.1495   1.7172  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##              Estimate Std. Error z value Pr(&gt;|z|)    </span>
+<span class="co">## (Intercept) -1.702112   0.082798  -20.56   &lt;2e-16 ***</span>
+<span class="co">## D            0.097558   0.004846   20.13   &lt;2e-16 ***</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 5057.9  on 3665  degrees of freedom</span>
+<span class="co">## Residual deviance: 4555.6  on 3664  degrees of freedom</span>
+<span class="co">## AIC: 4559.6</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 4</span></code></pre>
+<p>First, the coefficient on the diameter is positive. This tells us that larger trees were more likely to die. Moreover, the relationship between a trees diameter and its log odds of death is statistically significant: the p-value is quite small (smaller than <span class="math inline">\(2 \times 10^{-16}\)</span>).</p>
+<p>Finally, the probability of death for a tree that was 20 cm in diameter is calculated below.</p>
+<pre class="sourceCode r"><code class="sourceCode r">newtree &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">D =</span> <span class="dv">20</span>)
+(logodds &lt;-<span class="st"> </span><span class="kw">predict</span>(treemod, newtree))
+<span class="co">##         1 </span>
+<span class="co">## 0.2490571</span>
+<span class="kw">exp</span>(logodds)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(logodds))
+<span class="co">##         1 </span>
+<span class="co">## 0.5619444</span></code></pre>
+</div>
+<div id="beer-1" class="section level3">
+<h3><span class="header-section-number">6.5.3</span> Beer</h3>
+<p>We create the model and look at the summary to find the p-value for the coefficient on ABV. The p-value is small (<span class="math inline">\(0.00747\)</span>) so we can conclude that ABV <strong>does</strong> have a significant linear relationship with the log odds of a beer earning a score of at least 90.</p>
+<pre class="sourceCode r"><code class="sourceCode r">beermod &lt;-<span class="st"> </span><span class="kw">glm</span>(Good <span class="op">~</span><span class="st"> </span>ABV, <span class="dt">family =</span> binomial, <span class="dt">data =</span> beer)
+<span class="kw">summary</span>(beermod)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = Good ~ ABV, family = binomial, data = beer)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##     Min       1Q   Median       3Q      Max  </span>
+<span class="co">## -1.3847  -0.8206  -0.4663   0.7230   2.1320  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##             Estimate Std. Error z value Pr(&gt;|z|)   </span>
+<span class="co">## (Intercept)  -9.7881     3.3959  -2.882  0.00395 **</span>
+<span class="co">## ABV           1.4662     0.5481   2.675  0.00747 **</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 51.564  on 43  degrees of freedom</span>
+<span class="co">## Residual deviance: 42.108  on 42  degrees of freedom</span>
+<span class="co">## AIC: 46.108</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 5</span></code></pre>
+</div>
+<div id="state-colors-1" class="section level3">
+<h3><span class="header-section-number">6.5.4</span> State Colors</h3>
+<p>We create the model and look at the summary to find the p-value for the coefficient on per capita income. The p-value is very small (smaller than <span class="math inline">\(2.2 \times 10^{-16}\)</span>) so we can conclude that per capita income <strong>does</strong> have a significant linear relationship with the log odds of a state being red.</p>
+<pre class="sourceCode r"><code class="sourceCode r">electionmod &lt;-<span class="st"> </span><span class="kw">glm</span>(Red <span class="op">~</span><span class="st">  </span>per_capita_income, <span class="dt">family =</span> binomial, <span class="dt">data =</span> election)
+<span class="kw">summary</span>(electionmod)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = Red ~ per_capita_income, family = binomial, data = election)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##    Min      1Q  Median      3Q     Max  </span>
+<span class="co">## -1.617  -1.146  -0.753   1.157   2.073  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##                     Estimate Std. Error z value Pr(&gt;|z|)    </span>
+<span class="co">## (Intercept)        1.649e+00  1.722e-01   9.575   &lt;2e-16 ***</span>
+<span class="co">## per_capita_income -7.339e-05  7.214e-06 -10.173   &lt;2e-16 ***</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 4352.6  on 3142  degrees of freedom</span>
+<span class="co">## Residual deviance: 4237.1  on 3141  degrees of freedom</span>
+<span class="co">## AIC: 4241.1</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 4</span></code></pre>
+<p>Also, because the coefficient on per capita income is negative, we know that states with <strong>higher</strong> per capita incomes are <strong>less</strong> likely to be red.</p>
+</div>
+</div>
+<div id="beyond-the-basics" class="section level2">
+<h2><span class="header-section-number">6.6</span> Beyond the Basics</h2>
+<div id="interpret-the-model-again" class="section level3">
+<h3><span class="header-section-number">6.6.1</span> Interpret the Model (Again!)</h3>
+<p>We can look beyond just whether the predictor’s coefficient (<span class="math inline">\(\beta_1\)</span>) is positive or negative. Exponentiating both sides of the regression equation produces
+<span class="math display">\[
+\dfrac{p_i}{1-p_i} = \exp\left( \beta_0 + \beta_1 x_i \right) = \exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right).
+\]</span></p>
+<p>To understand the relationship between our predictor and the log odds, let’s see what happens when we increase <span class="math inline">\(x_i\)</span> by one unit. That is, let’s replace <span class="math inline">\(x_i\)</span> with <span class="math inline">\(x_i+1\)</span>.</p>
+<p><span class="math display">\[
+\dfrac{p_i}{1-p_i} =  \exp\left( \beta_0 \right) \exp\left(  \beta_1 (x_i+1) \right) = \exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right)\exp\left(  \beta_1  \right).
+\]</span></p>
+<p>That is, our odds for predictor value <span class="math inline">\(x_i\)</span> are <span class="math inline">\(\exp\left( \beta_0 \right) \exp\left( \beta_1 x_i \right)\)</span> while the odds for predictor value <span class="math inline">\(x_i+1\)</span> are <span class="math inline">\(\exp\left( \beta_0 \right) \exp\left( \beta_1 x_i \right)\exp\left( \beta_1 \right)\)</span>. These two odds differ by a factor of <span class="math inline">\(\exp(\beta_1)\)</span>. That is, the ratio of the two odds is <span class="math inline">\(\exp(\beta_1)\)</span>:
+<span class="math display">\[
+\dfrac{\exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right)\exp\left(  \beta_1  \right)}{\exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right)} = \exp(\beta_1).
+\]</span></p>
+<p>Therefore, we can say that a one unit increase in the predictor is associated with a <span class="math inline">\(\exp(\beta_1)\)</span> multiplicative change in the odds. Let’s try this with the horseshoe crab carapace width model.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(mod))
+<span class="co">##  (Intercept)        width </span>
+<span class="co">## 4.326214e-06 1.644162e+00</span></code></pre>
+<p>A one centimeter increase in carapace width is associated with a 1.64 multiplicative change in the odds of having satellites. Alternatively, imagine two female crabs that have carapace widths that differ by exactly 1 cm. The odds of the larger crab having satellites is approximately 1.64 times the odds of the smaller crab having satellites.</p>
+</div>
+<div id="incorporate-a-categorical-predictor" class="section level3">
+<h3><span class="header-section-number">6.6.2</span> Incorporate a Categorical Predictor</h3>
+<p>Rather than using a quantitative predictor, we can use a categorical predictor. Let’s try using the spine condition in our horseshoe crab data. Crabs were categorized according to whether they had two good spines (<em>good</em>), two worn or broken spines (<em>bad</em>), or one worn/broken spine and one good spine (<em>middle</em>).</p>
+<p>We will fit the model using the following <strong>glm</strong> setup.</p>
+<pre class="sourceCode r"><code class="sourceCode r">spinemod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>spine, <span class="dt">data =</span> crabs, <span class="dt">family =</span> binomial)
+<span class="kw">coef</span>(spinemod)
+<span class="co">##    spinebad   spinegood spinemiddle </span>
+<span class="co">##   0.5955087   0.8602013  -0.1335314</span></code></pre>
+<p>This produces three log odds, one for each group (bad, good, and middle). The coefficients represent the log odds of satellites for each group. This tells us that</p>
+<ul>
+<li>the log odds of satellites for a female with two bad spines is 0.596</li>
+<li>the log odds of satellites for a female with two good spines is 0.86</li>
+<li>the log odds of satellites for a female with one good spine is -0.134</li>
+</ul>
+<p>Again, most people understand probabilities better than odds or log odds, so let’s transform to probabilities:</p>
+<pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="kw">coef</span>(spinemod))
+probs &lt;-<span class="st"> </span>a<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>a)
+probs
+<span class="co">##    spinebad   spinegood spinemiddle </span>
+<span class="co">##   0.6446281   0.7027027   0.4666667</span></code></pre>
+<p>This tells us that</p>
+<ul>
+<li>the probability of satellites for a female with two bad spines is 0.645</li>
+<li>the probability of satellites for a female with two good spines is 0.703</li>
+<li>the probability of satellites for a female with one good spine is 0.467</li>
+</ul>
+<p>If we eliminate the <strong>0+</strong> in the <strong>glm</strong> formula, we create a model with a reference group; this will compare the bad spine group to the other two groups.</p>
+<pre class="sourceCode r"><code class="sourceCode r">spinemod2 &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>spine, <span class="dt">data =</span> crabs, <span class="dt">family =</span> binomial)
+<span class="kw">coef</span>(spinemod2)
+<span class="co">## (Intercept)   spinegood spinemiddle </span>
+<span class="co">##   0.5955087   0.2646926  -0.7290401</span>
+<span class="kw">exp</span>(<span class="kw">coef</span>(spinemod2))
+<span class="co">## (Intercept)   spinegood spinemiddle </span>
+<span class="co">##   1.8139535   1.3030303   0.4823718</span></code></pre>
+<p>This model tells us that</p>
+<ul>
+<li>the odds of satellites for a female with two bad spines is 1.8.</li>
+<li>the odds of satellites for a female with two good spines is 1.3 times the odds of satellites for a female with two bad spines.</li>
+<li>the odds of satellites for a female with one good spine and one bad spine is .48 times the odds of satellites for a female with two bad spines.</li>
+</ul>
+<p>Sometimes people have a hard time interpreting odds ratios below 1. In this case, it is useful to flip the ratio.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">/</span><span class="kw">exp</span>(<span class="kw">coef</span>(spinemod2))
+<span class="co">## (Intercept)   spinegood spinemiddle </span>
+<span class="co">##   0.5512821   0.7674419   2.0730897</span></code></pre>
+<p>Therefore, we can reword the third bullet to the following: the odds of satellites for a female with two bad spines is 2 times the odds of satellites for a female with one bad spine and one good spine.</p>
+</div>
+</div>
+<div id="more-problems" class="section level2">
+<h2><span class="header-section-number">6.7</span> More Problems</h2>
+<div id="interpret-the-slopes" class="section level3">
+<h3><span class="header-section-number">6.7.1</span> Interpret the Slopes</h3>
+<p>Revisit the models you created in the half-time problems and interpret the slopes.</p>
+</div>
+<div id="state-colors-again" class="section level3">
+<h3><span class="header-section-number">6.7.2</span> State Colors Again</h3>
+<p>Return to the election data. Find the probability of a state being red based on its income bracket.</p>
+</div>
+<div id="beer-again" class="section level3">
+<h3><span class="header-section-number">6.7.3</span> Beer Again</h3>
+<p>Return to the beer data. For each style of beer, calculate the probability of receiving a rating of 90 or higher.</p>
+</div>
+</div>
+<div id="more-solutions" class="section level2">
+<h2><span class="header-section-number">6.8</span> More Solutions</h2>
+<div id="interpret-the-slopes-1" class="section level3">
+<h3><span class="header-section-number">6.8.1</span> Interpret the Slopes</h3>
+<div id="crab-weight-1" class="section level4">
+<h4><span class="header-section-number">6.8.1.1</span> Crab Weight</h4>
+<pre class="sourceCode r"><code class="sourceCode r">logodds &lt;-<span class="st"> </span><span class="kw">coef</span>(weightmod)[<span class="dv">2</span>]
+<span class="kw">exp</span>(logodds)
+<span class="co">##   weight </span>
+<span class="co">## 1.001817</span></code></pre>
+<p>A one gram increase in a crab’s weight is associated with a multiplicative change of 1.0018168 in the odds of her having satellites.</p>
+<p>A 100 gram increase in a crab’s weight is associated with a multiplicative change of 1.1990319 in her odds of having satellites.</p>
+</div>
+<div id="boundary-water-blowdown-2" class="section level4">
+<h4><span class="header-section-number">6.8.1.2</span> Boundary Water Blowdown</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(treemod)[<span class="dv">2</span>])
+<span class="co">##        D </span>
+<span class="co">## 1.102476</span></code></pre>
+<p>A one centimeter increase in a tree’s diameter was associated with a 1.1024759 multiplicative change in the odds of it blowing down.</p>
+<p>A ten centimeter increase in a tree’s diameter was associated with a 2.6527174 multiplicative change in the odds of it blowing down.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(treemod)[<span class="dv">2</span>]<span class="op">*</span><span class="dv">10</span>)
+<span class="co">##        D </span>
+<span class="co">## 2.652717</span></code></pre>
+</div>
+<div id="beer-2" class="section level4">
+<h4><span class="header-section-number">6.8.1.3</span> Beer</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(beermod)[<span class="dv">2</span>])
+<span class="co">##      ABV </span>
+<span class="co">## 4.332636</span></code></pre>
+<p>A one percentage point increase in a beer’s ABV is associated with a 1.1024759 multiplicative change in its log odds of having a rating of 90 or higher.</p>
+</div>
+<div id="state-colors-2" class="section level4">
+<h4><span class="header-section-number">6.8.1.4</span> State Colors</h4>
+<p>We could look at a one dollar increase in per capita income, but that is not very useful because a dollar is not very meaningful. Let’s instead look at a one thousand dollar increase in per capita income.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>((<span class="kw">coef</span>(electionmod)[<span class="dv">2</span>]<span class="op">*</span><span class="dv">1000</span>))
+<span class="co">## per_capita_income </span>
+<span class="co">##          0.929239</span></code></pre>
+<p>A one thousand dollar increase in a state’s average per capita income is associated with a multiplicative change of 0.929239
+in its odds of being red.</p>
+</div>
+</div>
+<div id="state-colors-again-1" class="section level3">
+<h3><span class="header-section-number">6.8.2</span> State Colors Again</h3>
+<pre class="sourceCode r"><code class="sourceCode r">lowhighmod &lt;-<span class="st"> </span><span class="kw">glm</span>(Red <span class="op">~</span><span class="st"> </span>IncomeBracket, <span class="dt">data =</span> election, <span class="dt">family =</span> binomial)
+<span class="kw">exp</span>(<span class="kw">coef</span>(lowhighmod))
+<span class="co">##      (Intercept) IncomeBracketlow </span>
+<span class="co">##        0.6197836        1.8217084</span></code></pre>
+<p>The odds of a high income state being red is about .62. The odds of a low income state being red are about 1.82 times the odds of a high income state being red. That is, low income states are more likely to be red than high income states.</p>
+</div>
+<div id="beer-again-1" class="section level3">
+<h3><span class="header-section-number">6.8.3</span> Beer Again</h3>
+<pre class="sourceCode r"><code class="sourceCode r">beermod2 &lt;-<span class="st"> </span><span class="kw">glm</span>(Good <span class="op">~</span><span class="st"> </span><span class="dv">0</span><span class="op">+</span><span class="st"> </span>Style, <span class="dt">data=</span>beer, <span class="dt">family =</span> binomial)
+logodds &lt;-<span class="st"> </span><span class="kw">coef</span>(beermod2)
+probs &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">exp</span>(logodds)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(logodds)),<span class="dv">3</span>)
+probs
+<span class="co">##   StyleAle   StyleIPA StyleLager </span>
+<span class="co">##      0.278      0.412      0.000</span></code></pre>
+<p>Ales have a 0.278 probability of having a rating of 90 or higher.</p>
+<p>IPAs have a 0.412 probability of having a rating of 90 or higher.</p>
+<p>The poor lagers have no chance of having a rating of 90 or higher. This is just based on the data in our data set. Surely if we looked at ALL lagers all over the world, we’d eventually find
+one that deserves a rating of 90 or higher.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="linear-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"depth": 2,
+"scroll_highlight": true
+},
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
