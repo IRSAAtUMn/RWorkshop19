@@ -19,7 +19,7 @@
 
 **A not-so-great workflow**
 
-While R scripts contain all the R code you produce in a format that can be easily re-run, they do not include the output or results of your analysis. Comments can be used to describe reactions or intepretations of results, but they are not the best way to present this interpretation in a readable way. 
+While R scripts contain all the R code you produce in a format that can be easily re-run, they do not include the output or results of your analysis. Comments can be used to describe reactions or interpretations of results, but they are not the best way to present this interpretation in a readable way. 
 
 \
 
@@ -189,7 +189,7 @@ There are many other adjustments you can make to the document. The [Definitive G
 
 ## Markdown
 
-Markdown is an easy to use text formating language that can be converted to HTML. The markdown portion of the document is where you add in headings, narrative information about the analysis, and any interpretations. 
+Markdown is an easy to use text formatting language that can be converted to HTML. The markdown portion of the document is where you add in headings, narrative information about the analysis, and any interpretations. 
 
 
 **Headings**
@@ -211,7 +211,7 @@ Try it - Add a new first and second level heading to your example R Markdown fil
 \
 \
 
-**Text formating**
+**Text formatting**
 
 For plain text, just type as is. 
 
