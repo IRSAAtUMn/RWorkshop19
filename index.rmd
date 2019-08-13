@@ -86,11 +86,13 @@ Welcome to IRSA's "Introduction to Reproducible Data Science with R"!  As you ge
 
 1. Introduce yourself to & meet the other students at your table.  Though workshop helpers will be floating around the room, we encourage you to support one another as you learn R.    
 
-2. Open the workshop manual: https://irsaatumn.github.io/RWorkshop19/    
+2. Ensure you have completed the steps in the Participant checklist: https://z.umn.edu/Rworkshop19-checklist
 
-3. Open RStudio.    
+3. Open the workshop manual: https://irsaatumn.github.io/RWorkshop19/    
 
-4. Within RStudio, type the following into the console (lower left panel):
+4. Open RStudio.    
+
+5. Within RStudio, type the following into the console (lower left panel):
 
     ```{r eval = FALSE}
     library("rmarkdown")

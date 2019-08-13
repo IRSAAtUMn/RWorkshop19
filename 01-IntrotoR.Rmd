@@ -229,7 +229,7 @@ my result <- 2 + 3^2
 
 **Functions**
 
-R also has built in *functions* that take in *arguements* and return an output: `function(arguments)`. Arugments can be objects, numbers, or text. 
+R also has built in *functions* that take in *arguments* and return an output: `function(arguments)`. Arguments can be objects, numbers, or text. 
 
 ```{r, eval=FALSE}
 sqrt(9)
