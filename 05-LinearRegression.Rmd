@@ -42,7 +42,7 @@ R's **lm** (linear model) function will be the primary tool used in the chapter.
 
 ## Visualize the Data
 
-Recall the bike-share data from the chapter on data visualization.  Riding on a windy day can be challenging, but is it challenging enough that it deters people from taking the bikes out for a spin? Let's start by visualizing the data. Since the wind-speed is the predictor, we put it on the x-axis. Let's use the number of registered riders as the response variable. 
+Recall the bike-share data from the chapter on data visualization.  Riding on a windy day can be challenging, but is it actually associated with fewer registered riders? Let's start by visualizing the data. Since the wind-speed is the predictor, we put it on the x-axis. Let's use the number of registered riders as the response variable. 
 
 ```{r}
 library(ggplot2)
@@ -51,7 +51,7 @@ ggplot(bikes, aes(y = riders_registered, x = windspeed)) +
     geom_point()
 ```
 
-This plot doesn't provide a clear answer, but we can dig in with regression. Our goal is to fit a line to characterize this linear relationship between the number of registered riders and the windspeed.
+There may be a slight trend, but this plot doesn't provide a clear answer, but we can dig in with regression. Our goal is to fit a line to characterize this linear relationship between the number of registered riders and the windspeed.
 
 
 ## Notation and Setup
@@ -72,7 +72,7 @@ We estimate $\beta_0$ and $\beta_1$ using data. This estimation allows us to cha
 
 Let's write the regression equation for our bike-share example. The variable name "number of registered riders" is a bit long, so let's shorten it down to "nriders." The number of registered riders is our response variable, so we put that on the left-hand side of the equality. The windspeed is our predictor, so we write our regression equation as follows: 
 
-\[\widehat{nriders}_i = \beta_0 + \beta_1 windspeed_i .
+\[\widehat{\text{nriders}}_i = \beta_0 + \beta_1 \text{windspeed}_i .
 \]
 
 Our goal is to use the bike-share data set to estimate $\beta_0$ and $\beta_1$.
@@ -118,7 +118,7 @@ Finally, let's look at the y-intercept. The y-intercept is the value of the line
 ### The Type-It-In Method
 Let's use our model to predict the number of riders on a day with 15 mph winds. All we need to do is plug 15mph into the variable windspeed in our regression equation
 
-$\hat{\text{nriders}}_i = 4490.10  + -65.34  \; \text{windspeed}_i = 4490.10  + -65.34 * 15 = 3510$. 
+$\widehat{\text{nriders}}_i = 4490.10  + -65.34  \; \text{windspeed}_i = 4490.10  + -65.34 * 15 = 3510$. 
 
 ```{r}
 4490.10  + -65.34 * 15
@@ -127,7 +127,7 @@ Thus, we predict 3510 riders on a day with 15mph winds.
 
 ### More Reproducible Methods
 
-You can do sums in R's console, but a safer (more reproducible) method is to take advantage of some of R's functions, such as  **predict**. Before you can use **predict**, you need to create a new data frame with the predictor value. We want to predict for a windspeed of 15 mph, so we specify that in our data frame.
+You can certainly add numbers in R's console, but a safer (more reproducible) method is to take advantage of some of R's functions, such as  **predict**. Before you can use **predict**, you need to create a new data frame with the predictor value. We want to predict for a windspeed of 15 mph, so we specify that in our data frame.
 ```{r}
 new_windspeed <- data.frame(windspeed = 15 )
 new_windspeed
@@ -160,14 +160,24 @@ As a final note, the p-value in the last line matches a p-value in the second ro
 
 ## Exercises
 
-All of your practice problems use the bechdel data.
+The first two practice problems uses the bike share data. The last two practice problems use the bechdel data.
 
 ```{r}
 library(fivethirtyeight)
 data(bechdel)
 ```
 
-### Problem 1 
+
+### Problem 1
+
+Find the linear relationship between the perceived temperature and the number of registered riders. Then predict the number of riders on a day that feels like 80 degrees F.
+
+### Problem 2 
+
+
+Find the linear relationship between the humidity and the number of total riders. Then predict the total number of riders when humidity is at .5 (50 percent).
+
+### Problem 3
 
 Use linear regression to predict worldwide (international) gross profits based on domestic gross profits. Use the 2013 adjusted sales. Given the domestic box office gross sales for __12 Years a Slave__, predict the movie's international gross sales. Here's the domestic gross for __12 Years a Slave__ in 2013 dollars:
 
@@ -176,15 +186,73 @@ bechdel[3,"domgross_2013"]
 ```
 
 
-### Problem 2
+### Problem 4
 
 The `intgross` and `intgross_2013` variables represent the worldwide gross profits of films. To find the non-US (ie foreign) gross profits, you can subtract the domestic gross profits from the international gross profits. Do this (that is, use the **mutate** function) and use linear regression to predict the non-US (foreign) gross profits for __12 Years a Slave__ based on the film's domestic gross profits. 
 
 
+
 ## Solutions
 
-
 ### Problem 1
+
+Start with data visualization.
+```{r}
+ggplot(bikes, aes(y = riders_registered, x = temp_feel)) + 
+    geom_point()
+```
+
+
+Next, create the regression model.
+
+```{r}
+biketemp <- lm(riders_registered ~ temp_feel, data = bikes)
+coef(biketemp)
+```
+Then, write the regression equation.
+\[
+\widehat{\text{riders}}_i = -667.91568 + 57.89236 \, \text{temp}_i 
+\]
+
+For every degree increase in temperature (in F), we expect about 58 additional registered riders. Now, let's predict the number of registered riders for a day that feels like 80 degrees.
+
+
+```{r}
+eighty <- data.frame(temp_feel = 80)
+predict(biketemp, eighty )
+```
+We expect about `r round(predict(biketemp, eighty) )` riders.
+
+
+### Problem 2
+Start with data visualization.
+```{r}
+ggplot(bikes, aes(y = riders_total, x = humidity)) + 
+    geom_point()
+```
+There may be a downward trend, but there's a lot of variability.
+
+Next, create the regression model.
+
+```{r}
+bikehumid <- lm(riders_total ~ humidity, data = bikes)
+coef(bikehumid)
+```
+Then, write the regression equation.
+\[
+\widehat{\text{riders}}_i = 5363.986 + -1369.081 \, \text{humidity}_i 
+\]
+
+We need to be a little careful with the interpretation here, because humidity values are between 0 and 1. We can't increase humidity by an entire unit! Let's increase humidity by .1 (meaning 10 percentage points. A 10 percentage point increase in humidity is associated with  `r round(abs(.1 * coef(bikehumid)[2]))` fewer total riders.
+
+
+```{r}
+newdf <- data.frame(humidity = .50)
+predict(bikehumid, newdf )
+```
+We expect about `r round(predict(biketemp, eighty) )` riders. To be safe, check this number on your plot to make sure that you're getting something reasonable.
+
+### Problem 3
 
 Begin by visualizing the data:
 
@@ -223,7 +291,7 @@ twelve <- bechdel[3, "domgross_2013"]
 predict(moviemod, twelve )
 ```
 
-### Problem 2 
+### Problem 4 
 
 Begin by creating the new variable.
 ```{r}
