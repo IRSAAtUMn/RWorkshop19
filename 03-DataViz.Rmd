@@ -2,13 +2,44 @@
 
 *Author: Alicia Johnson*
 
-<!-- add chapter 0 on getting set up / make sure packages are installed? -->
-<!-- has filter been defined?  is dplyr installed? -->
-<!-- swap subset for filter?! -->
+
+\
+\
+
+
+
+
+## Getting started {-}
+
+As you get settled in, please open a new Rmd (R markdown document) and prepare the data:
+
+- __Import__ the `US_births_2000_2014` data in the `fivethirtyeight package`:    
+    ```{r}
+    library(fivethirtyeight)
+    data("US_births_2000_2014")
+    ```
+
+- __Load__ the `ggplot2` and `dplyr` packages:    
+    ```{r}
+    library(ggplot2)  # for visualizing data
+    library(dplyr)    # for transforming data
+    ```
+
+- In our analysis, we'll focus in on births in 2014.  Use the following syntax to define this dataset (we'll discuss this syntax in the next module):    
+    ```{r}
+    only_2014 <- US_births_2000_2014 %>% 
+      filter(year == 2014)
+    ```    
+
 
 
 \
 \
+\
+\
+
+
+
 
 
 ## Goal: Understanding Through Visualizations
@@ -31,31 +62,29 @@ In this module we'll focus on the __"Visualise"__ step in the data science workf
 
 \
 \
+\
+\
 
 
+__Motivation__
 
-Reconsider and __import__ the `US_births_2000_2014` data in the `fivethirtyeight package`:
+We investigated the basic structure of the __tidy__ births data set in the previous activity:
 
-```{r}
-library(fivethirtyeight)
-data("US_births_2000_2014")
+\
 
-# Give the data a shorter nickname
-birth_data <- US_births_2000_2014
-```
-
+    
 ```{r echo=FALSE}
-DT::datatable(birth_data, options = list(pageLength = 5))
+DT::datatable(US_births_2000_2014, options = list(pageLength = 5))
 library(gridExtra)
 ```
 
 \
 \
 \
-\
 
 
-We investigated the basic structure of this __tidy__ data set in the previous activity.  Now we can start to ask some __research questions__ to better __understand__ the data:    
+Now we can start to ask some __research questions__ to better __understand__ the data:
+
 
 - What's the _typical_ number of births per day?    
 - To what degree do the number of births _vary_ from day to day?    
@@ -84,26 +113,14 @@ __Visualizing__ the data is the first natural step in answering these questions.
 
 ## ggplot
 
-We'll construct visualizations using the `ggplot` function in RStudio.  Though the `ggplot` learning curve can be steep, its "grammar" is intuitive and generalizable once mastered.  The `ggplot` plotting function is stored in the `ggplot2` package: 
-
-\ 
-\ 
-
-
-```{r eval=FALSE}
-library(ggplot2)
-```
-
-```{r echo=FALSE}
-suppressPackageStartupMessages(library(ggplot2))
-```
-
-
-The best way to learn about `ggplot` is to just play around.  Don't worry about memorizing the syntax.  Rather, focus on the *patterns* and *potential* of their application.  There's a helpful cheat sheet for future reference:
+We'll construct visualizations using the `ggplot()` function in the `ggplot2` package.  Though the `ggplot()` learning curve can be steep, its "grammar" is intuitive and generalizable once mastered.  The best way to learn about `ggplot()` is to just play around.  __Don't worry about memorizing the syntax.__  Rather, focus on the *patterns* and *potential* of their application.  There's a helpful cheat sheet for future reference:
 
 <center>
 [**GGPLOT CHEAT SHEET**](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
 </center>
+
+
+
 
 
 \
@@ -129,34 +146,29 @@ Our primary variable of interest in the birthday data is the __quantitative__ `b
 \
 
 
+
+
+
 ### Histograms
 
-A **histogram** is constructed by (1) dividing up the observed range of the variable into 'bins' of equal width; and (2) counting up the number of cases that fall into each bin.  Try out the code below. 
+A **histogram** is constructed by: (1) dividing up the observed range of the variable into 'bins' of equal width; and (2) counting up the number of cases that fall into each bin.  Try out the code below. 
 
-```{r echo = FALSE}
-only_2014 <- subset(birth_data, year == 2014)
-```
 
 
 \
 
 
 1. __Construct a histogram for the 2014 `births`__    
-    Try out the code below that builds up from a simple to a customized histogram. At each step determine how each piece of code contributes to the plot.        
+    Try out the code below that builds up from a simple to a customized histogram. At each step determine how each piece of code contributes to the plot and, for future reference, record this in a `#` comment.          
     ```{r eval=FALSE}
-    # Focus first on just the 2014 data
-    library(dplyr)
-    only_2014 <- birth_data %>% 
-      filter(year == 2014)
-    
-    # Set up a plotting frame
+    # ???
     ggplot(only_2014, aes(x = births))
     
-    # Add a histogram layer
+    # ???
     ggplot(only_2014, aes(x = births)) +
       geom_histogram()
     
-    # Change the border colors
+    # ???
     ggplot(only_2014, aes(x = births)) +
       geom_histogram(color = "white") 
     ```
@@ -200,7 +212,7 @@ only_2014 <- subset(birth_data, year == 2014)
 
 
 4. __You try__    
-    Construct a histogram of `births` using the entire `birth_data` which spans from 2000 to 2014. How, if at all, do the trends and variability in `births` across all of these years compare to those in 2014 alone?
+    Construct a histogram of `births` using the entire `US_births_2000_2014` which spans from 2000 to 2014. How, if at all, do the trends and variability in `births` across all of these years compare to those in 2014 alone?
 
     
     
@@ -252,11 +264,12 @@ A **density plot** is essentially a smooth version of the histogram.  Instead of
 
 
 5. __Construct a density plot for the 2014 `births`__    
+    Take note of what each step does.    
     ```{r eval=FALSE}
-    # Set up the plotting frame
+    # ???
     ggplot(only_2014, aes(x = births))
     
-    # Add a density curve
+    # ???
     ggplot(only_2014, aes(x = births)) +
         geom_density()
     ```
@@ -301,8 +314,22 @@ grid.arrange(g1,g2,ncol=2)
 \
 
 
+### Pause
+
+We'll move onto the next section together.  If you finish early, take this time to revisit the `ggplot()` syntax.  Write out the common steps / patterns utilized in building a `ggplot`.    
 
 
+
+
+
+\  
+\
+\
+\
+\
+\
+\
+\
 
 ## Visualizing relationships
 
@@ -318,14 +345,12 @@ DT::datatable(head(only_2014), options = list(pageLength = 6))
 \
 
 
+7. __Pause and think__    
+    We saw some goofy patterns in the `births` data.  Perhaps this might be explained by day of year, month, or day of week.  However, before constructing graphics of the relationships among these variables, we need to understand what features these graphics should have.  Challenge yourself to think about how we might visualize the relationships among the following sets of variables:
 
-We saw some goofy patterns in the `births` data.  Perhaps this might be explained by day of year, month, or day of week.  However, before constructing graphics of the relationships among these variables, we need to understand what features these graphics should have.  Challenge yourself to think about how we might visualize the relationships among the following sets of variables:
-
-- `births` vs `date`
-
-- `births` vs `day_of_week`
-
-- `births` vs `date` *and* `day_of_week` (in 1 plot)
+    - `births` vs `date`    
+    - `births` vs `day_of_week`    
+    - `births` vs `date` *and* `day_of_week` (in 1 plot)
 
 
 
@@ -341,7 +366,7 @@ We saw some goofy patterns in the `births` data.  Perhaps this might be explaine
 
 
 
-7. **Scatterplots of 2 quantitative variables**    
+8. **Scatterplots of 2 quantitative variables**    
     Let's start by visualizing the relationship between the number of daily `births` and the date or day of year for the 2014 births data.  We can think of both as _quantitative variables_.  In order to visualize their numerical scales, both variables need an axis.  On these axes, we can represent each row (day) by a dot.   
     
     
@@ -360,8 +385,8 @@ We saw some goofy patterns in the `births` data.  Perhaps this might be explaine
 
 
 
-8. __You try__    
-    Construct a scatterplot of `births` vs `date` using the 2000-2014 `birth_data`.    
+9. __You try__    
+    Construct a scatterplot of `births` vs `date` using the 2000-2014 `US_births_2000_2014`.    
     
 
 \
@@ -369,8 +394,9 @@ We saw some goofy patterns in the `births` data.  Perhaps this might be explaine
 
 
 
-9. __Examine the scatterplots__
-    - Do you observe any _s(easonal_ trends?  If so, at what time of year do `births` tend to be the highest?  The lowest?    
+10. __Examine the scatterplots__
+    - Do you observe any _seasonal_ trends?  If so, at what time of year do `births` tend to be the highest?  The lowest?    
+    - Do you observe any birth trends across 2000 to 2014?  When were the most babies born?  The fewest?    
     - Any other strange patterns?  What do you think might explain these patterns?    
 
 
@@ -379,7 +405,7 @@ We saw some goofy patterns in the `births` data.  Perhaps this might be explaine
 
 
 
-10. __Visualize the trend__    
+11. __Visualize the trend__    
     Finally, we can add a visual summary of the trend in `births` by date.  Explain why this isn't very helpful in this particular example.    
     
     ```{r eval=FALSE}
@@ -404,7 +430,7 @@ In summary:
 g1=ggplot(only_2014, aes(y=births, x=date))
 g2=ggplot(only_2014, aes(y=births, x=date)) +
     geom_point()
-g3=ggplot(birth_data, aes(y=births, x=date)) +
+g3=ggplot(US_births_2000_2014, aes(y=births, x=date)) +
     geom_point()
 g4=ggplot(only_2014, aes(y=births, x=date)) +
     geom_point() + 
@@ -432,8 +458,8 @@ Next, consider the relationship between `births` (quantitative) and `day_of_week
 \
 
 
-11. __Construct side-by-side plots__    
-    Again focus on the general patterns in the syntax and how we've changed the earlier code.    
+12. __Construct side-by-side plots__    
+    Again focus on the general patterns in the syntax and how we've changed the earlier code.       
     ```{r eval=FALSE}
     # Density plots by group
     ggplot(only_2014, aes(x = births, fill = day_of_week)) +
@@ -454,7 +480,7 @@ Next, consider the relationship between `births` (quantitative) and `day_of_week
 \
 
 
-12. __Interpreting the side-by-side plots__    
+13. __Interpreting the side-by-side plots__    
     - What do the side-by-side plots reveal about birth patterns?    
     - Which day tends to see the fewest births?  The greatest?    
     - There are some outliers here.  What do you suspect explains these outliers?
@@ -487,7 +513,7 @@ grid.arrange(g1,g2,g3,ncol=3)
 ### Quantitative vs quantitative vs categorical    
 
 
-13. __Three variables__    
+14. __Three variables__    
     If `day_of_week` and `date` both explain some of the variability in `births`, why not include both in our analysis?!  Let's.  Note how the code changes.
 
     ```{r eval = FALSE}
@@ -497,7 +523,7 @@ grid.arrange(g1,g2,g3,ncol=3)
     
     # births vs day_of_week
     ggplot(only_2014, aes(x = births, fill = day_of_week)) +
-      geom_density(alpha=0.5)
+      geom_density(alpha = 0.5)
     
     # births vs date AND day_of_week
     ggplot(only_2014, aes(y = births, x = date, color = day_of_week)) +
@@ -509,16 +535,16 @@ grid.arrange(g1,g2,g3,ncol=3)
 \
 
 
-14. __Visualize the trend__    
+15. __Visualize the trend__    
     Finally, let's visualize the birth trends from 2000-2014.    
     ```{r eval = FALSE}
     # add trend lines
-    ggplot(birth_data, aes(y = births, x = date, color = day_of_week)) +
+    ggplot(US_births_2000_2014, aes(y = births, x = date, color = day_of_week)) +
       geom_point() +
       geom_smooth()
     
     # change the smoothness 
-    ggplot(birth_data, aes(y = births, x = date, color = day_of_week)) +
+    ggplot(US_births_2000_2014, aes(y = births, x = date, color = day_of_week)) +
       geom_point() +
       geom_smooth(span = 0.1)
     ```
@@ -531,7 +557,7 @@ grid.arrange(g1,g2,g3,ncol=3)
 
 
 
-14. __Summarize__    
+16. __Summarize__    
     Summarize what you've learned about birth patterns.    
     - In what month do the most babies tend to be born?  The least?    
     - On what day of week do the most babies tend to be born?  The least?    
@@ -553,6 +579,13 @@ grid.arrange(g1,g2,g3,ncol=3)
 
 
 ## Exercises
+
+__NOTE:__ Please do not feel pressured to blaze through these exercises.  There are more here than you will finish during the workshop -- this is simply meant to give you more to practice when you leave.      
+
+
+\
+\
+
 
 In the exercises, you'll return to the Bechdel test data:
 
@@ -617,6 +650,8 @@ dim(bechdel)
         ```{r eval = FALSE}
         ggplot(___, aes(x = ___, y = ___)) + 
           ___()
+        ggplot(___, aes(x = ___, fill = ___)) + 
+          ___()
         ```
     
 
@@ -638,12 +673,18 @@ dim(bechdel)
 \
 
 
-5. __Extra: identify the outliers__    
-    By now, you've seen some outliers in your visualizations.  Try to identify these by subsetting the `bechdel` data.    
+5. __Learn something new__    
+    It's impossible to memorize everything you'll ever need to know about `ggplot()`.  Luckily, there's a strong online community of R users (eg: stackoverflow).  Utilize a web search to make the following plot changes.    
     
+    a. Add more meaningful axis labels and a title to your plot of `domgross_2013` vs `budget_2013`.  For example, change `budget_2013` to "budget (in 2013 dollars)".  Example search term: "change axis labels ggplot2 stack overflow".    
     
+    b. In the same plot, change the points from black to red.  Example search term: change geom_point color ggplot2    
+    
+
+
 \
 \
+
 
 
 6. __Extra visualization practice__    
@@ -677,9 +718,23 @@ dim(bechdel)
     \
     \
     
-    Utilize visualizations to better understand how `riders_registered` might depend upon `windspeed`, `temp_feel`, `weekend`, or `season`.
+    Utilize visualizations to better understand how `riders_registered` might depend upon `windspeed`, `temp_feel`, `weekend`, or `season`.  For example, consider the following prompts.    
+        
+    
+    - Examine the following relationships.  Which of the variables appears to be the best predictor of the number of riders?    
+        - `riders_registered` vs `windspeed`    
+        - `riders_registered` vs `temp_feel`    
+        - `riders_registered` vs `weekend`    
+        - `riders_registered` vs `season`.    
+    
+    - Examine how `riders_registered` depends upon `windspeed` and `weekend`.    
+    
+    - __Learn something new:__  How can you examine the relationship between `riders_registered` and _two_ categorical variables: `season` and `weekend`?    
+    
+    - __Learn something new:__  How can you examine the relationship between `riders_registered` and _two_ quantitative variables: `windspeed` and `temperature`?    
     
     
+        
 
     
 
@@ -843,17 +898,18 @@ dim(bechdel)
     ```   
 
 
-5. For example, we can i.d. the film that made the most money:    
-    ```{r}
-    library(dplyr)
-    bechdel %>% 
-      filter(domgross_2013 > 1500000000)
-    ```
+5.  Here are some resources:    
+    a. https://stackoverflow.com/questions/10438752/adding-x-and-y-axis-labels-in-ggplot2    
+    b. https://ggplot2.tidyverse.org/reference/geom_point.html    
     
 
+ 
+ 
 6. Choose your own adventure!  Here are some ideas:
 
     ```{r eval = FALSE}
+    bikes <- read.csv("https://www.macalester.edu/~dshuman1/data/155/bike_share.csv")
+    
     # rides vs windspeed
     ggplot(bikes, aes(y = riders_registered, x = windspeed)) + 
         geom_point() + 

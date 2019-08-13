@@ -47,9 +47,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.7/datatables.js"></script>
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
@@ -75,7 +75,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -156,11 +156,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="reproducible-reports-with-r-markdown.html"><a href="reproducible-reports-with-r-markdown.html#working-in-r-markdown"><i class="fa fa-check"></i><b>2.5</b> Working in R Markdown</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Understanding data: Visualization</a><ul>
+<li class="chapter" data-level="" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#getting-started-1"><i class="fa fa-check"></i>Getting started</a></li>
 <li class="chapter" data-level="3.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#goal-understanding-through-visualizations"><i class="fa fa-check"></i><b>3.1</b> Goal: Understanding Through Visualizations</a></li>
 <li class="chapter" data-level="3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#ggplot"><i class="fa fa-check"></i><b>3.2</b> ggplot</a></li>
 <li class="chapter" data-level="3.3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#univariate-visualizations"><i class="fa fa-check"></i><b>3.3</b> Univariate visualizations</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#histograms"><i class="fa fa-check"></i><b>3.3.1</b> Histograms</a></li>
 <li class="chapter" data-level="3.3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#density-plots"><i class="fa fa-check"></i><b>3.3.2</b> Density plots</a></li>
+<li class="chapter" data-level="3.3.3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#pause"><i class="fa fa-check"></i><b>3.3.3</b> Pause</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#visualizing-relationships"><i class="fa fa-check"></i><b>3.4</b> Visualizing relationships</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#quantitative-vs-quantitative"><i class="fa fa-check"></i><b>3.4.1</b> Quantitative vs quantitative</a></li>
@@ -296,7 +298,7 @@ source: <a href="http://r4ds.had.co.nz/">Wickham &amp; Grolemund: R for Data Sci
 bikes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.macalester.edu/~dshuman1/data/155/bike_share.csv&quot;</span>)
 <span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_registered, <span class="dt">x =</span> windspeed)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-115-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-113-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This plot doesn’t provide a clear answer, but we can dig in with regression. Our goal is to fit a line to characterize this linear relationship between the number of registered riders and the windspeed.</p>
 </div>
 <div id="notation-and-setup" class="section level2">
@@ -332,7 +334,7 @@ where <span class="math inline">\(x_i\)</span> is the quantitative predictor, <s
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_registered, <span class="dt">x =</span> windspeed)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre>
-<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-118-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-116-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can see the line is downward sloping. We’ll discuss that in a moment.</p>
 </div>
 <div id="interpret-the-model" class="section level2">
@@ -419,7 +421,7 @@ new_windspeed
 <p>Begin by visualizing the data:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> intgross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
-<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-125-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-123-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Next, create the regression model.</p>
 <pre class="sourceCode r"><code class="sourceCode r">moviemod &lt;-<span class="st"> </span><span class="kw">lm</span>(intgross_<span class="dv">2013</span> <span class="op">~</span><span class="st"> </span>domgross_<span class="dv">2013</span>, <span class="dt">data =</span> bechdel)
 <span class="kw">coef</span>(moviemod)
@@ -434,7 +436,7 @@ new_windspeed
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> intgross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre>
-<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-127-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-125-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now, let’s predict for <strong>12 Years a Slave</strong>. The domestic gross for this movie was 53107035. Plugging that value into the regression equation produces the predicted worldwide gross profits in US dollars:</p>
 <pre class="sourceCode r"><code class="sourceCode r">twelve &lt;-<span class="st"> </span>bechdel[<span class="dv">3</span>, <span class="st">&quot;domgross_2013&quot;</span>]
 <span class="kw">predict</span>(moviemod, twelve )
@@ -450,7 +452,7 @@ bechdel &lt;-<span class="st"> </span>bechdel <span class="op">%&gt;%</span>
 <p>Second, visualize the data.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> foregross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">geom_point</span>() </code></pre>
-<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-130-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-128-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Third, create the regression model.</p>
 <pre class="sourceCode r"><code class="sourceCode r">foremod &lt;-<span class="st"> </span><span class="kw">lm</span> (foregross_<span class="dv">2013</span> <span class="op">~</span><span class="st"> </span>domgross_<span class="dv">2013</span>, <span class="dt">data =</span> bechdel)
 <span class="kw">coef</span>(foremod)

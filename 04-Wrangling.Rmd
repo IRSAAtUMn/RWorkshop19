@@ -1,9 +1,6 @@
 # Understanding data: Transformations
 
 
-<!-- take subsetting out of module 1? -->
-
-
 *Author: Alicia Johnson*
 
 
@@ -35,9 +32,14 @@ In this module we'll focus on the __"Transform"__ step within the data science w
 
 In the previous modules, we imported and visualized tidy data.  These visualizations provided us with important insights into the patterns in our data.  Data transformations are also fundamental to understanding data: 
 
-- We can utilize data transformations to: define & explore new variables; filter & focus on subsets of the data; reorder the data.
+- We can utilize __data transformations__ to:    
+    - define & explore new variables;    
+    - filter & focus on subsets of the data; and    
+    - reorder the data.
 
-- Simple numerical summaries calculated via data transformations complement, formalize, and support the patterns observed in our visual summaries.
+- Simple numerical __summaries__ calculated via data transformations complement, formalize, and support the patterns observed in our visual summaries.
+
+
 
 
 \
@@ -79,6 +81,10 @@ In the `dplyr` grammar, there are 5 _verbs_ (actions):
 - `select()` = take a subset of _columns_    
 - `mutate()` = create a new variable, ie. _column_    
 - `summarize()` = calculate a numerical summary of a variable, i.e. _column_
+
+
+\
+\
 
 
 The general syntax for applying these verbs is below, where we call "`%>%`" a "pipe":
@@ -175,6 +181,10 @@ candy <- candy_rankings
       arrange(desc(winpercent)) %>% 
       head() 
     
+    # Store the rearranged dataset
+    candy_arranged <- candy %>% 
+      arrange(winpercent)
+    
     # You try: arrange from least to most expensive 
     
     
@@ -222,7 +232,7 @@ candy <- candy_rankings
 
 
 5. __Combining `arrange()` and `filter()`__    
-    We can perform multiple sequential `arrange()` and `filter()` operations.    
+    We can perform multiple, sequential `arrange()` and `filter()` operations.    
     ```{r eval = FALSE}
     # Keep only chocolate-y, peanut butter-y candies. Do this in 3 lines.
     candy %>% 
@@ -234,6 +244,11 @@ candy <- candy_rankings
       filter(___, ___)
     
     # Arrange fruity candy from most to least popular
+    candy %>% 
+      ___(___) %>% 
+      ___(___)
+    
+    # Can you rearrange the operations above to arrange fruity candy from most to least popular?
     candy %>% 
       ___(___) %>% 
       ___(___)
@@ -255,7 +270,7 @@ candy <- candy_rankings
 
 
 6. `select()` columns    
-    There are often more variables (columns) in a dataset than we're interested in.  Keeping these in the dataset doesn't hurt anything, but removing them can make data analysis more manageable and less overwhelming.    
+    There are often more variables (columns) in a dataset than we're interested in.  Removing the superfluous variables can make data analysis more computationally efficient and less overwhelming.    
     ```{r eval = FALSE}
     # Create a dataset which only contains candy name & winpercent
     candy %>% 
@@ -264,6 +279,8 @@ candy <- candy_rankings
     
     # You try: create a dataset which only contains candy name, chocolate status, & winpercent
     
+    
+    # You try: can you guess how to remove only the nougat variable?
     
     ```
     
@@ -283,7 +300,8 @@ candy <- candy_rankings
       mutate(price_percentile = ___) %>% 
       head()
     
-    # You try: create fruity_hard variable which indicates whether candy is fruity AND hard
+    # You try: create a meaningless_sum variable which is the sum of sugarpercent and pricepercent 
+
     
     ```
     
@@ -357,7 +375,7 @@ candy <- candy_rankings
       group_by(chocolate) %>% 
       summarize(mean(winpercent))
     
-    # (You try) Variability: calculate the min & max winpercent by chocolate group
+    # (You try) Variability: calculate the min & max winpercent by fruit group
     
     ```
     
@@ -376,7 +394,8 @@ candy <- candy_rankings
 
 ## Exercises
 
-Practice, practice, practice is important when learning the `dplyr` verbs.  Try out the following exercises with solutions below.
+Practice, practice, practice is important when learning the `dplyr` verbs.  Try out the following exercises with solutions below.  Again, there are more exerices here than you will finish during the workshop.    
+
 
 \
 \
