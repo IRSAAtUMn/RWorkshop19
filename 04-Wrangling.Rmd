@@ -9,6 +9,32 @@
 \
 
 
+## Getting started {-}
+
+As you get settled in, please open a new Rmd (R markdown document) and prepare the data:
+
+```{r}
+# Import data from the fivethirtyeight package
+library(fivethirtyeight)
+data("candy_rankings")
+
+# Rename the dataset to something shorter
+candy <- candy_rankings
+
+# Load packages
+library(ggplot2)  # for visualizing data
+library(dplyr)    # for transforming data
+```
+
+
+
+\
+\
+\
+\
+
+
+
 
 ## Goal: Understanding Through Transformations
 
@@ -50,20 +76,9 @@ In the previous modules, we imported and visualized tidy data.  These visualizat
 
 
 
-## dplyr
+## tidyverse: dplyr
 
-We'll construct data transformations using the `dplyr` package:
-
-```{r eval=FALSE}
-library(dplyr)
-```
-
-```{r echo=FALSE}
-suppressPackageStartupMessages(library(dplyr))
-```
-
-
-Like `ggplot`, the `dplyr` "grammar" is intuitive and generalizable once mastered.  The best way to learn about `dplyr` is to just play around.  Don't worry about memorizing the syntax.  Rather, focus on the *patterns* and *potential* of their application.  There's a helpful cheat sheet for future reference:
+We'll construct data transformations using the `dplyr`, a package within the broader tidyverse.  Like `ggplot`, the `dplyr` "grammar" is intuitive and generalizable once mastered.  The best way to learn about `dplyr` is to just play around.  Don't worry about memorizing the syntax.  Rather, focus on the *patterns* and *potential* of their application.  There's a helpful cheat sheet for future reference:
 
 <center>
 [**DPLYR CHEAT SHEET**](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
@@ -76,11 +91,18 @@ Like `ggplot`, the `dplyr` "grammar" is intuitive and generalizable once mastere
 
 In the `dplyr` grammar, there are 5 _verbs_ (actions):
 
-- `arrange()` = reorder the _rows_    
-- `filter()` = take a subset of _rows_    
-- `select()` = take a subset of _columns_    
-- `mutate()` = create a new variable, ie. _column_    
-- `summarize()` = calculate a numerical summary of a variable, i.e. _column_
+
+\
+
+
+verb            action
+--------------- ---------------------------------------------
+`arrange()`     reorder the _rows_    
+`filter()`      take a subset of _rows_    
+`select()`      take a subset of _columns_    
+`mutate()`      create a new variable, ie. _column_    
+`summarize()`   calculate a numerical summary of a variable, i.e. _column_
+
 
 
 \
@@ -129,20 +151,8 @@ my_dataset %>%
 
 
 The fivethirtyeight article
-[The Ultimate Halloween Candy Power Ranking](http://fivethirtyeight.com/features/the-ultimate-halloween-candy-power-ranking/) analyzes the data from [this experiment](http://walthickey.com/2017/10/18/whats-the-best-halloween-candy/) which presented subjects with a series of head-to-head candy matchups and asked them to indicate which candy they preferred.  __Import__ these __tidy__ data from the `fivethirtyeight` package:
+[The Ultimate Halloween Candy Power Ranking](http://fivethirtyeight.com/features/the-ultimate-halloween-candy-power-ranking/) analyzes the data from [this experiment](http://walthickey.com/2017/10/18/whats-the-best-halloween-candy/) which presented subjects with a series of head-to-head candy matchups and asked them to indicate which candy they preferred.  You __imported__ these __tidy__ data above and named it `candy`.    
 
-\
-
-```{r}
-# Load the package
-library(fivethirtyeight)
-
-# Load the data
-data("candy_rankings")
-
-# Give the data frame a shorter name
-candy <- candy_rankings
-```
 
 \
 \
@@ -164,24 +174,23 @@ candy <- candy_rankings
 
     
 2. __arrange() rows__    
-    Right now, the order of the rows / candy is somewhat arbitrary.  We can `arrange()` the rows in a more meaningful way:    
-    
+    Summarize what the `arrange()` function does.       
     ```{r message=FALSE, warning=FALSE, eval=FALSE}    
-    # Arrange from least to most popular
+    # ???
     candy %>% 
       arrange(winpercent)
     candy %>% 
       arrange(winpercent) %>% 
       head()
     
-    # Arrange from most to least popular
+    # ???
     candy %>% 
       arrange(desc(winpercent))
     candy %>% 
       arrange(desc(winpercent)) %>% 
       head() 
     
-    # Store the rearranged dataset
+    # Store the new dataset
     candy_arranged <- candy %>% 
       arrange(winpercent)
     
@@ -632,7 +641,19 @@ Practice, practice, practice is important when learning the `dplyr` verbs.  Try 
         summarize(median(births))
     ```
 
-    
-    
+
+
+\
+\
+\
+\
+
+
+
+## Resources
+
+Garrett Grolemund and Hadley Wickham wrote a [free, online book](https://r4ds.had.co.nz/) that spans the tidyverse, including `ggplot2` and `dplyr`.    
+
+
 
     

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html >
+
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title> 4 Understanding data: Transformations | Introduction to Reproducible Data Science with R</title>
-  <meta name="description" content=" 4 Understanding data: Transformations | Introduction to Reproducible Data Science with R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="description" content=" 4 Understanding data: Transformations | Introduction to Reproducible Data Science with R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content=" 4 Understanding data: Transformations | Introduction to Reproducible Data Science with R" />
   <meta property="og:type" content="book" />
@@ -21,13 +22,13 @@
   
   
 
-<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota" />
+<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota">
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
 <link rel="prev" href="understanding-data-visualization.html">
@@ -46,9 +47,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.7/datatables.js"></script>
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
@@ -62,6 +63,7 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -156,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Understanding data: Visualization</a><ul>
 <li class="chapter" data-level="" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#getting-started-1"><i class="fa fa-check"></i>Getting started</a></li>
 <li class="chapter" data-level="3.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#goal-understanding-through-visualizations"><i class="fa fa-check"></i><b>3.1</b> Goal: Understanding Through Visualizations</a></li>
-<li class="chapter" data-level="3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#ggplot"><i class="fa fa-check"></i><b>3.2</b> ggplot</a></li>
+<li class="chapter" data-level="3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#tidyverse-ggplot"><i class="fa fa-check"></i><b>3.2</b> tidyverse: ggplot</a></li>
 <li class="chapter" data-level="3.3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#univariate-visualizations"><i class="fa fa-check"></i><b>3.3</b> Univariate visualizations</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#histograms"><i class="fa fa-check"></i><b>3.3.1</b> Histograms</a></li>
 <li class="chapter" data-level="3.3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#density-plots"><i class="fa fa-check"></i><b>3.3.2</b> Density plots</a></li>
@@ -171,10 +173,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#questions"><i class="fa fa-check"></i><b>3.5.1</b> Questions</a></li>
 <li class="chapter" data-level="3.5.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#solutions"><i class="fa fa-check"></i><b>3.5.2</b> Solutions</a></li>
 </ul></li>
+<li class="chapter" data-level="3.6" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#resources"><i class="fa fa-check"></i><b>3.6</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html"><i class="fa fa-check"></i><b>4</b> Understanding data: Transformations</a><ul>
+<li class="chapter" data-level="" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#getting-started-2"><i class="fa fa-check"></i>Getting started</a></li>
 <li class="chapter" data-level="4.1" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#goal-understanding-through-transformations"><i class="fa fa-check"></i><b>4.1</b> Goal: Understanding Through Transformations</a></li>
-<li class="chapter" data-level="4.2" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#dplyr"><i class="fa fa-check"></i><b>4.2</b> dplyr</a></li>
+<li class="chapter" data-level="4.2" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#tidyverse-dplyr"><i class="fa fa-check"></i><b>4.2</b> tidyverse: dplyr</a></li>
 <li class="chapter" data-level="4.3" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#transforming-rows-arrange-and-filter"><i class="fa fa-check"></i><b>4.3</b> Transforming rows: <code>arrange()</code> and <code>filter()</code></a></li>
 <li class="chapter" data-level="4.4" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#transforming-columns-select-and-mutate"><i class="fa fa-check"></i><b>4.4</b> Transforming columns: <code>select()</code> and <code>mutate()</code></a></li>
 <li class="chapter" data-level="4.5" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#simple-numerical-summaries-summarize"><i class="fa fa-check"></i><b>4.5</b> Simple numerical summaries: <code>summarize()</code></a></li>
@@ -182,6 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.1" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#questions-1"><i class="fa fa-check"></i><b>4.6.1</b> Questions</a></li>
 <li class="chapter" data-level="4.6.2" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#solutions-1"><i class="fa fa-check"></i><b>4.6.2</b> Solutions</a></li>
 </ul></li>
+<li class="chapter" data-level="4.7" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#resources-1"><i class="fa fa-check"></i><b>4.7</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>5</b> Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="linear-regression.html"><a href="linear-regression.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
@@ -270,6 +275,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br />
 <br />
 </p>
+<div id="getting-started-2" class="section level2 unnumbered">
+<h2>Getting started</h2>
+<p>As you get settled in, please open a new Rmd (R markdown document) and prepare the data:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Import data from the fivethirtyeight package</span>
+<span class="kw">library</span>(fivethirtyeight)
+<span class="kw">data</span>(<span class="st">&quot;candy_rankings&quot;</span>)
+
+<span class="co"># Rename the dataset to something shorter</span>
+candy &lt;-<span class="st"> </span>candy_rankings
+
+<span class="co"># Load packages</span>
+<span class="kw">library</span>(ggplot2)  <span class="co"># for visualizing data</span>
+<span class="kw">library</span>(dplyr)    <span class="co"># for transforming data</span></code></pre>
+<p><br />
+<br />
+<br />
+<br />
+</p>
+</div>
 <div id="goal-understanding-through-transformations" class="section level2">
 <h2><span class="header-section-number">4.1</span> Goal: Understanding Through Transformations</h2>
 <p>In this module we’ll focus on the <strong>“Transform”</strong> step within the data science workflow:</p>
@@ -305,11 +329,9 @@ source: <a href="http://r4ds.had.co.nz/">Wickham &amp; Grolemund: R for Data Sci
 <br />
 </p>
 </div>
-<div id="dplyr" class="section level2">
-<h2><span class="header-section-number">4.2</span> dplyr</h2>
-<p>We’ll construct data transformations using the <code>dplyr</code> package:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
-<p>Like <code>ggplot</code>, the <code>dplyr</code> “grammar” is intuitive and generalizable once mastered. The best way to learn about <code>dplyr</code> is to just play around. Don’t worry about memorizing the syntax. Rather, focus on the <em>patterns</em> and <em>potential</em> of their application. There’s a helpful cheat sheet for future reference:</p>
+<div id="tidyverse-dplyr" class="section level2">
+<h2><span class="header-section-number">4.2</span> tidyverse: dplyr</h2>
+<p>We’ll construct data transformations using the <code>dplyr</code>, a package within the broader tidyverse. Like <code>ggplot</code>, the <code>dplyr</code> “grammar” is intuitive and generalizable once mastered. The best way to learn about <code>dplyr</code> is to just play around. Don’t worry about memorizing the syntax. Rather, focus on the <em>patterns</em> and <em>potential</em> of their application. There’s a helpful cheat sheet for future reference:</p>
 <center>
 <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf"><strong>DPLYR CHEAT SHEET</strong></a>
 </center>
@@ -317,27 +339,48 @@ source: <a href="http://r4ds.had.co.nz/">Wickham &amp; Grolemund: R for Data Sci
 <br />
 </p>
 <p>In the <code>dplyr</code> grammar, there are 5 <em>verbs</em> (actions):</p>
-<ul>
-<li><code>arrange()</code> = reorder the <em>rows</em><br />
-</li>
-<li><code>filter()</code> = take a subset of <em>rows</em><br />
-</li>
-<li><code>select()</code> = take a subset of <em>columns</em><br />
-</li>
-<li><code>mutate()</code> = create a new variable, ie. <em>column</em><br />
-</li>
-<li><code>summarize()</code> = calculate a numerical summary of a variable, i.e. <em>column</em></li>
-</ul>
+<p><br />
+</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">verb</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>arrange()</code></td>
+<td align="left">reorder the <em>rows</em></td>
+</tr>
+<tr class="even">
+<td align="left"><code>filter()</code></td>
+<td align="left">take a subset of <em>rows</em></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>select()</code></td>
+<td align="left">take a subset of <em>columns</em></td>
+</tr>
+<tr class="even">
+<td align="left"><code>mutate()</code></td>
+<td align="left">create a new variable, ie. <em>column</em></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>summarize()</code></td>
+<td align="left">calculate a numerical summary of a variable, i.e. <em>column</em></td>
+</tr>
+</tbody>
+</table>
 <p><br />
 <br />
 </p>
 <p>The general syntax for applying these verbs is below, where we call “<code>%&gt;%</code>” a “pipe”:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">my_dataset <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">  </span><span class="kw">verb</span>(___)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_dataset <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">verb</span>(___)</code></pre>
 <p>Just as we can add layers to a <code>ggplot</code> utilizing “<code>+</code>”, we can implement sequential data transformations utilizing “`%&gt;%”:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">my_dataset <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">  </span><span class="kw">verb1</span>(___) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb52-3" data-line-number="3"><span class="st">  </span><span class="kw">verb2</span>(___)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">my_dataset <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">verb1</span>(___) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">verb2</span>(___)</code></pre>
 <p><br />
 <br />
 <br />
@@ -350,54 +393,44 @@ source: <a href="http://r4ds.had.co.nz/">Wickham &amp; Grolemund: R for Data Sci
 <br />
 </p>
 <p>The fivethirtyeight article
-<a href="http://fivethirtyeight.com/features/the-ultimate-halloween-candy-power-ranking/">The Ultimate Halloween Candy Power Ranking</a> analyzes the data from <a href="http://walthickey.com/2017/10/18/whats-the-best-halloween-candy/">this experiment</a> which presented subjects with a series of head-to-head candy matchups and asked them to indicate which candy they preferred. <strong>Import</strong> these <strong>tidy</strong> data from the <code>fivethirtyeight</code> package:</p>
-<p><br />
-</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># Load the package</span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="kw">library</span>(fivethirtyeight)</a>
-<a class="sourceLine" id="cb53-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="co"># Load the data</span></a>
-<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="kw">data</span>(<span class="st">&quot;candy_rankings&quot;</span>)</a>
-<a class="sourceLine" id="cb53-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb53-7" data-line-number="7"><span class="co"># Give the data frame a shorter name</span></a>
-<a class="sourceLine" id="cb53-8" data-line-number="8">candy &lt;-<span class="st"> </span>candy_rankings</a></code></pre></div>
+<a href="http://fivethirtyeight.com/features/the-ultimate-halloween-candy-power-ranking/">The Ultimate Halloween Candy Power Ranking</a> analyzes the data from <a href="http://walthickey.com/2017/10/18/whats-the-best-halloween-candy/">this experiment</a> which presented subjects with a series of head-to-head candy matchups and asked them to indicate which candy they preferred. You <strong>imported</strong> these <strong>tidy</strong> data above and named it <code>candy</code>.</p>
 <p><br />
 <br />
 </p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Basics</strong></p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># Take a glimpse at the data.  What&#39;s the unit of observation?</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="co"># How much data do we have?    </span></a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Take a glimpse at the data.  What&#39;s the unit of observation?</span>
+
+<span class="co"># How much data do we have?    </span></code></pre></li>
 </ol>
 <p><br />
 <br />
 </p>
 <ol start="2" style="list-style-type: decimal">
 <li><p><strong>arrange() rows</strong><br />
-Right now, the order of the rows / candy is somewhat arbitrary. We can <code>arrange()</code> the rows in a more meaningful way:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="co"># Arrange from least to most popular</span></a>
-<a class="sourceLine" id="cb55-2" data-line-number="2">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(winpercent)</a>
-<a class="sourceLine" id="cb55-4" data-line-number="4">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="st">  </span><span class="kw">arrange</span>(winpercent) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb55-6" data-line-number="6"><span class="st">  </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb55-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb55-8" data-line-number="8"><span class="co"># Arrange from most to least popular</span></a>
-<a class="sourceLine" id="cb55-9" data-line-number="9">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb55-10" data-line-number="10"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(winpercent))</a>
-<a class="sourceLine" id="cb55-11" data-line-number="11">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb55-12" data-line-number="12"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(winpercent)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb55-13" data-line-number="13"><span class="st">  </span><span class="kw">head</span>() </a>
-<a class="sourceLine" id="cb55-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb55-15" data-line-number="15"><span class="co"># Store the rearranged dataset</span></a>
-<a class="sourceLine" id="cb55-16" data-line-number="16">candy_arranged &lt;-<span class="st"> </span>candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb55-17" data-line-number="17"><span class="st">  </span><span class="kw">arrange</span>(winpercent)</a>
-<a class="sourceLine" id="cb55-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb55-19" data-line-number="19"><span class="co"># You try: arrange from least to most expensive </span></a>
-<a class="sourceLine" id="cb55-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb55-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb55-22" data-line-number="22"><span class="co"># You try: arrange from most to least expensive </span></a></code></pre></div></li>
+Summarize what the <code>arrange()</code> function does.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ???</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(winpercent)
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(winpercent) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">head</span>()
+
+<span class="co"># ???</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(winpercent))
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(winpercent)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">head</span>() 
+
+<span class="co"># Store the new dataset</span>
+candy_arranged &lt;-<span class="st"> </span>candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(winpercent)
+
+<span class="co"># You try: arrange from least to most expensive </span>
+
+
+<span class="co"># You try: arrange from most to least expensive </span></code></pre></li>
 </ol>
 <p><br />
 <br />
@@ -413,17 +446,17 @@ We’re not always interested in <em>all</em> rows of a dataset. For example, he
 <li><p>If variable <code>x</code> is <em>logical</em> (<code>TRUE</code> / <code>FALSE</code>):<br />
 <code>x == TRUE</code>, <code>x == FALSE</code></p></li>
 </ul>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># Keep the sad candies that won less than 30% </span></a>
-<a class="sourceLine" id="cb56-2" data-line-number="2">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(___)</a>
-<a class="sourceLine" id="cb56-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb56-5" data-line-number="5"><span class="co"># Keep only Dots</span></a>
-<a class="sourceLine" id="cb56-6" data-line-number="6">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb56-7" data-line-number="7"><span class="st">  </span><span class="kw">filter</span>(___)</a>
-<a class="sourceLine" id="cb56-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb56-9" data-line-number="9"><span class="co"># Keep only chocolate-y candies    </span></a>
-<a class="sourceLine" id="cb56-10" data-line-number="10">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb56-11" data-line-number="11"><span class="st">  </span><span class="kw">filter</span>(___)</a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Keep the sad candies that won less than 30% </span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(___)
+
+<span class="co"># Keep only Dots</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(___)
+
+<span class="co"># Keep only chocolate-y candies    </span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(___)</code></pre></li>
 </ol>
 <p><br />
 <br />
@@ -431,24 +464,24 @@ We’re not always interested in <em>all</em> rows of a dataset. For example, he
 <ol start="5" style="list-style-type: decimal">
 <li><p><strong>Combining <code>arrange()</code> and <code>filter()</code></strong><br />
 We can perform multiple, sequential <code>arrange()</code> and <code>filter()</code> operations.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="co"># Keep only chocolate-y, peanut butter-y candies. Do this in 3 lines.</span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(___)  <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(___)</a>
-<a class="sourceLine" id="cb57-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb57-6" data-line-number="6"><span class="co"># Keep only chocolate-y, peanut butter-y candies. Do this in 2 lines.</span></a>
-<a class="sourceLine" id="cb57-7" data-line-number="7">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb57-8" data-line-number="8"><span class="st">  </span><span class="kw">filter</span>(___, ___)</a>
-<a class="sourceLine" id="cb57-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb57-10" data-line-number="10"><span class="co"># Arrange fruity candy from most to least popular</span></a>
-<a class="sourceLine" id="cb57-11" data-line-number="11">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb57-12" data-line-number="12"><span class="st">  </span><span class="kw">___</span>(___) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb57-13" data-line-number="13"><span class="st">  </span><span class="kw">___</span>(___)</a>
-<a class="sourceLine" id="cb57-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb57-15" data-line-number="15"><span class="co"># Can you rearrange the operations above to arrange fruity candy from most to least popular?</span></a>
-<a class="sourceLine" id="cb57-16" data-line-number="16">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb57-17" data-line-number="17"><span class="st">  </span><span class="kw">___</span>(___) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb57-18" data-line-number="18"><span class="st">  </span><span class="kw">___</span>(___)</a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Keep only chocolate-y, peanut butter-y candies. Do this in 3 lines.</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(___)  <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(___)
+
+<span class="co"># Keep only chocolate-y, peanut butter-y candies. Do this in 2 lines.</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(___, ___)
+
+<span class="co"># Arrange fruity candy from most to least popular</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">___</span>(___) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">___</span>(___)
+
+<span class="co"># Can you rearrange the operations above to arrange fruity candy from most to least popular?</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">___</span>(___) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">___</span>(___)</code></pre></li>
 </ol>
 <p><br />
 <br />
@@ -461,15 +494,15 @@ We can perform multiple, sequential <code>arrange()</code> and <code>filter()</c
 <ol start="6" style="list-style-type: decimal">
 <li><p><code>select()</code> columns<br />
 There are often more variables (columns) in a dataset than we’re interested in. Removing the superfluous variables can make data analysis more computationally efficient and less overwhelming.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># Create a dataset which only contains candy name &amp; winpercent</span></a>
-<a class="sourceLine" id="cb58-2" data-line-number="2">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(competitorname, winpercent) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb58-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb58-6" data-line-number="6"><span class="co"># You try: create a dataset which only contains candy name, chocolate status, &amp; winpercent</span></a>
-<a class="sourceLine" id="cb58-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb58-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb58-9" data-line-number="9"><span class="co"># You try: can you guess how to remove only the nougat variable?</span></a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create a dataset which only contains candy name &amp; winpercent</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(competitorname, winpercent) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">head</span>()
+
+<span class="co"># You try: create a dataset which only contains candy name, chocolate status, &amp; winpercent</span>
+
+
+<span class="co"># You try: can you guess how to remove only the nougat variable?</span></code></pre></li>
 </ol>
 <p><br />
 <br />
@@ -477,12 +510,12 @@ There are often more variables (columns) in a dataset than we’re interested in
 <ol start="7" style="list-style-type: decimal">
 <li><p><code>mutate()</code> columns<br />
 We can create new variables (columns) by <em>mutating</em> existing columns. This is helpful when we want to change the scale of a variable, combine variables into new measurements, etc.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="co"># Create price_percentile variable which transforms pricepercent to 0-100 scale</span></a>
-<a class="sourceLine" id="cb59-2" data-line-number="2">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">price_percentile =</span> ___) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb59-4" data-line-number="4"><span class="st">  </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb59-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb59-6" data-line-number="6"><span class="co"># You try: create a meaningless_sum variable which is the sum of sugarpercent and pricepercent </span></a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create price_percentile variable which transforms pricepercent to 0-100 scale</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">price_percentile =</span> ___) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">head</span>()
+
+<span class="co"># You try: create a meaningless_sum variable which is the sum of sugarpercent and pricepercent </span></code></pre></li>
 </ol>
 <p><br />
 <br />
@@ -505,17 +538,17 @@ Construct a univariate visualization of <code>winpercent</code>. Summarize the t
 <ol start="9" style="list-style-type: decimal">
 <li><p><strong>Univariate numerical summaries of trend and variability</strong><br />
 The visualization above allows us to <em>eyeball</em> the trend and variability in <code>winpercent</code>. We can support these observations with rigorous numerical summaries.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co"># Trend: calculate the mean winpercent</span></a>
-<a class="sourceLine" id="cb60-2" data-line-number="2">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(winpercent))</a>
-<a class="sourceLine" id="cb60-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb60-5" data-line-number="5"><span class="co"># Trend: calculate the mean &amp; median winpercent</span></a>
-<a class="sourceLine" id="cb60-6" data-line-number="6">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb60-7" data-line-number="7"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(winpercent), <span class="kw">median</span>(winpercent))</a>
-<a class="sourceLine" id="cb60-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb60-9" data-line-number="9"><span class="co"># Variability: calculate the min &amp; max winpercent</span></a>
-<a class="sourceLine" id="cb60-10" data-line-number="10">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb60-11" data-line-number="11"><span class="st">  </span><span class="kw">summarize</span>(___, ___)</a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Trend: calculate the mean winpercent</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(winpercent))
+
+<span class="co"># Trend: calculate the mean &amp; median winpercent</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(winpercent), <span class="kw">median</span>(winpercent))
+
+<span class="co"># Variability: calculate the min &amp; max winpercent</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(___, ___)</code></pre></li>
 </ol>
 <p><br />
 <br />
@@ -530,12 +563,12 @@ Construct a visualization of the relationship between <code>winpercent</code> an
 <ol start="11" style="list-style-type: decimal">
 <li><p><strong>Numerical summaries by group</strong><br />
 The visualization above illuminates how the trend and variability in <code>winpercent</code> differs depending upon <code>chocolate</code> status. We can calculate separate numerical summaries for these groups.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="co"># Trend: calculate the mean winpercent by chocolate group</span></a>
-<a class="sourceLine" id="cb61-2" data-line-number="2">candy <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(chocolate) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb61-4" data-line-number="4"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(winpercent))</a>
-<a class="sourceLine" id="cb61-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb61-6" data-line-number="6"><span class="co"># (You try) Variability: calculate the min &amp; max winpercent by fruit group</span></a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Trend: calculate the mean winpercent by chocolate group</span>
+candy <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(chocolate) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(winpercent))
+
+<span class="co"># (You try) Variability: calculate the min &amp; max winpercent by fruit group</span></code></pre></li>
 </ol>
 <p><br />
 <br />
@@ -554,9 +587,9 @@ The visualization above illuminates how the trend and variability in <code>winpe
 <ol style="list-style-type: decimal">
 <li><p><strong>Revisiting movies</strong><br />
 Recall the <code>bechdel</code> data:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;bechdel&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;bechdel&quot;</span>)</code></pre>
 <p>To simplify our analysis, create a new dataset named <code>new_bechdel</code> which contains only the following variables: <code>title</code>, <code>year</code>, <code>binary</code>, <code>clean_test</code>, <code>budget_2013</code>, <code>domgross_2013</code>. HINT: Which verb is helpful here: <code>arrange()</code>, <code>filter()</code>, <code>select()</code>, <code>mutate()</code>, <code>summarize()</code></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">new_bechdel &lt;-<span class="st"> </span>___</a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r">new_bechdel &lt;-<span class="st"> </span>___</code></pre></li>
 </ol>
 <p><br />
 <br />
@@ -564,7 +597,7 @@ Recall the <code>bechdel</code> data:</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p><strong>Transforming budget and gross</strong><br />
 Film budgets and profits can be huge. To make these values easier to explore, create two new variables, <code>budget_mil</code> and <code>gross_mil</code>, which transform <code>budget_2013</code> and <code>domgross_2013</code> to the millions scale (instead of $ scale). Be sure to store these in the <code>new_bechdel</code> dataset. HINT: Which verb is helpful here: <code>arrange()</code>, <code>filter()</code>, <code>select()</code>, <code>mutate()</code>, <code>summarize()</code></p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">new_bechdel &lt;-<span class="st"> </span>___</a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r">new_bechdel &lt;-<span class="st"> </span>___</code></pre></li>
 </ol>
 <p><br />
 <br />
@@ -616,7 +649,7 @@ Identify which films were…
 <ol start="6" style="list-style-type: decimal">
 <li><p><strong>Challenge: Friday the 13th</strong><br />
 In this final exercise, you’ll need to combine some of the <code>dplyr</code> verbs in a more open-ended scenario. Hints are provided below. Recall the <code>US_births_2000_2014</code> births data:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;US_births_2000_2014&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;US_births_2000_2014&quot;</span>)</code></pre>
 <p>We’ll use these data to determine whether there’s any evidence that people are superstitious about giving birth on Friday the 13th. Specifically:</p>
 <ol style="list-style-type: lower-alpha">
 <li>Visualize the birth patterns among Fridays that fall on the 13th day of the month and Fridays that fall off the 13th day.<br />
@@ -644,215 +677,224 @@ HINTS:
 <h3><span class="header-section-number">4.6.2</span> Solutions</h3>
 <ol style="list-style-type: decimal">
 <li><p>.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;bechdel&quot;</span>)</a>
-<a class="sourceLine" id="cb66-2" data-line-number="2">new_bechdel &lt;-<span class="st"> </span>bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(title, year, binary, clean_test, budget_<span class="dv">2013</span>, domgross_<span class="dv">2013</span>)</a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;bechdel&quot;</span>)
+new_bechdel &lt;-<span class="st"> </span>bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(title, year, binary, clean_test, budget_<span class="dv">2013</span>, domgross_<span class="dv">2013</span>)</code></pre></li>
 </ol>
 <p><br />
 <br />
 </p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">new_bechdel &lt;-<span class="st"> </span>new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">budget_mil =</span> budget_<span class="dv">2013</span> <span class="op">/</span><span class="st"> </span><span class="dv">1000000</span>, <span class="dt">gross_mil =</span> domgross_<span class="dv">2013</span> <span class="op">/</span><span class="st"> </span><span class="dv">1000000</span>)</a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r">new_bechdel &lt;-<span class="st"> </span>new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">budget_mil =</span> budget_<span class="dv">2013</span> <span class="op">/</span><span class="st"> </span><span class="dv">1000000</span>, <span class="dt">gross_mil =</span> domgross_<span class="dv">2013</span> <span class="op">/</span><span class="st"> </span><span class="dv">1000000</span>)</code></pre></li>
 </ol>
 <p><br />
 <br />
 </p>
 <ol start="3" style="list-style-type: decimal">
 <li><p>.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co"># a</span></a>
-<a class="sourceLine" id="cb68-2" data-line-number="2">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(budget_mil)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="st">    </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb68-5" data-line-number="5"><span class="co">## # A tibble: 6 x 8</span></a>
-<a class="sourceLine" id="cb68-6" data-line-number="6"><span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span></a>
-<a class="sourceLine" id="cb68-7" data-line-number="7"><span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb68-8" data-line-number="8"><span class="co">## 1 Avat…  2009 FAIL   men          461435929     825707158       461.</span></a>
-<a class="sourceLine" id="cb68-9" data-line-number="9"><span class="co">## 2 Pira…  2007 PASS   ok           337063045     347647302       337.</span></a>
-<a class="sourceLine" id="cb68-10" data-line-number="10"><span class="co">## 3 Shaft  1971 FAIL   notalk       305063707     404702718       305.</span></a>
-<a class="sourceLine" id="cb68-11" data-line-number="11"><span class="co">## 4 Tita…  1997 PASS   ok           290247625     955890356       290.</span></a>
-<a class="sourceLine" id="cb68-12" data-line-number="12"><span class="co">## 5 John…  2012 PASS   ok           279025606      74128153       279.</span></a>
-<a class="sourceLine" id="cb68-13" data-line-number="13"><span class="co">## 6 The …  2012 FAIL   notalk       279025606     454699213       279.</span></a>
-<a class="sourceLine" id="cb68-14" data-line-number="14"><span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb68-15" data-line-number="15">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-16" data-line-number="16"><span class="st">    </span><span class="kw">arrange</span>(budget_mil) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-17" data-line-number="17"><span class="st">    </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb68-18" data-line-number="18"><span class="co">## # A tibble: 6 x 8</span></a>
-<a class="sourceLine" id="cb68-19" data-line-number="19"><span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span></a>
-<a class="sourceLine" id="cb68-20" data-line-number="20"><span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb68-21" data-line-number="21"><span class="co">## 1 Prim…  2004 FAIL   notalk            8632        523811    0.00863</span></a>
-<a class="sourceLine" id="cb68-22" data-line-number="22"><span class="co">## 2 El M…  1992 FAIL   nowomen          11622       3388636    0.0116 </span></a>
-<a class="sourceLine" id="cb68-23" data-line-number="23"><span class="co">## 3 In t…  1997 FAIL   notalk           36281       4184879    0.0363 </span></a>
-<a class="sourceLine" id="cb68-24" data-line-number="24"><span class="co">## 4 Funn…  2002 PASS   ok               38855         99819    0.0389 </span></a>
-<a class="sourceLine" id="cb68-25" data-line-number="25"><span class="co">## 5 Slac…  1991 PASS   ok               39349       2100070    0.0393 </span></a>
-<a class="sourceLine" id="cb68-26" data-line-number="26"><span class="co">## 6 Cler…  1994 FAIL   notalk           42435       4830398    0.0424 </span></a>
-<a class="sourceLine" id="cb68-27" data-line-number="27"><span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb68-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb68-29" data-line-number="29"><span class="co"># b</span></a>
-<a class="sourceLine" id="cb68-30" data-line-number="30">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-31" data-line-number="31"><span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(gross_mil)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-32" data-line-number="32"><span class="st">    </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb68-33" data-line-number="33"><span class="co">## # A tibble: 6 x 8</span></a>
-<a class="sourceLine" id="cb68-34" data-line-number="34"><span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span></a>
-<a class="sourceLine" id="cb68-35" data-line-number="35"><span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb68-36" data-line-number="36"><span class="co">## 1 Star…  1977 FAIL   notalk        42274609    1771682790       42.3</span></a>
-<a class="sourceLine" id="cb68-37" data-line-number="37"><span class="co">## 2 Jaws   1975 FAIL   notalk        51937204    1125306085       51.9</span></a>
-<a class="sourceLine" id="cb68-38" data-line-number="38"><span class="co">## 3 The …  1973 PASS   ok            62926730    1074306128       62.9</span></a>
-<a class="sourceLine" id="cb68-39" data-line-number="39"><span class="co">## 4 E.T.…  1982 FAIL   dubious       25339314    1050038377       25.3</span></a>
-<a class="sourceLine" id="cb68-40" data-line-number="40"><span class="co">## 5 Tita…  1997 PASS   ok           290247625     955890356      290. </span></a>
-<a class="sourceLine" id="cb68-41" data-line-number="41"><span class="co">## 6 The …  1973 FAIL   notalk        28841418     837011132       28.8</span></a>
-<a class="sourceLine" id="cb68-42" data-line-number="42"><span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb68-43" data-line-number="43">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-44" data-line-number="44"><span class="st">    </span><span class="kw">arrange</span>(gross_mil) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-45" data-line-number="45"><span class="st">    </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb68-46" data-line-number="46"><span class="co">## # A tibble: 6 x 8</span></a>
-<a class="sourceLine" id="cb68-47" data-line-number="47"><span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span></a>
-<a class="sourceLine" id="cb68-48" data-line-number="48"><span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb68-49" data-line-number="49"><span class="co">## 1 Perr…  2009 FAIL   nowomen        7165829           899     7.17  </span></a>
-<a class="sourceLine" id="cb68-50" data-line-number="50"><span class="co">## 2 Pont…  2008 FAIL   nowomen        1623384          4183     1.62  </span></a>
-<a class="sourceLine" id="cb68-51" data-line-number="51"><span class="co">## 3 Supp…  2012 FAIL   men              60878          4989     0.0609</span></a>
-<a class="sourceLine" id="cb68-52" data-line-number="52"><span class="co">## 4 Trop…  2007 PASS   ok             7345604          9824     7.35  </span></a>
-<a class="sourceLine" id="cb68-53" data-line-number="53"><span class="co">## 5 St. …  2007 PASS   ok            12808396         16853    12.8   </span></a>
-<a class="sourceLine" id="cb68-54" data-line-number="54"><span class="co">## 6 The …  2011 PASS   ok             3107072         18642     3.11  </span></a>
-<a class="sourceLine" id="cb68-55" data-line-number="55"><span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb68-56" data-line-number="56"></a>
-<a class="sourceLine" id="cb68-57" data-line-number="57"><span class="co"># c </span></a>
-<a class="sourceLine" id="cb68-58" data-line-number="58">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-59" data-line-number="59"><span class="st">    </span><span class="kw">filter</span>(binary <span class="op">==</span><span class="st"> &quot;PASS&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-60" data-line-number="60"><span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(gross_mil)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb68-61" data-line-number="61"><span class="st">    </span><span class="kw">head</span>()</a>
-<a class="sourceLine" id="cb68-62" data-line-number="62"><span class="co">## # A tibble: 6 x 8</span></a>
-<a class="sourceLine" id="cb68-63" data-line-number="63"><span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span></a>
-<a class="sourceLine" id="cb68-64" data-line-number="64"><span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb68-65" data-line-number="65"><span class="co">## 1 The …  1973 PASS   ok            62926730    1074306128       62.9</span></a>
-<a class="sourceLine" id="cb68-66" data-line-number="66"><span class="co">## 2 Tita…  1997 PASS   ok           290247625     955890356      290. </span></a>
-<a class="sourceLine" id="cb68-67" data-line-number="67"><span class="co">## 3 Star…  1999 PASS   ok           160823133     663632711      161. </span></a>
-<a class="sourceLine" id="cb68-68" data-line-number="68"><span class="co">## 4 Grea…  1978 PASS   ok            21424236     649203517       21.4</span></a>
-<a class="sourceLine" id="cb68-69" data-line-number="69"><span class="co">## 5 Jura…  1993 PASS   ok           101584911     638063379      102. </span></a>
-<a class="sourceLine" id="cb68-70" data-line-number="70"><span class="co">## 6 Shre…  2004 PASS   ok            86323501     544117065       86.3</span></a>
-<a class="sourceLine" id="cb68-71" data-line-number="71"><span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span></a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a</span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(budget_mil)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">head</span>()
+<span class="co">## # A tibble: 6 x 8</span>
+<span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span>
+<span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">## 1 Avat…  2009 FAIL   men          461435929     825707158       461.</span>
+<span class="co">## 2 Pira…  2007 PASS   ok           337063045     347647302       337.</span>
+<span class="co">## 3 Shaft  1971 FAIL   notalk       305063707     404702718       305.</span>
+<span class="co">## 4 Tita…  1997 PASS   ok           290247625     955890356       290.</span>
+<span class="co">## 5 John…  2012 PASS   ok           279025606      74128153       279.</span>
+<span class="co">## 6 The …  2012 FAIL   notalk       279025606     454699213       279.</span>
+<span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">arrange</span>(budget_mil) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">head</span>()
+<span class="co">## # A tibble: 6 x 8</span>
+<span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span>
+<span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">## 1 Prim…  2004 FAIL   notalk            8632        523811    0.00863</span>
+<span class="co">## 2 El M…  1992 FAIL   nowomen          11622       3388636    0.0116 </span>
+<span class="co">## 3 In t…  1997 FAIL   notalk           36281       4184879    0.0363 </span>
+<span class="co">## 4 Funn…  2002 PASS   ok               38855         99819    0.0389 </span>
+<span class="co">## 5 Slac…  1991 PASS   ok               39349       2100070    0.0393 </span>
+<span class="co">## 6 Cler…  1994 FAIL   notalk           42435       4830398    0.0424 </span>
+<span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span>
+
+<span class="co"># b</span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(gross_mil)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">head</span>()
+<span class="co">## # A tibble: 6 x 8</span>
+<span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span>
+<span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">## 1 Star…  1977 FAIL   notalk        42274609    1771682790       42.3</span>
+<span class="co">## 2 Jaws   1975 FAIL   notalk        51937204    1125306085       51.9</span>
+<span class="co">## 3 The …  1973 PASS   ok            62926730    1074306128       62.9</span>
+<span class="co">## 4 E.T.…  1982 FAIL   dubious       25339314    1050038377       25.3</span>
+<span class="co">## 5 Tita…  1997 PASS   ok           290247625     955890356      290. </span>
+<span class="co">## 6 The …  1973 FAIL   notalk        28841418     837011132       28.8</span>
+<span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">arrange</span>(gross_mil) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">head</span>()
+<span class="co">## # A tibble: 6 x 8</span>
+<span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span>
+<span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">## 1 Perr…  2009 FAIL   nowomen        7165829           899     7.17  </span>
+<span class="co">## 2 Pont…  2008 FAIL   nowomen        1623384          4183     1.62  </span>
+<span class="co">## 3 Supp…  2012 FAIL   men              60878          4989     0.0609</span>
+<span class="co">## 4 Trop…  2007 PASS   ok             7345604          9824     7.35  </span>
+<span class="co">## 5 St. …  2007 PASS   ok            12808396         16853    12.8   </span>
+<span class="co">## 6 The …  2011 PASS   ok             3107072         18642     3.11  </span>
+<span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span>
+
+<span class="co"># c </span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(binary <span class="op">==</span><span class="st"> &quot;PASS&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(gross_mil)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">head</span>()
+<span class="co">## # A tibble: 6 x 8</span>
+<span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span>
+<span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">## 1 The …  1973 PASS   ok            62926730    1074306128       62.9</span>
+<span class="co">## 2 Tita…  1997 PASS   ok           290247625     955890356      290. </span>
+<span class="co">## 3 Star…  1999 PASS   ok           160823133     663632711      161. </span>
+<span class="co">## 4 Grea…  1978 PASS   ok            21424236     649203517       21.4</span>
+<span class="co">## 5 Jura…  1993 PASS   ok           101584911     638063379      102. </span>
+<span class="co">## 6 Shre…  2004 PASS   ok            86323501     544117065       86.3</span>
+<span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span></code></pre></li>
 </ol>
 <p><br />
 <br />
 </p>
 <ol start="4" style="list-style-type: decimal">
 <li><p>.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="co"># a</span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">    </span><span class="kw">head</span>()   <span class="co"># just for simplicity</span></a>
-<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="co">## # A tibble: 6 x 8</span></a>
-<a class="sourceLine" id="cb69-6" data-line-number="6"><span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span></a>
-<a class="sourceLine" id="cb69-7" data-line-number="7"><span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb69-8" data-line-number="8"><span class="co">## 1 21 &amp;…  2013 FAIL   notalk        13000000      25682380         13</span></a>
-<a class="sourceLine" id="cb69-9" data-line-number="9"><span class="co">## 2 12 Y…  2013 FAIL   notalk        20000000      53107035         20</span></a>
-<a class="sourceLine" id="cb69-10" data-line-number="10"><span class="co">## 3 2 Gu…  2013 FAIL   notalk        61000000      75612460         61</span></a>
-<a class="sourceLine" id="cb69-11" data-line-number="11"><span class="co">## 4 42     2013 FAIL   men           40000000      95020213         40</span></a>
-<a class="sourceLine" id="cb69-12" data-line-number="12"><span class="co">## 5 47 R…  2013 FAIL   men          225000000      38362475        225</span></a>
-<a class="sourceLine" id="cb69-13" data-line-number="13"><span class="co">## 6 A Go…  2013 FAIL   notalk        92000000      67349198         92</span></a>
-<a class="sourceLine" id="cb69-14" data-line-number="14"><span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb69-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb69-16" data-line-number="16"><span class="co"># b </span></a>
-<a class="sourceLine" id="cb69-17" data-line-number="17">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-18" data-line-number="18"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>, clean_test <span class="op">==</span><span class="st"> &quot;nowomen&quot;</span>)</a>
-<a class="sourceLine" id="cb69-19" data-line-number="19"><span class="co">## # A tibble: 6 x 8</span></a>
-<a class="sourceLine" id="cb69-20" data-line-number="20"><span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span></a>
-<a class="sourceLine" id="cb69-21" data-line-number="21"><span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb69-22" data-line-number="22"><span class="co">## 1 Clou…  2013 FAIL   nowomen       78000000     119640264       78  </span></a>
-<a class="sourceLine" id="cb69-23" data-line-number="23"><span class="co">## 2 Grav…  2013 FAIL   nowomen      110000000     271814796      110  </span></a>
-<a class="sourceLine" id="cb69-24" data-line-number="24"><span class="co">## 3 Jack…  2013 FAIL   nowomen      195000000      65187603      195  </span></a>
-<a class="sourceLine" id="cb69-25" data-line-number="25"><span class="co">## 4 Runn…  2013 FAIL   nowomen       30000000      19316646       30  </span></a>
-<a class="sourceLine" id="cb69-26" data-line-number="26"><span class="co">## 5 The …  2013 FAIL   nowomen       19200000            NA       19.2</span></a>
-<a class="sourceLine" id="cb69-27" data-line-number="27"><span class="co">## 6 Tran…  2013 FAIL   nowomen       16000000       2322593       16  </span></a>
-<a class="sourceLine" id="cb69-28" data-line-number="28"><span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb69-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb69-30" data-line-number="30"><span class="co"># c </span></a>
-<a class="sourceLine" id="cb69-31" data-line-number="31">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-32" data-line-number="32"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>, gross_mil <span class="op">&gt;</span><span class="st"> </span><span class="dv">300</span>)</a>
-<a class="sourceLine" id="cb69-33" data-line-number="33"><span class="co">## # A tibble: 4 x 8</span></a>
-<a class="sourceLine" id="cb69-34" data-line-number="34"><span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span></a>
-<a class="sourceLine" id="cb69-35" data-line-number="35"><span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb69-36" data-line-number="36"><span class="co">## 1 Desp…  2013 PASS   ok            76000000     368065385         76</span></a>
-<a class="sourceLine" id="cb69-37" data-line-number="37"><span class="co">## 2 Froz…  2013 PASS   ok           150000000     393050114        150</span></a>
-<a class="sourceLine" id="cb69-38" data-line-number="38"><span class="co">## 3 Iron…  2013 FAIL   dubious      200000000     408992272        200</span></a>
-<a class="sourceLine" id="cb69-39" data-line-number="39"><span class="co">## 4 The …  2013 PASS   ok           130000000     424088260        130</span></a>
-<a class="sourceLine" id="cb69-40" data-line-number="40"><span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span></a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a</span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">head</span>()   <span class="co"># just for simplicity</span>
+<span class="co">## # A tibble: 6 x 8</span>
+<span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span>
+<span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">## 1 21 &amp;…  2013 FAIL   notalk        13000000      25682380         13</span>
+<span class="co">## 2 12 Y…  2013 FAIL   notalk        20000000      53107035         20</span>
+<span class="co">## 3 2 Gu…  2013 FAIL   notalk        61000000      75612460         61</span>
+<span class="co">## 4 42     2013 FAIL   men           40000000      95020213         40</span>
+<span class="co">## 5 47 R…  2013 FAIL   men          225000000      38362475        225</span>
+<span class="co">## 6 A Go…  2013 FAIL   notalk        92000000      67349198         92</span>
+<span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span>
+
+<span class="co"># b </span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>, clean_test <span class="op">==</span><span class="st"> &quot;nowomen&quot;</span>)
+<span class="co">## # A tibble: 6 x 8</span>
+<span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span>
+<span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">## 1 Clou…  2013 FAIL   nowomen       78000000     119640264       78  </span>
+<span class="co">## 2 Grav…  2013 FAIL   nowomen      110000000     271814796      110  </span>
+<span class="co">## 3 Jack…  2013 FAIL   nowomen      195000000      65187603      195  </span>
+<span class="co">## 4 Runn…  2013 FAIL   nowomen       30000000      19316646       30  </span>
+<span class="co">## 5 The …  2013 FAIL   nowomen       19200000            NA       19.2</span>
+<span class="co">## 6 Tran…  2013 FAIL   nowomen       16000000       2322593       16  </span>
+<span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span>
+
+<span class="co"># c </span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>, gross_mil <span class="op">&gt;</span><span class="st"> </span><span class="dv">300</span>)
+<span class="co">## # A tibble: 4 x 8</span>
+<span class="co">##   title  year binary clean_test budget_2013 domgross_2013 budget_mil</span>
+<span class="co">##   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;            &lt;int&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span>
+<span class="co">## 1 Desp…  2013 PASS   ok            76000000     368065385         76</span>
+<span class="co">## 2 Froz…  2013 PASS   ok           150000000     393050114        150</span>
+<span class="co">## 3 Iron…  2013 FAIL   dubious      200000000     408992272        200</span>
+<span class="co">## 4 The …  2013 PASS   ok           130000000     424088260        130</span>
+<span class="co">## # … with 1 more variable: gross_mil &lt;dbl&gt;</span></code></pre></li>
 </ol>
 <p><br />
 <br />
 </p>
 <ol start="5" style="list-style-type: decimal">
 <li><p>.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># a</span></a>
-<a class="sourceLine" id="cb70-2" data-line-number="2">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="st">    </span><span class="kw">summarize</span>(<span class="kw">min</span>(budget_mil), <span class="kw">median</span>(budget_mil), <span class="kw">max</span>(budget_mil))</a>
-<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="co">## # A tibble: 1 x 3</span></a>
-<a class="sourceLine" id="cb70-5" data-line-number="5"><span class="co">##   `min(budget_mil)` `median(budget_mil)` `max(budget_mil)`</span></a>
-<a class="sourceLine" id="cb70-6" data-line-number="6"><span class="co">##               &lt;dbl&gt;                &lt;dbl&gt;             &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb70-7" data-line-number="7"><span class="co">## 1           0.00863                 37.0              461.</span></a>
-<a class="sourceLine" id="cb70-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb70-9" data-line-number="9"><span class="co"># b</span></a>
-<a class="sourceLine" id="cb70-10" data-line-number="10">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-11" data-line-number="11"><span class="st">    </span><span class="kw">group_by</span>(binary) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-12" data-line-number="12"><span class="st">    </span><span class="kw">summarize</span>(<span class="kw">min</span>(budget_mil), <span class="kw">median</span>(budget_mil), <span class="kw">max</span>(budget_mil))</a>
-<a class="sourceLine" id="cb70-13" data-line-number="13"><span class="co">## # A tibble: 2 x 4</span></a>
-<a class="sourceLine" id="cb70-14" data-line-number="14"><span class="co">##   binary `min(budget_mil)` `median(budget_mil)` `max(budget_mil)`</span></a>
-<a class="sourceLine" id="cb70-15" data-line-number="15"><span class="co">##   &lt;chr&gt;              &lt;dbl&gt;                &lt;dbl&gt;             &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb70-16" data-line-number="16"><span class="co">## 1 FAIL             0.00863                 44.0              461.</span></a>
-<a class="sourceLine" id="cb70-17" data-line-number="17"><span class="co">## 2 PASS             0.0389                  31.5              337.</span></a>
-<a class="sourceLine" id="cb70-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb70-19" data-line-number="19"><span class="co"># c</span></a>
-<a class="sourceLine" id="cb70-20" data-line-number="20">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-21" data-line-number="21"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">&lt;</span><span class="st"> </span><span class="dv">1980</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-22" data-line-number="22"><span class="st">    </span><span class="kw">group_by</span>(binary) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-23" data-line-number="23"><span class="st">    </span><span class="kw">summarize</span>(<span class="kw">min</span>(budget_mil), <span class="kw">median</span>(budget_mil), <span class="kw">max</span>(budget_mil))</a>
-<a class="sourceLine" id="cb70-24" data-line-number="24"><span class="co">## # A tibble: 2 x 4</span></a>
-<a class="sourceLine" id="cb70-25" data-line-number="25"><span class="co">##   binary `min(budget_mil)` `median(budget_mil)` `max(budget_mil)`</span></a>
-<a class="sourceLine" id="cb70-26" data-line-number="26"><span class="co">##   &lt;chr&gt;              &lt;dbl&gt;                &lt;dbl&gt;             &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb70-27" data-line-number="27"><span class="co">## 1 FAIL              0.384                  20.7             305. </span></a>
-<a class="sourceLine" id="cb70-28" data-line-number="28"><span class="co">## 2 PASS              0.0669                 22.2              62.9</span></a>
-<a class="sourceLine" id="cb70-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb70-30" data-line-number="30"><span class="co"># d</span></a>
-<a class="sourceLine" id="cb70-31" data-line-number="31">new_bechdel <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-32" data-line-number="32"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2010</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-33" data-line-number="33"><span class="st">    </span><span class="kw">group_by</span>(binary) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-34" data-line-number="34"><span class="st">    </span><span class="kw">summarize</span>(<span class="kw">min</span>(budget_mil), <span class="kw">median</span>(budget_mil), <span class="kw">max</span>(budget_mil))</a>
-<a class="sourceLine" id="cb70-35" data-line-number="35"><span class="co">## # A tibble: 2 x 4</span></a>
-<a class="sourceLine" id="cb70-36" data-line-number="36"><span class="co">##   binary `min(budget_mil)` `median(budget_mil)` `max(budget_mil)`</span></a>
-<a class="sourceLine" id="cb70-37" data-line-number="37"><span class="co">##   &lt;chr&gt;              &lt;dbl&gt;                &lt;dbl&gt;             &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb70-38" data-line-number="38"><span class="co">## 1 FAIL              0.0609                 46.6              279.</span></a>
-<a class="sourceLine" id="cb70-39" data-line-number="39"><span class="co">## 2 PASS              0.0534                 26.9              279.</span></a></code></pre></div></li>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a</span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="kw">min</span>(budget_mil), <span class="kw">median</span>(budget_mil), <span class="kw">max</span>(budget_mil))
+<span class="co">## # A tibble: 1 x 3</span>
+<span class="co">##   `min(budget_mil)` `median(budget_mil)` `max(budget_mil)`</span>
+<span class="co">##               &lt;dbl&gt;                &lt;dbl&gt;             &lt;dbl&gt;</span>
+<span class="co">## 1           0.00863                 37.0              461.</span>
+
+<span class="co"># b</span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(binary) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="kw">min</span>(budget_mil), <span class="kw">median</span>(budget_mil), <span class="kw">max</span>(budget_mil))
+<span class="co">## # A tibble: 2 x 4</span>
+<span class="co">##   binary `min(budget_mil)` `median(budget_mil)` `max(budget_mil)`</span>
+<span class="co">##   &lt;chr&gt;              &lt;dbl&gt;                &lt;dbl&gt;             &lt;dbl&gt;</span>
+<span class="co">## 1 FAIL             0.00863                 44.0              461.</span>
+<span class="co">## 2 PASS             0.0389                  31.5              337.</span>
+
+<span class="co"># c</span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(year <span class="op">&lt;</span><span class="st"> </span><span class="dv">1980</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(binary) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="kw">min</span>(budget_mil), <span class="kw">median</span>(budget_mil), <span class="kw">max</span>(budget_mil))
+<span class="co">## # A tibble: 2 x 4</span>
+<span class="co">##   binary `min(budget_mil)` `median(budget_mil)` `max(budget_mil)`</span>
+<span class="co">##   &lt;chr&gt;              &lt;dbl&gt;                &lt;dbl&gt;             &lt;dbl&gt;</span>
+<span class="co">## 1 FAIL              0.384                  20.7             305. </span>
+<span class="co">## 2 PASS              0.0669                 22.2              62.9</span>
+
+<span class="co"># d</span>
+new_bechdel <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(year <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2010</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(binary) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="kw">min</span>(budget_mil), <span class="kw">median</span>(budget_mil), <span class="kw">max</span>(budget_mil))
+<span class="co">## # A tibble: 2 x 4</span>
+<span class="co">##   binary `min(budget_mil)` `median(budget_mil)` `max(budget_mil)`</span>
+<span class="co">##   &lt;chr&gt;              &lt;dbl&gt;                &lt;dbl&gt;             &lt;dbl&gt;</span>
+<span class="co">## 1 FAIL              0.0609                 46.6              279.</span>
+<span class="co">## 2 PASS              0.0534                 26.9              279.</span></code></pre></li>
 </ol>
 <p><br />
 <br />
 </p>
 <ol start="6" style="list-style-type: decimal">
 <li><p>.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">data</span>(<span class="st">&quot;US_births_2000_2014&quot;</span>)</a>
-<a class="sourceLine" id="cb71-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="co"># Filter out all but Fridays and define Friday the 13th variable</span></a>
-<a class="sourceLine" id="cb71-4" data-line-number="4">new_births &lt;-<span class="st"> </span>US_births_<span class="dv">2000</span>_<span class="dv">2014</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb71-5" data-line-number="5"><span class="st">    </span><span class="kw">filter</span>(day_of_week <span class="op">==</span><span class="st"> &quot;Fri&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb71-6" data-line-number="6"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">fri13 =</span> (date_of_month <span class="op">==</span><span class="st"> </span><span class="dv">13</span>))</a>
-<a class="sourceLine" id="cb71-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb71-8" data-line-number="8"><span class="co"># a</span></a>
-<a class="sourceLine" id="cb71-9" data-line-number="9"><span class="kw">ggplot</span>(new_births, <span class="kw">aes</span>(<span class="dt">x =</span> births, <span class="dt">fill =</span> fri13)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb71-10" data-line-number="10"><span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)</a></code></pre></div>
-<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-112-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="co"># b</span></a>
-<a class="sourceLine" id="cb72-3" data-line-number="3">new_births <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="st">    </span><span class="kw">group_by</span>(fri13) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb72-5" data-line-number="5"><span class="st">    </span><span class="kw">summarize</span>(<span class="kw">median</span>(births))</a>
-<a class="sourceLine" id="cb72-6" data-line-number="6"><span class="co">## # A tibble: 2 x 2</span></a>
-<a class="sourceLine" id="cb72-7" data-line-number="7"><span class="co">##   fri13 `median(births)`</span></a>
-<a class="sourceLine" id="cb72-8" data-line-number="8"><span class="co">##   &lt;lgl&gt;            &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb72-9" data-line-number="9"><span class="co">## 1 FALSE            12656</span></a>
-<a class="sourceLine" id="cb72-10" data-line-number="10"><span class="co">## 2 TRUE             11994</span></a></code></pre></div></li>
-</ol>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;US_births_2000_2014&quot;</span>)
 
+<span class="co"># Filter out all but Fridays and define Friday the 13th variable</span>
+new_births &lt;-<span class="st"> </span>US_births_<span class="dv">2000</span>_<span class="dv">2014</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(day_of_week <span class="op">==</span><span class="st"> &quot;Fri&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">fri13 =</span> (date_of_month <span class="op">==</span><span class="st"> </span><span class="dv">13</span>))
+
+<span class="co"># a</span>
+<span class="kw">ggplot</span>(new_births, <span class="kw">aes</span>(<span class="dt">x =</span> births, <span class="dt">fill =</span> fri13)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)</code></pre>
+<p><img src="RWorkshop19_files/figure-html/unnamed-chunk-106-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">
+<span class="co"># b</span>
+new_births <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(fri13) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="kw">median</span>(births))
+<span class="co">## # A tibble: 2 x 2</span>
+<span class="co">##   fri13 `median(births)`</span>
+<span class="co">##   &lt;lgl&gt;            &lt;int&gt;</span>
+<span class="co">## 1 FALSE            12656</span>
+<span class="co">## 2 TRUE             11994</span></code></pre></li>
+</ol>
+<p><br />
+<br />
+<br />
+<br />
+</p>
 </div>
+</div>
+<div id="resources-1" class="section level2">
+<h2><span class="header-section-number">4.7</span> Resources</h2>
+<p>Garrett Grolemund and Hadley Wickham wrote a <a href="https://r4ds.had.co.nz/">free, online book</a> that spans the tidyverse, including <code>ggplot2</code> and <code>dplyr</code>.</p>
+
 </div>
 </div>
             </section>
