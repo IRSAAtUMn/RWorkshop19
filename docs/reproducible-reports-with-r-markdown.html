@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title> 2 Reproducible Reports with R Markdown | Introduction to Reproducible Data Science with R</title>
-  <meta name="description" content=" 2 Reproducible Reports with R Markdown | Introduction to Reproducible Data Science with R">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content=" 2 Reproducible Reports with R Markdown | Introduction to Reproducible Data Science with R" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 2 Reproducible Reports with R Markdown | Introduction to Reproducible Data Science with R" />
   <meta property="og:type" content="book" />
@@ -22,13 +21,13 @@
   
   
 
-<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota">
+<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="introduction-to-r-and-rstudio.html">
@@ -63,7 +62,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -75,7 +73,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -392,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Headings</strong></p>
 <p>Headings are indicated with <code>#</code>, with the number of <code>#</code> corresponding to the header level.</p>
 <p><img src="images/markdown-headings.png" width="590" style="display: block; margin: auto;" /></p>
-<p>Try it - Add a new first and second level heading to your example R Markdown file.</p>
+<p>Try it - Add a new first and third level heading to your example R Markdown file.</p>
 <p><br />
 <br />
 <br />
@@ -408,7 +406,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>[linked text](link-url)</code> for hyperlinks</li>
 </ul>
 <p><img src="images/markdown-textformat.png" width="606" style="display: block; margin: auto;" /></p>
-<p>Try it - make a word in the first paragraph of your example R Markdown file bold.</p>
+<p>Try it - make a word in the first paragraph of your example R Markdown file bold; make another one italic.</p>
 <p><br />
 <br />
 <br />
@@ -446,7 +444,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>echo=FALSE</code></li>
 <li><code>results='hide'</code></li>
-<li><code>comment=""</code></li>
+<li><code>comment=&quot;&quot;</code></li>
 </ul>
 <p><br />
 <br />
@@ -487,10 +485,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <br />
 </p>
 <p><strong>Exercises</strong></p>
-<p>Revisit the <code>bechdal</code> data exploration exercises from the previous session.</p>
+<p>Revisit the <code>bechdel</code> data exploration exercises from the previous session.</p>
 <p>This time, we will create an R Markdown document with these findings. You can start fresh in a new R Markdown document, or use the existing one you have been modifying.</p>
 <ul>
-<li>Start by creating separate R chunks for each exercise question</li>
+<li>Start by creating separate R chunks for each exercise question (<em>skip question 2, as View() does not work well in R Markdown</em>)</li>
 <li>Write the question above each chunk in Markdown</li>
 <li>Put the R code for the exercise in an R code chunk (remove the comments - that will be in the Markdown above)</li>
 <li>Write a sentence interpreting the result below each chunk in Markdown</li>

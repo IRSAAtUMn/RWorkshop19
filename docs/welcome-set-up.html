@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Welcome &amp; Set-Up | Introduction to Reproducible Data Science with R</title>
-  <meta name="description" content="Welcome &amp; Set-Up | Introduction to Reproducible Data Science with R">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Welcome &amp; Set-Up | Introduction to Reproducible Data Science with R" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Welcome &amp; Set-Up | Introduction to Reproducible Data Science with R" />
   <meta property="og:type" content="book" />
@@ -22,13 +21,13 @@
   
   
 
-<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota">
+<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="index.html">
@@ -63,7 +62,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -75,7 +73,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -275,17 +273,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Open the workshop manual: <a href="https://irsaatumn.github.io/RWorkshop19/" class="uri">https://irsaatumn.github.io/RWorkshop19/</a></p></li>
 <li><p>Open RStudio.</p></li>
 <li><p>Within RStudio, type the following into the console (lower left panel):</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;rmarkdown&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;knitr&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;fivethirtyeight&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;car&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;glmbb&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;pacman&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;RColorBrewer&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;rmarkdown&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(<span class="st">&quot;knitr&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;fivethirtyeight&quot;</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">library</span>(<span class="st">&quot;car&quot;</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">library</span>(<span class="st">&quot;glmbb&quot;</span>)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">library</span>(<span class="st">&quot;pacman&quot;</span>)</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">library</span>(<span class="st">&quot;RColorBrewer&quot;</span>)</a></code></pre></div>
 <p>If you get any errors, this likely means that you have not yet installed the packages listed in the participant checklist. If this is the case, type the following into the console:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;RColorBrewer&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;car&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;fivethirtyeight&quot;</span>, <span class="st">&quot;glmbb&quot;</span>, <span class="st">&quot;pacman&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;dplyr&quot;</span>))</code></pre></li>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;RColorBrewer&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;car&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;fivethirtyeight&quot;</span>, <span class="st">&quot;glmbb&quot;</span>, <span class="st">&quot;pacman&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;dplyr&quot;</span>))</a></code></pre></div></li>
 </ol>
 
 </div>

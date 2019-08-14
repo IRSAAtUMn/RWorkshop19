@@ -181,7 +181,7 @@ Store the result of `2 + 3^2` as `my_result`
 ```{r, eval=FALSE}
 my_result <- 2 + 3^2
 ```
-*Tip: press 'cmd+enter' on a Mac and 'cntl+enter' on a PC to create the assign arrow*
+*Tip: press 'option/alt and -' at the same time to create the assign arrow*
 
 Once you create an object, you will see it appear in the "Environment" pane. 
 

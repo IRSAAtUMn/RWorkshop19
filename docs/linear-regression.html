@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title> 5 Linear Regression | Introduction to Reproducible Data Science with R</title>
-  <meta name="description" content=" 5 Linear Regression | Introduction to Reproducible Data Science with R">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content=" 5 Linear Regression | Introduction to Reproducible Data Science with R" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 5 Linear Regression | Introduction to Reproducible Data Science with R" />
   <meta property="og:type" content="book" />
@@ -22,13 +21,13 @@
   
   
 
-<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota">
+<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 <link rel="prev" href="understanding-data-transformations.html">
@@ -63,7 +62,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -75,7 +73,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -298,10 +296,10 @@ source: <a href="http://r4ds.had.co.nz/">Wickham &amp; Grolemund: R for Data Sci
 <div id="visualize-the-data" class="section level2">
 <h2><span class="header-section-number">5.2</span> Visualize the Data</h2>
 <p>Recall the bike-share data from the chapter on data visualization. Riding on a windy day can be challenging, but is it actually associated with fewer registered riders? Let’s start by visualizing the data. Since the wind-speed is the predictor, we put it on the x-axis. Let’s use the number of registered riders as the response variable.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-bikes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.macalester.edu/~dshuman1/data/155/bike_share.csv&quot;</span>)
-<span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_registered, <span class="dt">x =</span> windspeed)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb73-2" data-line-number="2">bikes &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.macalester.edu/~dshuman1/data/155/bike_share.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_registered, <span class="dt">x =</span> windspeed)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb73-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="RWorkshop19_files/figure-html/unnamed-chunk-113-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>There may be a slight trend, but this plot doesn’t provide a clear answer, but we can dig in with regression. Our goal is to fit a line to characterize this linear relationship between the number of registered riders and the windspeed.</p>
 </div>
@@ -325,19 +323,19 @@ where <span class="math inline">\(x_i\)</span> is the quantitative predictor, <s
 <div id="fit-a-simple-linear-regression-model" class="section level2">
 <h2><span class="header-section-number">5.4</span> Fit a Simple Linear Regression Model</h2>
 <p>To fit a linear regression model, we use the <strong>lm</strong> function:</p>
-<pre class="sourceCode r"><code class="sourceCode r">bikemod &lt;-<span class="st"> </span><span class="kw">lm</span>(riders_registered <span class="op">~</span><span class="st"> </span>windspeed,  <span class="dt">data =</span> bikes)</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">bikemod &lt;-<span class="st"> </span><span class="kw">lm</span>(riders_registered <span class="op">~</span><span class="st"> </span>windspeed,  <span class="dt">data =</span> bikes)</a></code></pre></div>
 <p>The first input is the regression formula (Response ~ Predictor) and the next argument is the name of the data set. The <strong>lm</strong> command estimates the regreesion coefficients and calculates other quantitaties. To find the regression coefficients (i.e. the estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>), we can use the <strong>coef</strong> command. The only input for this command is the model.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(bikemod)
-<span class="co">## (Intercept)   windspeed </span>
-<span class="co">##  4490.09761   -65.34145</span></code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">coef</span>(bikemod)</a>
+<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="co">## (Intercept)   windspeed </span></a>
+<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="co">##  4490.09761   -65.34145</span></a></code></pre></div>
 <p>We can now enter these estimates into our linear regression equation: <span class="math display">\[\hat{\text{nriders}}_i = 4490.10  + -65.34  \; \text{windspeed}_i \]</span>.</p>
 </div>
 <div id="plot-the-regression-line" class="section level2">
 <h2><span class="header-section-number">5.5</span> Plot the Regression Line</h2>
 <p>It’s easy to include the regression line on a scatterplot by adding a <code>geom_smooth()</code> to the <code>ggplot()</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_registered, <span class="dt">x =</span> windspeed)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_registered, <span class="dt">x =</span> windspeed)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p><img src="RWorkshop19_files/figure-html/unnamed-chunk-116-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can see the line is downward sloping. We’ll discuss that in a moment.</p>
 </div>
@@ -353,21 +351,21 @@ where <span class="math inline">\(x_i\)</span> is the quantitative predictor, <s
 <h3><span class="header-section-number">5.7.1</span> The Type-It-In Method</h3>
 <p>Let’s use our model to predict the number of riders on a day with 15 mph winds. All we need to do is plug 15mph into the variable windspeed in our regression equation</p>
 <p><span class="math inline">\(\widehat{\text{nriders}}_i = 4490.10 + -65.34 \; \text{windspeed}_i = 4490.10 + -65.34 * 15 = 3510\)</span>.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="fl">4490.10</span>  <span class="op">+</span><span class="st"> </span><span class="fl">-65.34</span> <span class="op">*</span><span class="st"> </span><span class="dv">15</span>
-<span class="co">## [1] 3510</span></code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="fl">4490.10</span>  <span class="op">+</span><span class="st"> </span><span class="fl">-65.34</span> <span class="op">*</span><span class="st"> </span><span class="dv">15</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="co">## [1] 3510</span></a></code></pre></div>
 <p>Thus, we predict 3510 riders on a day with 15mph winds.</p>
 </div>
 <div id="more-reproducible-methods" class="section level3">
 <h3><span class="header-section-number">5.7.2</span> More Reproducible Methods</h3>
 <p>You can certainly add numbers in R’s console, but a safer (more reproducible) method is to take advantage of some of R’s functions, such as <strong>predict</strong>. Before you can use <strong>predict</strong>, you need to create a new data frame with the predictor value. We want to predict for a windspeed of 15 mph, so we specify that in our data frame.</p>
-<pre class="sourceCode r"><code class="sourceCode r">new_windspeed &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">windspeed =</span> <span class="dv">15</span> )
-new_windspeed
-<span class="co">##   windspeed</span>
-<span class="co">## 1        15</span></code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">new_windspeed &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">windspeed =</span> <span class="dv">15</span> )</a>
+<a class="sourceLine" id="cb78-2" data-line-number="2">new_windspeed</a>
+<a class="sourceLine" id="cb78-3" data-line-number="3"><span class="co">##   windspeed</span></a>
+<a class="sourceLine" id="cb78-4" data-line-number="4"><span class="co">## 1        15</span></a></code></pre></div>
 <p>Now we can use the <strong>predict</strong> command. The first input is the model that we want to use for the prediction. We want to use the regression model in bikemod. The second input is the new data frame.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(bikemod, new_windspeed )
-<span class="co">##        1 </span>
-<span class="co">## 3509.976</span></code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">predict</span>(bikemod, new_windspeed )</a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="co">##        1 </span></a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="co">## 3509.976</span></a></code></pre></div>
 </div>
 </div>
 <div id="bonus-test-the-linear-relationship" class="section level2">
@@ -375,25 +373,25 @@ new_windspeed
 <p>This section is a bit more advanced, so don’t stress over it. We will cover this in much more detail in the upcoming regression workshop.</p>
 <p>Based on the data collected, we found that windier days have fewer riders. Did this result pop up by random chance in this data set, or do windier days truly have fewer riders in general? We can answer this question by conducting a test.</p>
 <p>Several methods exist for testing the linear relationship between two variables. One of the easiest ways to conduct our test is to use the <strong>summary</strong> function. The only input for this function is our model.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(bikemod)
-<span class="co">## </span>
-<span class="co">## Call:</span>
-<span class="co">## lm(formula = riders_registered ~ windspeed, data = bikes)</span>
-<span class="co">## </span>
-<span class="co">## Residuals:</span>
-<span class="co">##     Min      1Q  Median      3Q     Max </span>
-<span class="co">## -3575.7 -1126.8   -48.3  1089.2  3525.9 </span>
-<span class="co">## </span>
-<span class="co">## Coefficients:</span>
-<span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="co">## (Intercept)  4490.10     149.66  30.002  &lt; 2e-16 ***</span>
-<span class="co">## windspeed     -65.34      10.86  -6.015 2.84e-09 ***</span>
-<span class="co">## ---</span>
-<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
-<span class="co">## </span>
-<span class="co">## Residual standard error: 1524 on 729 degrees of freedom</span>
-<span class="co">## Multiple R-squared:  0.04728,    Adjusted R-squared:  0.04598 </span>
-<span class="co">## F-statistic: 36.18 on 1 and 729 DF,  p-value: 2.844e-09</span></code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="kw">summary</span>(bikemod)</a>
+<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="co">## </span></a>
+<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="co">## Call:</span></a>
+<a class="sourceLine" id="cb80-4" data-line-number="4"><span class="co">## lm(formula = riders_registered ~ windspeed, data = bikes)</span></a>
+<a class="sourceLine" id="cb80-5" data-line-number="5"><span class="co">## </span></a>
+<a class="sourceLine" id="cb80-6" data-line-number="6"><span class="co">## Residuals:</span></a>
+<a class="sourceLine" id="cb80-7" data-line-number="7"><span class="co">##     Min      1Q  Median      3Q     Max </span></a>
+<a class="sourceLine" id="cb80-8" data-line-number="8"><span class="co">## -3575.7 -1126.8   -48.3  1089.2  3525.9 </span></a>
+<a class="sourceLine" id="cb80-9" data-line-number="9"><span class="co">## </span></a>
+<a class="sourceLine" id="cb80-10" data-line-number="10"><span class="co">## Coefficients:</span></a>
+<a class="sourceLine" id="cb80-11" data-line-number="11"><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb80-12" data-line-number="12"><span class="co">## (Intercept)  4490.10     149.66  30.002  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb80-13" data-line-number="13"><span class="co">## windspeed     -65.34      10.86  -6.015 2.84e-09 ***</span></a>
+<a class="sourceLine" id="cb80-14" data-line-number="14"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb80-15" data-line-number="15"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb80-16" data-line-number="16"><span class="co">## </span></a>
+<a class="sourceLine" id="cb80-17" data-line-number="17"><span class="co">## Residual standard error: 1524 on 729 degrees of freedom</span></a>
+<a class="sourceLine" id="cb80-18" data-line-number="18"><span class="co">## Multiple R-squared:  0.04728,    Adjusted R-squared:  0.04598 </span></a>
+<a class="sourceLine" id="cb80-19" data-line-number="19"><span class="co">## F-statistic: 36.18 on 1 and 729 DF,  p-value: 2.844e-09</span></a></code></pre></div>
 <p>The summary outputs a wealth of information, which can be kind of overwhelming for those without much experience with statistics. To test whether our two variables in a simple linear regression have a linear relationship, look at the number at the very bottom right (labeled p-value).</p>
 <p>For our bike example, this number is 2.844e-09, or <span class="math inline">\(2.844 \times 10^{-9}\)</span>. Because the p-value is quite small (and smaller than the “usual” threshold of .05), we conclude that there is indeed a linear relationship between the windspeed and the number of registered riders.</p>
 <p>If the p-value were large (perhaps larger than a threshold such as .05), we would say that no linear relationship existed between the windspeed and the number of registered riders.</p>
@@ -402,8 +400,8 @@ new_windspeed
 <div id="exercises-2" class="section level2">
 <h2><span class="header-section-number">5.9</span> Exercises</h2>
 <p>The first two practice problems uses the bike share data. The last two practice problems use the bechdel data.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fivethirtyeight)
-<span class="kw">data</span>(bechdel)</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">library</span>(fivethirtyeight)</a>
+<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="kw">data</span>(bechdel)</a></code></pre></div>
 <div id="problem-1" class="section level3">
 <h3><span class="header-section-number">5.9.1</span> Problem 1</h3>
 <p>Find the linear relationship between the perceived temperature and the number of registered riders. Then predict the number of riders on a day that feels like 80 degrees F.</p>
@@ -415,11 +413,11 @@ new_windspeed
 <div id="problem-3" class="section level3">
 <h3><span class="header-section-number">5.9.3</span> Problem 3</h3>
 <p>Use linear regression to predict worldwide (international) gross profits based on domestic gross profits. Use the 2013 adjusted sales. Given the domestic box office gross sales for <strong>12 Years a Slave</strong>, predict the movie’s international gross sales. Here’s the domestic gross for <strong>12 Years a Slave</strong> in 2013 dollars:</p>
-<pre class="sourceCode r"><code class="sourceCode r">bechdel[<span class="dv">3</span>,<span class="st">&quot;domgross_2013&quot;</span>] 
-<span class="co">## # A tibble: 1 x 1</span>
-<span class="co">##   domgross_2013</span>
-<span class="co">##           &lt;dbl&gt;</span>
-<span class="co">## 1      53107035</span></code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">bechdel[<span class="dv">3</span>,<span class="st">&quot;domgross_2013&quot;</span>] </a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="co">## # A tibble: 1 x 1</span></a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="co">##   domgross_2013</span></a>
+<a class="sourceLine" id="cb82-4" data-line-number="4"><span class="co">##           &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb82-5" data-line-number="5"><span class="co">## 1      53107035</span></a></code></pre></div>
 </div>
 <div id="problem-4" class="section level3">
 <h3><span class="header-section-number">5.9.4</span> Problem 4</h3>
@@ -431,109 +429,109 @@ new_windspeed
 <div id="problem-1-1" class="section level3">
 <h3><span class="header-section-number">5.10.1</span> Problem 1</h3>
 <p>Start with data visualization.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_registered, <span class="dt">x =</span> temp_feel)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_registered, <span class="dt">x =</span> temp_feel)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="RWorkshop19_files/figure-html/unnamed-chunk-123-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Next, create the regression model.</p>
-<pre class="sourceCode r"><code class="sourceCode r">biketemp &lt;-<span class="st"> </span><span class="kw">lm</span>(riders_registered <span class="op">~</span><span class="st"> </span>temp_feel, <span class="dt">data =</span> bikes)
-<span class="kw">coef</span>(biketemp)
-<span class="co">## (Intercept)   temp_feel </span>
-<span class="co">##  -667.91568    57.89236</span></code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">biketemp &lt;-<span class="st"> </span><span class="kw">lm</span>(riders_registered <span class="op">~</span><span class="st"> </span>temp_feel, <span class="dt">data =</span> bikes)</a>
+<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="kw">coef</span>(biketemp)</a>
+<a class="sourceLine" id="cb84-3" data-line-number="3"><span class="co">## (Intercept)   temp_feel </span></a>
+<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="co">##  -667.91568    57.89236</span></a></code></pre></div>
 <p>Then, write the regression equation.
 <span class="math display">\[
 \widehat{\text{riders}}_i = -667.91568 + 57.89236 \, \text{temp}_i 
 \]</span></p>
 <p>For every degree increase in temperature (in F), we expect about 58 additional registered riders. Now, let’s predict the number of registered riders for a day that feels like 80 degrees.</p>
-<pre class="sourceCode r"><code class="sourceCode r">eighty &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">temp_feel =</span> <span class="dv">80</span>)
-<span class="kw">predict</span>(biketemp, eighty )
-<span class="co">##        1 </span>
-<span class="co">## 3963.473</span></code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">eighty &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">temp_feel =</span> <span class="dv">80</span>)</a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="kw">predict</span>(biketemp, eighty )</a>
+<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="co">##        1 </span></a>
+<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="co">## 3963.473</span></a></code></pre></div>
 <p>We expect about 3963 riders.</p>
 </div>
 <div id="problem-2-1" class="section level3">
 <h3><span class="header-section-number">5.10.2</span> Problem 2</h3>
 <p>Start with data visualization.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_total, <span class="dt">x =</span> humidity)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">ggplot</span>(bikes, <span class="kw">aes</span>(<span class="dt">y =</span> riders_total, <span class="dt">x =</span> humidity)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="RWorkshop19_files/figure-html/unnamed-chunk-126-1.png" width="672" style="display: block; margin: auto;" />
 There may be a downward trend, but there’s a lot of variability.</p>
 <p>Next, create the regression model.</p>
-<pre class="sourceCode r"><code class="sourceCode r">bikehumid &lt;-<span class="st"> </span><span class="kw">lm</span>(riders_total <span class="op">~</span><span class="st"> </span>humidity, <span class="dt">data =</span> bikes)
-<span class="kw">coef</span>(bikehumid)
-<span class="co">## (Intercept)    humidity </span>
-<span class="co">##    5363.986   -1369.081</span></code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">bikehumid &lt;-<span class="st"> </span><span class="kw">lm</span>(riders_total <span class="op">~</span><span class="st"> </span>humidity, <span class="dt">data =</span> bikes)</a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="kw">coef</span>(bikehumid)</a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="co">## (Intercept)    humidity </span></a>
+<a class="sourceLine" id="cb87-4" data-line-number="4"><span class="co">##    5363.986   -1369.081</span></a></code></pre></div>
 <p>Then, write the regression equation.
 <span class="math display">\[
 \widehat{\text{riders}}_i = 5363.986 + -1369.081 \, \text{humidity}_i 
 \]</span></p>
 <p>We need to be a little careful with the interpretation here, because humidity values are between 0 and 1. We can’t increase humidity by an entire unit! Let’s increase humidity by .1 (meaning 10 percentage points. A 10 percentage point increase in humidity is associated with 137 fewer total riders.</p>
-<pre class="sourceCode r"><code class="sourceCode r">newdf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">humidity =</span> <span class="fl">.50</span>)
-<span class="kw">predict</span>(bikehumid, newdf )
-<span class="co">##        1 </span>
-<span class="co">## 4679.446</span></code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">newdf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">humidity =</span> <span class="fl">.50</span>)</a>
+<a class="sourceLine" id="cb88-2" data-line-number="2"><span class="kw">predict</span>(bikehumid, newdf )</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3"><span class="co">##        1 </span></a>
+<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="co">## 4679.446</span></a></code></pre></div>
 <p>We expect about 3963 riders. To be safe, check this number on your plot to make sure that you’re getting something reasonable.</p>
 </div>
 <div id="problem-3-1" class="section level3">
 <h3><span class="header-section-number">5.10.3</span> Problem 3</h3>
 <p>Begin by visualizing the data:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> intgross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> intgross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="RWorkshop19_files/figure-html/unnamed-chunk-129-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Next, create the regression model.</p>
-<pre class="sourceCode r"><code class="sourceCode r">moviemod &lt;-<span class="st"> </span><span class="kw">lm</span>(intgross_<span class="dv">2013</span> <span class="op">~</span><span class="st"> </span>domgross_<span class="dv">2013</span>, <span class="dt">data =</span> bechdel)
-<span class="kw">coef</span>(moviemod)
-<span class="co">##   (Intercept) domgross_2013 </span>
-<span class="co">## -364528.19765       2.09019</span></code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">moviemod &lt;-<span class="st"> </span><span class="kw">lm</span>(intgross_<span class="dv">2013</span> <span class="op">~</span><span class="st"> </span>domgross_<span class="dv">2013</span>, <span class="dt">data =</span> bechdel)</a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="kw">coef</span>(moviemod)</a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"><span class="co">##   (Intercept) domgross_2013 </span></a>
+<a class="sourceLine" id="cb90-4" data-line-number="4"><span class="co">## -364528.19765       2.09019</span></a></code></pre></div>
 <p>Then, write the regression equation.
 <span class="math display">\[
 \widehat{\text{int gross}}_i = -364528.19765 + 2.09019 \, \text{domestic}_i 
 \]</span></p>
 <p>Unsurprisingly, there is a positive association between domestic and worldwide gross. A one dollar increase in the domestic gross is associated with a two dollar (and nine cent) increase in the worldwide gross, in 2013 US dollars.</p>
 <p>For fun, let’s add the line to our plot.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> intgross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> intgross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p><img src="RWorkshop19_files/figure-html/unnamed-chunk-131-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now, let’s predict for <strong>12 Years a Slave</strong>. The domestic gross for this movie was 53107035. Plugging that value into the regression equation produces the predicted worldwide gross profits in US dollars:</p>
-<pre class="sourceCode r"><code class="sourceCode r">twelve &lt;-<span class="st"> </span>bechdel[<span class="dv">3</span>, <span class="st">&quot;domgross_2013&quot;</span>]
-<span class="kw">predict</span>(moviemod, twelve )
-<span class="co">##         1 </span>
-<span class="co">## 110639278</span></code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">twelve &lt;-<span class="st"> </span>bechdel[<span class="dv">3</span>, <span class="st">&quot;domgross_2013&quot;</span>]</a>
+<a class="sourceLine" id="cb92-2" data-line-number="2"><span class="kw">predict</span>(moviemod, twelve )</a>
+<a class="sourceLine" id="cb92-3" data-line-number="3"><span class="co">##         1 </span></a>
+<a class="sourceLine" id="cb92-4" data-line-number="4"><span class="co">## 110639278</span></a></code></pre></div>
 </div>
 <div id="problem-4-1" class="section level3">
 <h3><span class="header-section-number">5.10.4</span> Problem 4</h3>
 <p>Begin by creating the new variable.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-bechdel &lt;-<span class="st"> </span>bechdel <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">foregross_2013 =</span> intgross_<span class="dv">2013</span> <span class="op">-</span><span class="st"> </span>domgross_<span class="dv">2013</span>)</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb93-2" data-line-number="2">bechdel &lt;-<span class="st"> </span>bechdel <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb93-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">foregross_2013 =</span> intgross_<span class="dv">2013</span> <span class="op">-</span><span class="st"> </span>domgross_<span class="dv">2013</span>)</a></code></pre></div>
 <p>Second, visualize the data.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> foregross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_point</span>() </code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">ggplot</span>(bechdel, <span class="kw">aes</span>(<span class="dt">y =</span> foregross_<span class="dv">2013</span>, <span class="dt">x =</span> domgross_<span class="dv">2013</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() </a></code></pre></div>
 <p><img src="RWorkshop19_files/figure-html/unnamed-chunk-134-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Third, create the regression model.</p>
-<pre class="sourceCode r"><code class="sourceCode r">foremod &lt;-<span class="st"> </span><span class="kw">lm</span> (foregross_<span class="dv">2013</span> <span class="op">~</span><span class="st"> </span>domgross_<span class="dv">2013</span>, <span class="dt">data =</span> bechdel)
-<span class="kw">coef</span>(foremod)
-<span class="co">##   (Intercept) domgross_2013 </span>
-<span class="co">## -364528.19765       1.09019</span></code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1">foremod &lt;-<span class="st"> </span><span class="kw">lm</span> (foregross_<span class="dv">2013</span> <span class="op">~</span><span class="st"> </span>domgross_<span class="dv">2013</span>, <span class="dt">data =</span> bechdel)</a>
+<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="kw">coef</span>(foremod)</a>
+<a class="sourceLine" id="cb95-3" data-line-number="3"><span class="co">##   (Intercept) domgross_2013 </span></a>
+<a class="sourceLine" id="cb95-4" data-line-number="4"><span class="co">## -364528.19765       1.09019</span></a></code></pre></div>
 <p>Then, write the regression equation.
 <span class="math display">\[
 \widehat{\text{foreign}}_i = -364528.19765 + 1.09019 \, \text{domestic}_i 
 \]</span></p>
 <p>Let’s interpret this regression equation for fun. First, can we interpret the intercept? No, because none of the films in our data-set have a domestic gross profit of 0 USD, as you can see in the summary below.</p>
-<pre class="sourceCode r"><code class="sourceCode r">bechdel <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(domgross_<span class="dv">2013</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()
-<span class="co">##  domgross_2013      </span>
-<span class="co">##  Min.   :8.990e+02  </span>
-<span class="co">##  1st Qu.:2.055e+07  </span>
-<span class="co">##  Median :5.599e+07  </span>
-<span class="co">##  Mean   :9.517e+07  </span>
-<span class="co">##  3rd Qu.:1.217e+08  </span>
-<span class="co">##  Max.   :1.772e+09  </span>
-<span class="co">##  NA&#39;s   :18</span></code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">bechdel <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(domgross_<span class="dv">2013</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</a>
+<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="co">##  domgross_2013      </span></a>
+<a class="sourceLine" id="cb96-3" data-line-number="3"><span class="co">##  Min.   :8.990e+02  </span></a>
+<a class="sourceLine" id="cb96-4" data-line-number="4"><span class="co">##  1st Qu.:2.055e+07  </span></a>
+<a class="sourceLine" id="cb96-5" data-line-number="5"><span class="co">##  Median :5.599e+07  </span></a>
+<a class="sourceLine" id="cb96-6" data-line-number="6"><span class="co">##  Mean   :9.517e+07  </span></a>
+<a class="sourceLine" id="cb96-7" data-line-number="7"><span class="co">##  3rd Qu.:1.217e+08  </span></a>
+<a class="sourceLine" id="cb96-8" data-line-number="8"><span class="co">##  Max.   :1.772e+09  </span></a>
+<a class="sourceLine" id="cb96-9" data-line-number="9"><span class="co">##  NA&#39;s   :18</span></a></code></pre></div>
 <p>Fine, we can’t interpret the intercept. Let’s interpret the slope then. First of all, the slope is positive, which makes sense: films that make money in the US probably tend to make money in non-US markets, too. (If the slope were negative, this would mean that films that are more lucrative in the US are less lucrative in foreign markets.) Now let’s check out the magnitude of the slope: 1.09. For every additional dollar of profit in the US, we expect the film to make an additional 1.09 USD profit in foreign markets.</p>
 <p>Next, predict the foreign gross profit in 2013 dollars for <strong>12 Years a Slave</strong>:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(foremod, twelve)
-<span class="co">##        1 </span>
-<span class="co">## 57532243</span></code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="kw">predict</span>(foremod, twelve)</a>
+<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="co">##        1 </span></a>
+<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="co">## 57532243</span></a></code></pre></div>
 
 </div>
 </div>

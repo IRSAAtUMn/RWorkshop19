@@ -201,7 +201,7 @@ knitr::include_graphics("images/markdown-headings.png")
 ```
 
 
-Try it - Add a new first and second level heading to your example R Markdown file. 
+Try it - Add a new first and third level heading to your example R Markdown file. 
 
 
 \
@@ -224,7 +224,7 @@ For plain text, just type as is.
 knitr::include_graphics("images/markdown-textformat.png")
 ```
 
-Try it - make a word in the first paragraph of your example R Markdown file bold. 
+Try it - make a word in the first paragraph of your example R Markdown file bold; make another one italic. 
 
 
 \
@@ -329,11 +329,11 @@ knitr::include_graphics("images/rchunks-run.png")
 
 **Exercises**
 
-Revisit the `bechdal` data exploration exercises from the previous session. 
+Revisit the `bechdel` data exploration exercises from the previous session. 
 
 This time, we will create an R Markdown document with these findings. You can start fresh in a new R Markdown document, or use the existing one you have been modifying. 
 
-* Start by creating separate R chunks for each exercise question
+* Start by creating separate R chunks for each exercise question (*skip question 2, as View() does not work well in R Markdown*)
 * Write the question above each chunk in Markdown
 * Put the R code for the exercise in an R code chunk (remove the comments - that will be in the Markdown above)
 * Write a sentence interpreting the result below each chunk in Markdown
