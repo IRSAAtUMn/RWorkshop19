@@ -167,7 +167,16 @@ The fivethirtyeight article
     
     ```
     
+    __Solution__
     
+    ```{r eval = FALSE}
+    # Take a glimpse at the data.  What's the unit of observation?
+    head(candy)
+    
+    # How much data do we have?    
+    dim(candy)
+    ```
+
 \
 \
 
@@ -199,6 +208,38 @@ The fivethirtyeight article
     
     # You try: arrange from most to least expensive 
     
+    ```
+    
+    __Solution__
+    
+    ```{r eval = FALSE}
+    # arrange candy by popularity in ascending order
+    candy %>% 
+      arrange(winpercent)
+    candy %>% 
+      arrange(winpercent) %>% 
+      head()
+    
+    # arrange candy by popularity in descending order
+    candy %>% 
+      arrange(desc(winpercent))
+    candy %>% 
+      arrange(desc(winpercent)) %>% 
+      head() 
+    
+    # Store the new dataset
+    candy_arranged <- candy %>% 
+      arrange(winpercent)
+    
+    # You try: arrange from least to most expensive 
+    candy %>% 
+      arrange(pricepercent) %>% 
+      head()
+    
+    # You try: arrange from most to least expensive 
+    candy %>% 
+      arrange(desc(pricepercent)) %>% 
+      head()
     ```
     
     
@@ -234,6 +275,22 @@ The fivethirtyeight article
       filter(___)
     ```
     
+    __Solution__
+    
+    ```{r eval = FALSE}
+    # Keep the sad candies that won less than 30% 
+    candy %>% 
+      filter(pricepercent < 30)
+    
+    # Keep only Dots
+    candy %>% 
+      filter(competitorname == "Dots")
+    
+    # Keep only chocolate-y candies    
+    candy %>% 
+      filter(chocolate == TRUE)
+    ```
+    
 
 \
 \
@@ -263,7 +320,28 @@ The fivethirtyeight article
       ___(___)
     ```
 
-
+    __Solution__
+    
+    ```{r eval = FALSE}
+    # Keep only chocolate-y, peanut butter-y candies. Do this in 3 lines.
+    candy %>% 
+      filter(chocolate == TRUE)  %>% 
+      filter(peanutyalmondy == TRUE)
+    
+    # Keep only chocolate-y, peanut butter-y candies. Do this in 2 lines.
+    candy %>% 
+      filter(chocolate == TRUE, peanutyalmondy == TRUE)
+    
+    # Arrange fruity candy from most to least popular
+    candy %>% 
+      filter(fruity == TRUE) %>% 
+      mutate(desc(winpercent))
+    
+    # Can you rearrange the operations above to arrange fruity candy from most to least popular?
+    candy %>% 
+      mutate(desc(winpercent)) %>% 
+      filter(fruity == TRUE)
+    ```
 
 
 
@@ -293,6 +371,27 @@ The fivethirtyeight article
     
     ```
     
+    __Solution__
+    
+    ```{r eval = FALSE}
+    # Create a dataset which only contains candy name & winpercent
+    candy %>% 
+      select(competitorname, winpercent) %>% 
+      head()
+    
+    # You try: create a dataset which only contains candy name, chocolate status, & winpercent
+    candy %>% 
+      select(competitorname, winpercent, chocolate) %>% 
+      head()
+    
+    
+    # You try: can you guess how to remove only the nougat variable?
+    candy %>% 
+      select(-nougat) %>% 
+      head()
+    
+    ```
+    
 
 
 \
@@ -315,6 +414,20 @@ The fivethirtyeight article
     ```
     
     
+    __Solution__
+    
+    ```{r eval = FALSE}
+    # Create price_percentile variable which transforms pricepercent to 0-100 scale
+    candy %>% 
+      mutate(price_percentile = pricepercent * 100) %>% 
+      head()
+    
+    # You try: create a meaningless_sum variable which is the sum of sugarpercent and pricepercent 
+    candy %>% 
+      mutate(meaningless_sum = sugarpercent + pricepercent) %>% 
+      head()
+    ```
+    
     
     
     
@@ -335,7 +448,16 @@ The fivethirtyeight article
 8. __Review: univariate visualizations__    
     Construct a univariate visualization of `winpercent`.  Summarize the trend and variability in the `winpercent` from candy to candy.        
     ```{r}
+    # try on your own first!
     
+    
+    ```
+    
+    __Solution__
+    
+    ```{r}
+    ggplot(candy, aes(x = winpercent)) + 
+      geom_histogram()
     ```
     
 
@@ -359,6 +481,14 @@ The fivethirtyeight article
       summarize(___, ___)
     ```
     
+    __Solution__
+    
+    ```{r eval = FALSE}
+    # Variability: calculate the min & max winpercent
+    candy %>% 
+      summarize(min(winpercent), max(winpercent))
+    ```
+    
 
 \
 \
@@ -367,10 +497,18 @@ The fivethirtyeight article
 10. __Review: multivariate visualizations__    
     Construct a visualization of the relationship between `winpercent` and `chocolate`.  Summarize your observations.        
     ```{r}
+    # try on your own first! 
     
     ```
     
 
+    __Solution__
+    
+    ```{r}
+    ggplot(candy, aes(x = winpercent, fill = chocolate)) + 
+      geom_density(alpha = 0.5)
+    ```
+    
 \
 \
 
@@ -388,8 +526,15 @@ The fivethirtyeight article
     
     ```
     
+    __Solution__
     
-
+    ```{r eval = FALSE}
+    # (You try) Variability: calculate the min & max winpercent by fruit group
+    candy %>% 
+      group_by(fruity) %>% 
+      summarize(min(winpercent), max(winpercent))
+    
+    ```
 
 
 \
