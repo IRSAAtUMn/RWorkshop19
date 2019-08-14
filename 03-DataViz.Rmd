@@ -227,7 +227,7 @@ A **histogram** is constructed by: (1) dividing up the observed range of the var
 
 In summary, you constructed: 
 
-```{r echo=FALSE,fig.width=8}
+```{r echo=FALSE,fig.width=8, fig.height = 2.5}
 g0 = ggplot(only_2014, aes(x=births))
 g1 = g0 + geom_histogram()
 g3 = ggplot(only_2014, aes(x=births)) +
@@ -417,7 +417,7 @@ DT::datatable(head(only_2014), options = list(pageLength = 6))
 
 In summary: 
 
-```{r echo=FALSE, fig.width=4, fig.height=8, warning=FALSE}
+```{r echo=FALSE, fig.width=8, fig.height=2.5, warning=FALSE}
 g1=ggplot(only_2014, aes(y=births, x=date))
 g2=ggplot(only_2014, aes(y=births, x=date)) +
     geom_point()
@@ -427,7 +427,7 @@ g4=ggplot(only_2014, aes(y=births, x=date)) +
     geom_point() + 
     geom_smooth()
 
-grid.arrange(g1,g2,g3, ncol=1)
+grid.arrange(g1,g2,g3, ncol=3)
 ```
 
 
