@@ -3,7 +3,9 @@ title: "Introduction to Reproducible Data Science with R"
 author: Institute for Research in Statistics and its Applications at the University of Minnesota
 site: bookdown::bookdown_site
 output: 
+  bookdown::pdf_book: default
   bookdown::gitbook:
+    bookdown::pdf_book: null
     config:
       toc:
         collapse: section
@@ -37,7 +39,9 @@ github-repo: IRSAAtUMn/RWorkshop19/docs
 knitr::opts_chunk$set(collapse = TRUE, 
                       warning = FALSE,
                       message = FALSE,
-                      fig.align = 'center')
+                      fig.align = 'center', 
+                      out.width="80%", 
+                      tidy=TRUE)
 
 # Load packages
 library(ggplot2)
