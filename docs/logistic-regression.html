@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html >
+
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title> 6 Logistic Regression | Introduction to Reproducible Data Science with R</title>
-  <meta name="description" content=" 6 Logistic Regression | Introduction to Reproducible Data Science with R" />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="description" content=" 6 Logistic Regression | Introduction to Reproducible Data Science with R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
   <meta property="og:title" content=" 6 Logistic Regression | Introduction to Reproducible Data Science with R" />
   <meta property="og:type" content="book" />
@@ -21,13 +22,13 @@
   
   
 
-<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota" />
+<meta name="author" content="Institute for Research in Statistics and its Applications at the University of Minnesota">
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
 <link rel="prev" href="linear-regression.html">
@@ -46,9 +47,9 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.7/datatables.js"></script>
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
@@ -62,6 +63,7 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -156,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html"><i class="fa fa-check"></i><b>3</b> Understanding data: Visualization</a><ul>
 <li class="chapter" data-level="" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#getting-started-1"><i class="fa fa-check"></i>Getting started</a></li>
 <li class="chapter" data-level="3.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#goal-understanding-through-visualizations"><i class="fa fa-check"></i><b>3.1</b> Goal: Understanding Through Visualizations</a></li>
-<li class="chapter" data-level="3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#ggplot"><i class="fa fa-check"></i><b>3.2</b> ggplot</a></li>
+<li class="chapter" data-level="3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#tidyverse-ggplot"><i class="fa fa-check"></i><b>3.2</b> tidyverse: ggplot</a></li>
 <li class="chapter" data-level="3.3" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#univariate-visualizations"><i class="fa fa-check"></i><b>3.3</b> Univariate visualizations</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#histograms"><i class="fa fa-check"></i><b>3.3.1</b> Histograms</a></li>
 <li class="chapter" data-level="3.3.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#density-plots"><i class="fa fa-check"></i><b>3.3.2</b> Density plots</a></li>
@@ -171,10 +173,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#questions"><i class="fa fa-check"></i><b>3.5.1</b> Questions</a></li>
 <li class="chapter" data-level="3.5.2" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#solutions"><i class="fa fa-check"></i><b>3.5.2</b> Solutions</a></li>
 </ul></li>
+<li class="chapter" data-level="3.6" data-path="understanding-data-visualization.html"><a href="understanding-data-visualization.html#resources"><i class="fa fa-check"></i><b>3.6</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html"><i class="fa fa-check"></i><b>4</b> Understanding data: Transformations</a><ul>
+<li class="chapter" data-level="" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#getting-started-2"><i class="fa fa-check"></i>Getting started</a></li>
 <li class="chapter" data-level="4.1" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#goal-understanding-through-transformations"><i class="fa fa-check"></i><b>4.1</b> Goal: Understanding Through Transformations</a></li>
-<li class="chapter" data-level="4.2" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#dplyr"><i class="fa fa-check"></i><b>4.2</b> dplyr</a></li>
+<li class="chapter" data-level="4.2" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#tidyverse-dplyr"><i class="fa fa-check"></i><b>4.2</b> tidyverse: dplyr</a></li>
 <li class="chapter" data-level="4.3" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#transforming-rows-arrange-and-filter"><i class="fa fa-check"></i><b>4.3</b> Transforming rows: <code>arrange()</code> and <code>filter()</code></a></li>
 <li class="chapter" data-level="4.4" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#transforming-columns-select-and-mutate"><i class="fa fa-check"></i><b>4.4</b> Transforming columns: <code>select()</code> and <code>mutate()</code></a></li>
 <li class="chapter" data-level="4.5" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#simple-numerical-summaries-summarize"><i class="fa fa-check"></i><b>4.5</b> Simple numerical summaries: <code>summarize()</code></a></li>
@@ -182,6 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.1" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#questions-1"><i class="fa fa-check"></i><b>4.6.1</b> Questions</a></li>
 <li class="chapter" data-level="4.6.2" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#solutions-1"><i class="fa fa-check"></i><b>4.6.2</b> Solutions</a></li>
 </ul></li>
+<li class="chapter" data-level="4.7" data-path="understanding-data-transformations.html"><a href="understanding-data-transformations.html#resources-1"><i class="fa fa-check"></i><b>4.7</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>5</b> Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="linear-regression.html"><a href="linear-regression.html#goals"><i class="fa fa-check"></i><b>5.1</b> Goals</a></li>
@@ -313,15 +318,15 @@ source: <a href="http://r4ds.had.co.nz/">Wickham &amp; Grolemund: R for Data Sci
 <li>the weight of the female (in grams)</li>
 </ul>
 <p>In today’s example, we will use the width of a female’s shell to predict the probability of her having one or more satellites. Let’s start by loading the data.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">crabs &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cknudson.com/data/crabs.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="kw">head</span>(crabs)</a>
-<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="co">##    color spine width satell weight y</span></a>
-<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="co">## 1 medium   bad  28.3      8   3050 1</span></a>
-<a class="sourceLine" id="cb98-5" data-line-number="5"><span class="co">## 2   dark   bad  22.5      0   1550 0</span></a>
-<a class="sourceLine" id="cb98-6" data-line-number="6"><span class="co">## 3  light  good  26.0      9   2300 1</span></a>
-<a class="sourceLine" id="cb98-7" data-line-number="7"><span class="co">## 4   dark   bad  24.8      0   2100 0</span></a>
-<a class="sourceLine" id="cb98-8" data-line-number="8"><span class="co">## 5   dark   bad  26.0      4   2600 1</span></a>
-<a class="sourceLine" id="cb98-9" data-line-number="9"><span class="co">## 6 medium   bad  23.8      0   2100 0</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">crabs &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cknudson.com/data/crabs.csv&quot;</span>)
+<span class="kw">head</span>(crabs)
+<span class="co">##    color spine width satell weight y</span>
+<span class="co">## 1 medium   bad  28.3      8   3050 1</span>
+<span class="co">## 2   dark   bad  22.5      0   1550 0</span>
+<span class="co">## 3  light  good  26.0      9   2300 1</span>
+<span class="co">## 4   dark   bad  24.8      0   2100 0</span>
+<span class="co">## 5   dark   bad  26.0      4   2600 1</span>
+<span class="co">## 6 medium   bad  23.8      0   2100 0</span></code></pre>
 <p>You can learn more about this data set <a href="http://users.stat.ufl.edu/~aa/cda/data.html">here</a>.</p>
 </div>
 </div>
@@ -344,11 +349,11 @@ where <span class="math inline">\(x_i\)</span> is the predictor, <span class="ma
 <div id="fit-a-logistic-regression-model" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Fit a Logistic Regression Model</h3>
 <p>To fit a logistic regression model, we can use the <strong>glm</strong> function:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>width, <span class="dt">family =</span> binomial, <span class="dt">data =</span> crabs)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>width, <span class="dt">family =</span> binomial, <span class="dt">data =</span> crabs)</code></pre>
 <p>The first input is the regression formula (Response ~ Predictor), the second input indicates we have a binary response, and the third input is the data frame. To find the regression coefficients (i.e. the estimates of <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>), we can use the <strong>coef</strong> command</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">coef</span>(mod)</a>
-<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="co">## (Intercept)       width </span></a>
-<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="co">## -12.3508177   0.4972306</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coef</span>(mod)
+<span class="co">## (Intercept)       width </span>
+<span class="co">## -12.3508177   0.4972306</span></code></pre>
 <p>We can now enter these estimates into our logistic regression equation, just as we did in the simple linear regression setting. Our logistic regression equation is
 <span class="math display">\[
 \log \left( \dfrac{p_i}{1-p_i} \right) = -12.3508 + 0.4972 \; \text{width}_i, 
@@ -368,10 +373,10 @@ where <span class="math inline">\(\text{width}_i\)</span> is the width of a fema
  &amp;= 0.0799473.
 \end{align*}\]</span></p>
 <p>Now that you understand the idea of prediction, let’s use our <strong>predict</strong> command, which we learned about in the regression chapter. We can use it for logistic regression. Again, create a data frame with a value for the predictor, and then use the <strong>predict</strong> command. The first input is the model and the second is the new crab’s data frame.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">newcrab &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">width =</span><span class="dv">25</span>)</a>
-<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="kw">predict</span>(mod, newcrab)</a>
-<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="co">##          1 </span></a>
-<a class="sourceLine" id="cb101-4" data-line-number="4"><span class="co">## 0.07994696</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">newcrab &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">width =</span><span class="dv">25</span>)
+<span class="kw">predict</span>(mod, newcrab)
+<span class="co">##          1 </span>
+<span class="co">## 0.07994696</span></code></pre>
 <p>We could say that the log odds of a 25 cm female having satellites is about 0.07995, but let’s make this more interpretable to everyday humans by translating this to a probability. We use a little algebra to solve for <span class="math inline">\(p_i\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
 \log \left( \dfrac{p_i}{1-p_i} \right) &amp;= 0.0799473 \\
@@ -389,29 +394,29 @@ In the context of the crabs, we want to know whether the carapace width really d
 <!-- * The alternative hypothesis is that her carapace width has a linear relationship to her log odds of having satellites.  -->
 <!-- Remember: we assume there is *no* relationship until we find evidence that there *is* a relationship. That is, we assume that carapace width is unrelated to the probability of satellites; in order to say the carapace width is related to the probability of satellites, we need evidence. This evidence comes in the form of a statistical test. -->
 <p>Recall the <strong>summary</strong> command, which was introduced in the linear regression setting. We can use it in the logistic regression setting, too. Below is the summary for our crab model.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"><span class="kw">summary</span>(mod)</a>
-<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="co">## </span></a>
-<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb102-4" data-line-number="4"><span class="co">## glm(formula = y ~ width, family = binomial, data = crabs)</span></a>
-<a class="sourceLine" id="cb102-5" data-line-number="5"><span class="co">## </span></a>
-<a class="sourceLine" id="cb102-6" data-line-number="6"><span class="co">## Deviance Residuals: </span></a>
-<a class="sourceLine" id="cb102-7" data-line-number="7"><span class="co">##     Min       1Q   Median       3Q      Max  </span></a>
-<a class="sourceLine" id="cb102-8" data-line-number="8"><span class="co">## -2.0281  -1.0458   0.5480   0.9066   1.6942  </span></a>
-<a class="sourceLine" id="cb102-9" data-line-number="9"><span class="co">## </span></a>
-<a class="sourceLine" id="cb102-10" data-line-number="10"><span class="co">## Coefficients:</span></a>
-<a class="sourceLine" id="cb102-11" data-line-number="11"><span class="co">##             Estimate Std. Error z value Pr(&gt;|z|)    </span></a>
-<a class="sourceLine" id="cb102-12" data-line-number="12"><span class="co">## (Intercept) -12.3508     2.6287  -4.698 2.62e-06 ***</span></a>
-<a class="sourceLine" id="cb102-13" data-line-number="13"><span class="co">## width         0.4972     0.1017   4.887 1.02e-06 ***</span></a>
-<a class="sourceLine" id="cb102-14" data-line-number="14"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb102-15" data-line-number="15"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb102-16" data-line-number="16"><span class="co">## </span></a>
-<a class="sourceLine" id="cb102-17" data-line-number="17"><span class="co">## (Dispersion parameter for binomial family taken to be 1)</span></a>
-<a class="sourceLine" id="cb102-18" data-line-number="18"><span class="co">## </span></a>
-<a class="sourceLine" id="cb102-19" data-line-number="19"><span class="co">##     Null deviance: 225.76  on 172  degrees of freedom</span></a>
-<a class="sourceLine" id="cb102-20" data-line-number="20"><span class="co">## Residual deviance: 194.45  on 171  degrees of freedom</span></a>
-<a class="sourceLine" id="cb102-21" data-line-number="21"><span class="co">## AIC: 198.45</span></a>
-<a class="sourceLine" id="cb102-22" data-line-number="22"><span class="co">## </span></a>
-<a class="sourceLine" id="cb102-23" data-line-number="23"><span class="co">## Number of Fisher Scoring iterations: 4</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = y ~ width, family = binomial, data = crabs)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##     Min       1Q   Median       3Q      Max  </span>
+<span class="co">## -2.0281  -1.0458   0.5480   0.9066   1.6942  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##             Estimate Std. Error z value Pr(&gt;|z|)    </span>
+<span class="co">## (Intercept) -12.3508     2.6287  -4.698 2.62e-06 ***</span>
+<span class="co">## width         0.4972     0.1017   4.887 1.02e-06 ***</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 225.76  on 172  degrees of freedom</span>
+<span class="co">## Residual deviance: 194.45  on 171  degrees of freedom</span>
+<span class="co">## AIC: 198.45</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 4</span></code></pre>
 <p>Although the summary provides many details about our model, we focus for now on the p-value in the second row of the coefficients table of the summary output.</p>
 <!-- Recall that our model has two regression coefficients: the intercept $\beta_0$ and the slope $\beta_1$. The first row of the coefficients table displays information for $\beta_0$ and the second row displays information for $\beta_1$. The columns of the coefficients table provide the estimates of our regression coefficients, their standard errors (smaller standard errors indicate higher certainty), test statistics (for testing whether the regression coefficients differ from zero), and the p-values associated with the test statistics. -->
 <!-- In order to answer our question ("Does this predictor actually help us predict the response?"), we focus on $\beta_1$, the regression coefficient on the predictor.   (Recall that if $\beta_1 = 0$, then the log odds have no linear relationship with the predictor.) We find the test results in the two right-most columns and the second row in the the coefficients table of the summary. These entries show us that our test statistic is 4.887 and -->
@@ -435,7 +440,7 @@ In the context of the crabs, we want to know whether the carapace width really d
 <div id="boundary-water-blowdown" class="section level3">
 <h3><span class="header-section-number">6.4.2</span> Boundary Water Blowdown</h3>
 <p>The Boundary Water Canoe Area experienced wind speeds over 90 miles per hour on July 4, 1999. As a result, many trees were blown down. The data set below contains information on the diameter of each tree (<strong>D</strong>) and whether the tree died (<strong>y</strong>). <strong>y</strong> is 1 if the tree died and 0 if the tree survived. You can learn more about this data set <a href="https://www.rdocumentation.org/packages/alr4/versions/1.0.5/topics/Blowdown">here</a>.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">blowdown &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cknudson.com/data/blowdown.csv&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">blowdown &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cknudson.com/data/blowdown.csv&quot;</span>)</code></pre>
 <p>Use this data set to understand the relationship between a tree’s diameter and its log odds of death.</p>
 <ul>
 <li>Create a logistic regression using the tree’s diameter the predictor and whether it died as the response variable.</li>
@@ -463,7 +468,7 @@ In the context of the crabs, we want to know whether the carapace width really d
 <li>Use logistic regression to decide whether beers with higher <strong>ABV</strong> (alcohol by volume) are more likely to have a rating of at least 90. (Hint: Use the variable <em>Good</em> as your response.)</li>
 <li>Choose your favorite beer off the list and calculate its probability of having a score of at least 90.</li>
 </ul>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">beer &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cknudson.com/data/MNbeer.csv&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">beer &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://www.cknudson.com/data/MNbeer.csv&quot;</span>)</code></pre>
 </div>
 <div id="state-colors" class="section level3">
 <h3><span class="header-section-number">6.4.4</span> State Colors</h3>
@@ -472,8 +477,8 @@ In the context of the crabs, we want to know whether the carapace width really d
 <li>Is per capita income related to whether a state is red?</li>
 <li>If a state has a high per capita income, is it more or less likely to be red?</li>
 </ul>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">election &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.macalester.edu/~ajohns24/data/IMAdata1.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb105-2" data-line-number="2">election<span class="op">$</span>Red &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(election<span class="op">$</span>StateColor <span class="op">==</span><span class="st"> &quot;red&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">election &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.macalester.edu/~ajohns24/data/IMAdata1.csv&quot;</span>)
+election<span class="op">$</span>Red &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(election<span class="op">$</span>StateColor <span class="op">==</span><span class="st"> &quot;red&quot;</span>)</code></pre>
 </div>
 </div>
 <div id="half-time-solutions" class="section level2">
@@ -481,133 +486,133 @@ In the context of the crabs, we want to know whether the carapace width really d
 <div id="crab-weight" class="section level3">
 <h3><span class="header-section-number">6.5.1</span> Crab Weight</h3>
 <p>We create the model and look at the summary to find the p-value for the coefficient on weight The p-value is small (<span class="math inline">\(1.45 \times 10^{-6}\)</span>) so we can conclude that a female crab’s weight <strong>does</strong> have a significant linear relationship with the log odds of her having one or more satellites.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">weightmod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>weight, <span class="dt">family =</span> binomial, <span class="dt">data =</span> crabs)</a>
-<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="kw">summary</span>(weightmod)</a>
-<a class="sourceLine" id="cb106-3" data-line-number="3"><span class="co">## </span></a>
-<a class="sourceLine" id="cb106-4" data-line-number="4"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb106-5" data-line-number="5"><span class="co">## glm(formula = y ~ weight, family = binomial, data = crabs)</span></a>
-<a class="sourceLine" id="cb106-6" data-line-number="6"><span class="co">## </span></a>
-<a class="sourceLine" id="cb106-7" data-line-number="7"><span class="co">## Deviance Residuals: </span></a>
-<a class="sourceLine" id="cb106-8" data-line-number="8"><span class="co">##     Min       1Q   Median       3Q      Max  </span></a>
-<a class="sourceLine" id="cb106-9" data-line-number="9"><span class="co">## -2.1108  -1.0749   0.5426   0.9122   1.6285  </span></a>
-<a class="sourceLine" id="cb106-10" data-line-number="10"><span class="co">## </span></a>
-<a class="sourceLine" id="cb106-11" data-line-number="11"><span class="co">## Coefficients:</span></a>
-<a class="sourceLine" id="cb106-12" data-line-number="12"><span class="co">##               Estimate Std. Error z value Pr(&gt;|z|)    </span></a>
-<a class="sourceLine" id="cb106-13" data-line-number="13"><span class="co">## (Intercept) -3.6947264  0.8801975  -4.198 2.70e-05 ***</span></a>
-<a class="sourceLine" id="cb106-14" data-line-number="14"><span class="co">## weight       0.0018151  0.0003767   4.819 1.45e-06 ***</span></a>
-<a class="sourceLine" id="cb106-15" data-line-number="15"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb106-16" data-line-number="16"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb106-17" data-line-number="17"><span class="co">## </span></a>
-<a class="sourceLine" id="cb106-18" data-line-number="18"><span class="co">## (Dispersion parameter for binomial family taken to be 1)</span></a>
-<a class="sourceLine" id="cb106-19" data-line-number="19"><span class="co">## </span></a>
-<a class="sourceLine" id="cb106-20" data-line-number="20"><span class="co">##     Null deviance: 225.76  on 172  degrees of freedom</span></a>
-<a class="sourceLine" id="cb106-21" data-line-number="21"><span class="co">## Residual deviance: 195.74  on 171  degrees of freedom</span></a>
-<a class="sourceLine" id="cb106-22" data-line-number="22"><span class="co">## AIC: 199.74</span></a>
-<a class="sourceLine" id="cb106-23" data-line-number="23"><span class="co">## </span></a>
-<a class="sourceLine" id="cb106-24" data-line-number="24"><span class="co">## Number of Fisher Scoring iterations: 4</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">weightmod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>weight, <span class="dt">family =</span> binomial, <span class="dt">data =</span> crabs)
+<span class="kw">summary</span>(weightmod)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = y ~ weight, family = binomial, data = crabs)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##     Min       1Q   Median       3Q      Max  </span>
+<span class="co">## -2.1108  -1.0749   0.5426   0.9122   1.6285  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##               Estimate Std. Error z value Pr(&gt;|z|)    </span>
+<span class="co">## (Intercept) -3.6947264  0.8801975  -4.198 2.70e-05 ***</span>
+<span class="co">## weight       0.0018151  0.0003767   4.819 1.45e-06 ***</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 225.76  on 172  degrees of freedom</span>
+<span class="co">## Residual deviance: 195.74  on 171  degrees of freedom</span>
+<span class="co">## AIC: 199.74</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 4</span></code></pre>
 <p>Now we can use our regression equation to calculate the probability of a 2000 gram female having one or more satellites.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">newcrab2000 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">weight =</span> <span class="dv">2000</span>)</a>
-<a class="sourceLine" id="cb107-2" data-line-number="2">logodds &lt;-<span class="st"> </span><span class="kw">predict</span>(weightmod, newcrab2000)</a>
-<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="kw">exp</span>(logodds)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(logodds))</a>
-<a class="sourceLine" id="cb107-4" data-line-number="4"><span class="co">##         1 </span></a>
-<a class="sourceLine" id="cb107-5" data-line-number="5"><span class="co">## 0.4838963</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">newcrab2000 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">weight =</span> <span class="dv">2000</span>)
+logodds &lt;-<span class="st"> </span><span class="kw">predict</span>(weightmod, newcrab2000)
+<span class="kw">exp</span>(logodds)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(logodds))
+<span class="co">##         1 </span>
+<span class="co">## 0.4838963</span></code></pre>
 <p>The probability of a 2000 gram female having satellites is 0.4838963.</p>
 </div>
 <div id="boundary-water-blowdown-1" class="section level3">
 <h3><span class="header-section-number">6.5.2</span> Boundary Water Blowdown</h3>
 <p>We create the model, isolate the coefficients, and find the summary using the code below.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">treemod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>D, <span class="dt">data =</span> blowdown, <span class="dt">family =</span> binomial)</a>
-<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="kw">coef</span>(treemod)</a>
-<a class="sourceLine" id="cb108-3" data-line-number="3"><span class="co">## (Intercept)           D </span></a>
-<a class="sourceLine" id="cb108-4" data-line-number="4"><span class="co">## -1.70211206  0.09755846</span></a>
-<a class="sourceLine" id="cb108-5" data-line-number="5"><span class="kw">summary</span>(treemod)</a>
-<a class="sourceLine" id="cb108-6" data-line-number="6"><span class="co">## </span></a>
-<a class="sourceLine" id="cb108-7" data-line-number="7"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb108-8" data-line-number="8"><span class="co">## glm(formula = y ~ D, family = binomial, data = blowdown)</span></a>
-<a class="sourceLine" id="cb108-9" data-line-number="9"><span class="co">## </span></a>
-<a class="sourceLine" id="cb108-10" data-line-number="10"><span class="co">## Deviance Residuals: </span></a>
-<a class="sourceLine" id="cb108-11" data-line-number="11"><span class="co">##     Min       1Q   Median       3Q      Max  </span></a>
-<a class="sourceLine" id="cb108-12" data-line-number="12"><span class="co">## -3.6309  -0.9616  -0.7211   1.1495   1.7172  </span></a>
-<a class="sourceLine" id="cb108-13" data-line-number="13"><span class="co">## </span></a>
-<a class="sourceLine" id="cb108-14" data-line-number="14"><span class="co">## Coefficients:</span></a>
-<a class="sourceLine" id="cb108-15" data-line-number="15"><span class="co">##              Estimate Std. Error z value Pr(&gt;|z|)    </span></a>
-<a class="sourceLine" id="cb108-16" data-line-number="16"><span class="co">## (Intercept) -1.702112   0.082798  -20.56   &lt;2e-16 ***</span></a>
-<a class="sourceLine" id="cb108-17" data-line-number="17"><span class="co">## D            0.097558   0.004846   20.13   &lt;2e-16 ***</span></a>
-<a class="sourceLine" id="cb108-18" data-line-number="18"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb108-19" data-line-number="19"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb108-20" data-line-number="20"><span class="co">## </span></a>
-<a class="sourceLine" id="cb108-21" data-line-number="21"><span class="co">## (Dispersion parameter for binomial family taken to be 1)</span></a>
-<a class="sourceLine" id="cb108-22" data-line-number="22"><span class="co">## </span></a>
-<a class="sourceLine" id="cb108-23" data-line-number="23"><span class="co">##     Null deviance: 5057.9  on 3665  degrees of freedom</span></a>
-<a class="sourceLine" id="cb108-24" data-line-number="24"><span class="co">## Residual deviance: 4555.6  on 3664  degrees of freedom</span></a>
-<a class="sourceLine" id="cb108-25" data-line-number="25"><span class="co">## AIC: 4559.6</span></a>
-<a class="sourceLine" id="cb108-26" data-line-number="26"><span class="co">## </span></a>
-<a class="sourceLine" id="cb108-27" data-line-number="27"><span class="co">## Number of Fisher Scoring iterations: 4</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">treemod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>D, <span class="dt">data =</span> blowdown, <span class="dt">family =</span> binomial)
+<span class="kw">coef</span>(treemod)
+<span class="co">## (Intercept)           D </span>
+<span class="co">## -1.70211206  0.09755846</span>
+<span class="kw">summary</span>(treemod)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = y ~ D, family = binomial, data = blowdown)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##     Min       1Q   Median       3Q      Max  </span>
+<span class="co">## -3.6309  -0.9616  -0.7211   1.1495   1.7172  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##              Estimate Std. Error z value Pr(&gt;|z|)    </span>
+<span class="co">## (Intercept) -1.702112   0.082798  -20.56   &lt;2e-16 ***</span>
+<span class="co">## D            0.097558   0.004846   20.13   &lt;2e-16 ***</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 5057.9  on 3665  degrees of freedom</span>
+<span class="co">## Residual deviance: 4555.6  on 3664  degrees of freedom</span>
+<span class="co">## AIC: 4559.6</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 4</span></code></pre>
 <p>First, the coefficient on the diameter is positive. This tells us that larger trees were more likely to die. Moreover, the relationship between a trees diameter and its log odds of death is statistically significant: the p-value is quite small (smaller than <span class="math inline">\(2 \times 10^{-16}\)</span>).</p>
 <p>Finally, the probability of death for a tree that was 20 cm in diameter is calculated below.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">newtree &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">D =</span> <span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb109-2" data-line-number="2">(logodds &lt;-<span class="st"> </span><span class="kw">predict</span>(treemod, newtree))</a>
-<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="co">##         1 </span></a>
-<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="co">## 0.2490571</span></a>
-<a class="sourceLine" id="cb109-5" data-line-number="5"><span class="kw">exp</span>(logodds)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(logodds))</a>
-<a class="sourceLine" id="cb109-6" data-line-number="6"><span class="co">##         1 </span></a>
-<a class="sourceLine" id="cb109-7" data-line-number="7"><span class="co">## 0.5619444</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">newtree &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">D =</span> <span class="dv">20</span>)
+(logodds &lt;-<span class="st"> </span><span class="kw">predict</span>(treemod, newtree))
+<span class="co">##         1 </span>
+<span class="co">## 0.2490571</span>
+<span class="kw">exp</span>(logodds)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(logodds))
+<span class="co">##         1 </span>
+<span class="co">## 0.5619444</span></code></pre>
 </div>
 <div id="beer-1" class="section level3">
 <h3><span class="header-section-number">6.5.3</span> Beer</h3>
 <p>We create the model and look at the summary to find the p-value for the coefficient on ABV. The p-value is small (<span class="math inline">\(0.00747\)</span>) so we can conclude that ABV <strong>does</strong> have a significant linear relationship with the log odds of a beer earning a score of at least 90.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">beermod &lt;-<span class="st"> </span><span class="kw">glm</span>(Good <span class="op">~</span><span class="st"> </span>ABV, <span class="dt">family =</span> binomial, <span class="dt">data =</span> beer)</a>
-<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="kw">summary</span>(beermod)</a>
-<a class="sourceLine" id="cb110-3" data-line-number="3"><span class="co">## </span></a>
-<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb110-5" data-line-number="5"><span class="co">## glm(formula = Good ~ ABV, family = binomial, data = beer)</span></a>
-<a class="sourceLine" id="cb110-6" data-line-number="6"><span class="co">## </span></a>
-<a class="sourceLine" id="cb110-7" data-line-number="7"><span class="co">## Deviance Residuals: </span></a>
-<a class="sourceLine" id="cb110-8" data-line-number="8"><span class="co">##     Min       1Q   Median       3Q      Max  </span></a>
-<a class="sourceLine" id="cb110-9" data-line-number="9"><span class="co">## -1.3847  -0.8206  -0.4663   0.7230   2.1320  </span></a>
-<a class="sourceLine" id="cb110-10" data-line-number="10"><span class="co">## </span></a>
-<a class="sourceLine" id="cb110-11" data-line-number="11"><span class="co">## Coefficients:</span></a>
-<a class="sourceLine" id="cb110-12" data-line-number="12"><span class="co">##             Estimate Std. Error z value Pr(&gt;|z|)   </span></a>
-<a class="sourceLine" id="cb110-13" data-line-number="13"><span class="co">## (Intercept)  -9.7881     3.3959  -2.882  0.00395 **</span></a>
-<a class="sourceLine" id="cb110-14" data-line-number="14"><span class="co">## ABV           1.4662     0.5481   2.675  0.00747 **</span></a>
-<a class="sourceLine" id="cb110-15" data-line-number="15"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb110-16" data-line-number="16"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb110-17" data-line-number="17"><span class="co">## </span></a>
-<a class="sourceLine" id="cb110-18" data-line-number="18"><span class="co">## (Dispersion parameter for binomial family taken to be 1)</span></a>
-<a class="sourceLine" id="cb110-19" data-line-number="19"><span class="co">## </span></a>
-<a class="sourceLine" id="cb110-20" data-line-number="20"><span class="co">##     Null deviance: 51.564  on 43  degrees of freedom</span></a>
-<a class="sourceLine" id="cb110-21" data-line-number="21"><span class="co">## Residual deviance: 42.108  on 42  degrees of freedom</span></a>
-<a class="sourceLine" id="cb110-22" data-line-number="22"><span class="co">## AIC: 46.108</span></a>
-<a class="sourceLine" id="cb110-23" data-line-number="23"><span class="co">## </span></a>
-<a class="sourceLine" id="cb110-24" data-line-number="24"><span class="co">## Number of Fisher Scoring iterations: 5</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">beermod &lt;-<span class="st"> </span><span class="kw">glm</span>(Good <span class="op">~</span><span class="st"> </span>ABV, <span class="dt">family =</span> binomial, <span class="dt">data =</span> beer)
+<span class="kw">summary</span>(beermod)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = Good ~ ABV, family = binomial, data = beer)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##     Min       1Q   Median       3Q      Max  </span>
+<span class="co">## -1.3847  -0.8206  -0.4663   0.7230   2.1320  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##             Estimate Std. Error z value Pr(&gt;|z|)   </span>
+<span class="co">## (Intercept)  -9.7881     3.3959  -2.882  0.00395 **</span>
+<span class="co">## ABV           1.4662     0.5481   2.675  0.00747 **</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 51.564  on 43  degrees of freedom</span>
+<span class="co">## Residual deviance: 42.108  on 42  degrees of freedom</span>
+<span class="co">## AIC: 46.108</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 5</span></code></pre>
 </div>
 <div id="state-colors-1" class="section level3">
 <h3><span class="header-section-number">6.5.4</span> State Colors</h3>
 <p>We create the model and look at the summary to find the p-value for the coefficient on per capita income. The p-value is very small (smaller than <span class="math inline">\(2.2 \times 10^{-16}\)</span>) so we can conclude that per capita income <strong>does</strong> have a significant linear relationship with the log odds of a state being red.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">electionmod &lt;-<span class="st"> </span><span class="kw">glm</span>(Red <span class="op">~</span><span class="st">  </span>per_capita_income, <span class="dt">family =</span> binomial, <span class="dt">data =</span> election)</a>
-<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="kw">summary</span>(electionmod)</a>
-<a class="sourceLine" id="cb111-3" data-line-number="3"><span class="co">## </span></a>
-<a class="sourceLine" id="cb111-4" data-line-number="4"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb111-5" data-line-number="5"><span class="co">## glm(formula = Red ~ per_capita_income, family = binomial, data = election)</span></a>
-<a class="sourceLine" id="cb111-6" data-line-number="6"><span class="co">## </span></a>
-<a class="sourceLine" id="cb111-7" data-line-number="7"><span class="co">## Deviance Residuals: </span></a>
-<a class="sourceLine" id="cb111-8" data-line-number="8"><span class="co">##    Min      1Q  Median      3Q     Max  </span></a>
-<a class="sourceLine" id="cb111-9" data-line-number="9"><span class="co">## -1.617  -1.146  -0.753   1.157   2.073  </span></a>
-<a class="sourceLine" id="cb111-10" data-line-number="10"><span class="co">## </span></a>
-<a class="sourceLine" id="cb111-11" data-line-number="11"><span class="co">## Coefficients:</span></a>
-<a class="sourceLine" id="cb111-12" data-line-number="12"><span class="co">##                     Estimate Std. Error z value Pr(&gt;|z|)    </span></a>
-<a class="sourceLine" id="cb111-13" data-line-number="13"><span class="co">## (Intercept)        1.649e+00  1.722e-01   9.575   &lt;2e-16 ***</span></a>
-<a class="sourceLine" id="cb111-14" data-line-number="14"><span class="co">## per_capita_income -7.339e-05  7.214e-06 -10.173   &lt;2e-16 ***</span></a>
-<a class="sourceLine" id="cb111-15" data-line-number="15"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb111-16" data-line-number="16"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb111-17" data-line-number="17"><span class="co">## </span></a>
-<a class="sourceLine" id="cb111-18" data-line-number="18"><span class="co">## (Dispersion parameter for binomial family taken to be 1)</span></a>
-<a class="sourceLine" id="cb111-19" data-line-number="19"><span class="co">## </span></a>
-<a class="sourceLine" id="cb111-20" data-line-number="20"><span class="co">##     Null deviance: 4352.6  on 3142  degrees of freedom</span></a>
-<a class="sourceLine" id="cb111-21" data-line-number="21"><span class="co">## Residual deviance: 4237.1  on 3141  degrees of freedom</span></a>
-<a class="sourceLine" id="cb111-22" data-line-number="22"><span class="co">## AIC: 4241.1</span></a>
-<a class="sourceLine" id="cb111-23" data-line-number="23"><span class="co">## </span></a>
-<a class="sourceLine" id="cb111-24" data-line-number="24"><span class="co">## Number of Fisher Scoring iterations: 4</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">electionmod &lt;-<span class="st"> </span><span class="kw">glm</span>(Red <span class="op">~</span><span class="st">  </span>per_capita_income, <span class="dt">family =</span> binomial, <span class="dt">data =</span> election)
+<span class="kw">summary</span>(electionmod)
+<span class="co">## </span>
+<span class="co">## Call:</span>
+<span class="co">## glm(formula = Red ~ per_capita_income, family = binomial, data = election)</span>
+<span class="co">## </span>
+<span class="co">## Deviance Residuals: </span>
+<span class="co">##    Min      1Q  Median      3Q     Max  </span>
+<span class="co">## -1.617  -1.146  -0.753   1.157   2.073  </span>
+<span class="co">## </span>
+<span class="co">## Coefficients:</span>
+<span class="co">##                     Estimate Std. Error z value Pr(&gt;|z|)    </span>
+<span class="co">## (Intercept)        1.649e+00  1.722e-01   9.575   &lt;2e-16 ***</span>
+<span class="co">## per_capita_income -7.339e-05  7.214e-06 -10.173   &lt;2e-16 ***</span>
+<span class="co">## ---</span>
+<span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span>
+<span class="co">## </span>
+<span class="co">## (Dispersion parameter for binomial family taken to be 1)</span>
+<span class="co">## </span>
+<span class="co">##     Null deviance: 4352.6  on 3142  degrees of freedom</span>
+<span class="co">## Residual deviance: 4237.1  on 3141  degrees of freedom</span>
+<span class="co">## AIC: 4241.1</span>
+<span class="co">## </span>
+<span class="co">## Number of Fisher Scoring iterations: 4</span></code></pre>
 <p>Also, because the coefficient on per capita income is negative, we know that states with <strong>higher</strong> per capita incomes are <strong>less</strong> likely to be red.</p>
 </div>
 </div>
@@ -628,19 +633,19 @@ In the context of the crabs, we want to know whether the carapace width really d
 \dfrac{\exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right)\exp\left(  \beta_1  \right)}{\exp\left( \beta_0 \right) \exp\left(  \beta_1 x_i \right)} = \exp(\beta_1).
 \]</span></p>
 <p>Therefore, we can say that a one unit increase in the predictor is associated with a <span class="math inline">\(\exp(\beta_1)\)</span> multiplicative change in the odds. Let’s try this with the horseshoe crab carapace width model.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="kw">exp</span>(<span class="kw">coef</span>(mod))</a>
-<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="co">##  (Intercept)        width </span></a>
-<a class="sourceLine" id="cb112-3" data-line-number="3"><span class="co">## 4.326214e-06 1.644162e+00</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(mod))
+<span class="co">##  (Intercept)        width </span>
+<span class="co">## 4.326214e-06 1.644162e+00</span></code></pre>
 <p>A one centimeter increase in carapace width is associated with a 1.64 multiplicative change in the odds of having satellites. Alternatively, imagine two female crabs that have carapace widths that differ by exactly 1 cm. The odds of the larger crab having satellites is approximately 1.64 times the odds of the smaller crab having satellites.</p>
 </div>
 <div id="incorporate-a-categorical-predictor" class="section level3">
 <h3><span class="header-section-number">6.6.2</span> Incorporate a Categorical Predictor</h3>
 <p>Rather than using a quantitative predictor, we can use a categorical predictor. Let’s try using the spine condition in our horseshoe crab data. Crabs were categorized according to whether they had two good spines (<em>good</em>), two worn or broken spines (<em>bad</em>), or one worn/broken spine and one good spine (<em>middle</em>).</p>
 <p>We will fit the model using the following <strong>glm</strong> setup.</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">spinemod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>spine, <span class="dt">data =</span> crabs, <span class="dt">family =</span> binomial)</a>
-<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="kw">coef</span>(spinemod)</a>
-<a class="sourceLine" id="cb113-3" data-line-number="3"><span class="co">##    spinebad   spinegood spinemiddle </span></a>
-<a class="sourceLine" id="cb113-4" data-line-number="4"><span class="co">##   0.5955087   0.8602013  -0.1335314</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">spinemod &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span><span class="dv">0</span> <span class="op">+</span><span class="st"> </span>spine, <span class="dt">data =</span> crabs, <span class="dt">family =</span> binomial)
+<span class="kw">coef</span>(spinemod)
+<span class="co">##    spinebad   spinegood spinemiddle </span>
+<span class="co">##   0.5955087   0.8602013  -0.1335314</span></code></pre>
 <p>This produces three log odds, one for each group (bad, good, and middle). The coefficients represent the log odds of satellites for each group. This tells us that</p>
 <ul>
 <li>the log odds of satellites for a female with two bad spines is 0.596</li>
@@ -648,11 +653,11 @@ In the context of the crabs, we want to know whether the carapace width really d
 <li>the log odds of satellites for a female with one good spine is -0.134</li>
 </ul>
 <p>Again, most people understand probabilities better than odds or log odds, so let’s transform to probabilities:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="kw">coef</span>(spinemod))</a>
-<a class="sourceLine" id="cb114-2" data-line-number="2">probs &lt;-<span class="st"> </span>a<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>a)</a>
-<a class="sourceLine" id="cb114-3" data-line-number="3">probs</a>
-<a class="sourceLine" id="cb114-4" data-line-number="4"><span class="co">##    spinebad   spinegood spinemiddle </span></a>
-<a class="sourceLine" id="cb114-5" data-line-number="5"><span class="co">##   0.6446281   0.7027027   0.4666667</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw">exp</span>(<span class="kw">coef</span>(spinemod))
+probs &lt;-<span class="st"> </span>a<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>a)
+probs
+<span class="co">##    spinebad   spinegood spinemiddle </span>
+<span class="co">##   0.6446281   0.7027027   0.4666667</span></code></pre>
 <p>This tells us that</p>
 <ul>
 <li>the probability of satellites for a female with two bad spines is 0.645</li>
@@ -660,13 +665,13 @@ In the context of the crabs, we want to know whether the carapace width really d
 <li>the probability of satellites for a female with one good spine is 0.467</li>
 </ul>
 <p>If we eliminate the <strong>0+</strong> in the <strong>glm</strong> formula, we create a model with a reference group; this will compare the bad spine group to the other two groups.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">spinemod2 &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>spine, <span class="dt">data =</span> crabs, <span class="dt">family =</span> binomial)</a>
-<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="kw">coef</span>(spinemod2)</a>
-<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="co">## (Intercept)   spinegood spinemiddle </span></a>
-<a class="sourceLine" id="cb115-4" data-line-number="4"><span class="co">##   0.5955087   0.2646926  -0.7290401</span></a>
-<a class="sourceLine" id="cb115-5" data-line-number="5"><span class="kw">exp</span>(<span class="kw">coef</span>(spinemod2))</a>
-<a class="sourceLine" id="cb115-6" data-line-number="6"><span class="co">## (Intercept)   spinegood spinemiddle </span></a>
-<a class="sourceLine" id="cb115-7" data-line-number="7"><span class="co">##   1.8139535   1.3030303   0.4823718</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">spinemod2 &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>spine, <span class="dt">data =</span> crabs, <span class="dt">family =</span> binomial)
+<span class="kw">coef</span>(spinemod2)
+<span class="co">## (Intercept)   spinegood spinemiddle </span>
+<span class="co">##   0.5955087   0.2646926  -0.7290401</span>
+<span class="kw">exp</span>(<span class="kw">coef</span>(spinemod2))
+<span class="co">## (Intercept)   spinegood spinemiddle </span>
+<span class="co">##   1.8139535   1.3030303   0.4823718</span></code></pre>
 <p>This model tells us that</p>
 <ul>
 <li>the odds of satellites for a female with two bad spines is 1.8.</li>
@@ -674,9 +679,9 @@ In the context of the crabs, we want to know whether the carapace width really d
 <li>the odds of satellites for a female with one good spine and one bad spine is .48 times the odds of satellites for a female with two bad spines.</li>
 </ul>
 <p>Sometimes people have a hard time interpreting odds ratios below 1. In this case, it is useful to flip the ratio.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="dv">1</span><span class="op">/</span><span class="kw">exp</span>(<span class="kw">coef</span>(spinemod2))</a>
-<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="co">## (Intercept)   spinegood spinemiddle </span></a>
-<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="co">##   0.5512821   0.7674419   2.0730897</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">/</span><span class="kw">exp</span>(<span class="kw">coef</span>(spinemod2))
+<span class="co">## (Intercept)   spinegood spinemiddle </span>
+<span class="co">##   0.5512821   0.7674419   2.0730897</span></code></pre>
 <p>Therefore, we can reword the third bullet to the following: the odds of satellites for a female with two bad spines is 2 times the odds of satellites for a female with one bad spine and one good spine.</p>
 </div>
 </div>
@@ -701,57 +706,57 @@ In the context of the crabs, we want to know whether the carapace width really d
 <h3><span class="header-section-number">6.8.1</span> Interpret the Slopes</h3>
 <div id="crab-weight-1" class="section level4">
 <h4><span class="header-section-number">6.8.1.1</span> Crab Weight</h4>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">logodds &lt;-<span class="st"> </span><span class="kw">coef</span>(weightmod)[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb117-2" data-line-number="2"><span class="kw">exp</span>(logodds)</a>
-<a class="sourceLine" id="cb117-3" data-line-number="3"><span class="co">##   weight </span></a>
-<a class="sourceLine" id="cb117-4" data-line-number="4"><span class="co">## 1.001817</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">logodds &lt;-<span class="st"> </span><span class="kw">coef</span>(weightmod)[<span class="dv">2</span>]
+<span class="kw">exp</span>(logodds)
+<span class="co">##   weight </span>
+<span class="co">## 1.001817</span></code></pre>
 <p>A one gram increase in a crab’s weight is associated with a multiplicative change of 1.0018168 in the odds of her having satellites.</p>
 <p>A 100 gram increase in a crab’s weight is associated with a multiplicative change of 1.1990319 in her odds of having satellites.</p>
 </div>
 <div id="boundary-water-blowdown-2" class="section level4">
 <h4><span class="header-section-number">6.8.1.2</span> Boundary Water Blowdown</h4>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">exp</span>(<span class="kw">coef</span>(treemod)[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb118-2" data-line-number="2"><span class="co">##        D </span></a>
-<a class="sourceLine" id="cb118-3" data-line-number="3"><span class="co">## 1.102476</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(treemod)[<span class="dv">2</span>])
+<span class="co">##        D </span>
+<span class="co">## 1.102476</span></code></pre>
 <p>A one centimeter increase in a tree’s diameter was associated with a 1.1024759 multiplicative change in the odds of it blowing down.</p>
 <p>A ten centimeter increase in a tree’s diameter was associated with a 2.6527174 multiplicative change in the odds of it blowing down.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">exp</span>(<span class="kw">coef</span>(treemod)[<span class="dv">2</span>]<span class="op">*</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb119-2" data-line-number="2"><span class="co">##        D </span></a>
-<a class="sourceLine" id="cb119-3" data-line-number="3"><span class="co">## 2.652717</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(treemod)[<span class="dv">2</span>]<span class="op">*</span><span class="dv">10</span>)
+<span class="co">##        D </span>
+<span class="co">## 2.652717</span></code></pre>
 </div>
 <div id="beer-2" class="section level4">
 <h4><span class="header-section-number">6.8.1.3</span> Beer</h4>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="kw">exp</span>(<span class="kw">coef</span>(beermod)[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb120-2" data-line-number="2"><span class="co">##      ABV </span></a>
-<a class="sourceLine" id="cb120-3" data-line-number="3"><span class="co">## 4.332636</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>(<span class="kw">coef</span>(beermod)[<span class="dv">2</span>])
+<span class="co">##      ABV </span>
+<span class="co">## 4.332636</span></code></pre>
 <p>A one percentage point increase in a beer’s ABV is associated with a 1.1024759 multiplicative change in its log odds of having a rating of 90 or higher.</p>
 </div>
 <div id="state-colors-2" class="section level4">
 <h4><span class="header-section-number">6.8.1.4</span> State Colors</h4>
 <p>We could look at a one dollar increase in per capita income, but that is not very useful because a dollar is not very meaningful. Let’s instead look at a one thousand dollar increase in per capita income.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">exp</span>((<span class="kw">coef</span>(electionmod)[<span class="dv">2</span>]<span class="op">*</span><span class="dv">1000</span>))</a>
-<a class="sourceLine" id="cb121-2" data-line-number="2"><span class="co">## per_capita_income </span></a>
-<a class="sourceLine" id="cb121-3" data-line-number="3"><span class="co">##          0.929239</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">exp</span>((<span class="kw">coef</span>(electionmod)[<span class="dv">2</span>]<span class="op">*</span><span class="dv">1000</span>))
+<span class="co">## per_capita_income </span>
+<span class="co">##          0.929239</span></code></pre>
 <p>A one thousand dollar increase in a state’s average per capita income is associated with a multiplicative change of 0.929239
 in its odds of being red.</p>
 </div>
 </div>
 <div id="state-colors-again-1" class="section level3">
 <h3><span class="header-section-number">6.8.2</span> State Colors Again</h3>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">lowhighmod &lt;-<span class="st"> </span><span class="kw">glm</span>(Red <span class="op">~</span><span class="st"> </span>IncomeBracket, <span class="dt">data =</span> election, <span class="dt">family =</span> binomial)</a>
-<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="kw">exp</span>(<span class="kw">coef</span>(lowhighmod))</a>
-<a class="sourceLine" id="cb122-3" data-line-number="3"><span class="co">##      (Intercept) IncomeBracketlow </span></a>
-<a class="sourceLine" id="cb122-4" data-line-number="4"><span class="co">##        0.6197836        1.8217084</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">lowhighmod &lt;-<span class="st"> </span><span class="kw">glm</span>(Red <span class="op">~</span><span class="st"> </span>IncomeBracket, <span class="dt">data =</span> election, <span class="dt">family =</span> binomial)
+<span class="kw">exp</span>(<span class="kw">coef</span>(lowhighmod))
+<span class="co">##      (Intercept) IncomeBracketlow </span>
+<span class="co">##        0.6197836        1.8217084</span></code></pre>
 <p>The odds of a high income state being red is about .62. The odds of a low income state being red are about 1.82 times the odds of a high income state being red. That is, low income states are more likely to be red than high income states.</p>
 </div>
 <div id="beer-again-1" class="section level3">
 <h3><span class="header-section-number">6.8.3</span> Beer Again</h3>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">beermod2 &lt;-<span class="st"> </span><span class="kw">glm</span>(Good <span class="op">~</span><span class="st"> </span><span class="dv">0</span><span class="op">+</span><span class="st"> </span>Style, <span class="dt">data=</span>beer, <span class="dt">family =</span> binomial)</a>
-<a class="sourceLine" id="cb123-2" data-line-number="2">logodds &lt;-<span class="st"> </span><span class="kw">coef</span>(beermod2)</a>
-<a class="sourceLine" id="cb123-3" data-line-number="3">probs &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">exp</span>(logodds)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(logodds)),<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb123-4" data-line-number="4">probs</a>
-<a class="sourceLine" id="cb123-5" data-line-number="5"><span class="co">##   StyleAle   StyleIPA StyleLager </span></a>
-<a class="sourceLine" id="cb123-6" data-line-number="6"><span class="co">##      0.278      0.412      0.000</span></a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">beermod2 &lt;-<span class="st"> </span><span class="kw">glm</span>(Good <span class="op">~</span><span class="st"> </span><span class="dv">0</span><span class="op">+</span><span class="st"> </span>Style, <span class="dt">data=</span>beer, <span class="dt">family =</span> binomial)
+logodds &lt;-<span class="st"> </span><span class="kw">coef</span>(beermod2)
+probs &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">exp</span>(logodds)<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span><span class="kw">exp</span>(logodds)),<span class="dv">3</span>)
+probs
+<span class="co">##   StyleAle   StyleIPA StyleLager </span>
+<span class="co">##      0.278      0.412      0.000</span></code></pre>
 <p>Ales have a 0.278 probability of having a rating of 90 or higher.</p>
 <p>IPAs have a 0.412 probability of having a rating of 90 or higher.</p>
 <p>The poor lagers have no chance of having a rating of 90 or higher. This is just based on the data in our data set. Surely if we looked at ALL lagers all over the world, we’d eventually find
@@ -760,6 +765,12 @@ one that deserves a rating of 90 or higher.</p>
 </div>
 </div>
 </div>
+
+
+
+
+
+
             </section>
 
           </div>
